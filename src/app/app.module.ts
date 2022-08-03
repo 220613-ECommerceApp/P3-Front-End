@@ -12,6 +12,7 @@ import { CheckoutComponent } from './components/checkout/checkout.component';
 import { DisplayProductsComponent } from './components/display-products/display-products.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FontAwesomeModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
