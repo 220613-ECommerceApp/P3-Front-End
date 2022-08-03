@@ -12,7 +12,7 @@ phases:
       - npm init --yes
       - npm install --legacy-peer-deps
       - npm install @angular/cli@latest --legacy-peer-deps
-      - npm link @angular/cli
+      - npm link @angular/cli --legacy-peer-deps
   build:
     commands:
       - echo build process started now
