@@ -6,7 +6,7 @@ env:
 phases:
   install:
     runtime-versions:
-      nodejs: 14.x
+      nodejs: 18.7.0
     commands:
       - echo install process started
       - npm install && npm install -g @angular/cli
