@@ -12,9 +12,9 @@ phases:
       - npm init --yes
       - npm install --location=global npm-check-updates
       - ncu -u
-      - npm install
-      - npm install @angular/cli@latest
-      - npm link @angular/cli
+      - npm install --force
+      - npm install @angular/cli@latest --force
+      - npm link @angular/cli --force
   build:
     commands:
       - echo build process started now
