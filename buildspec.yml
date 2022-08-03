@@ -11,11 +11,11 @@ phases:
       - echo install process started
       - npm init --yes
       - npm install --legacy-peer-deps
-      - npm install --location=global @angular/cli
+      - npm install @angular/cli
   build:
     commands:
       - echo build process started now
-      - ng build --${prod}
+      - ng build --configuration=production
   post_build:
     commands:
       - echo build process finished, we should upload to S3 now
