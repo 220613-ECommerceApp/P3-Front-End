@@ -39,7 +39,7 @@ export class ProductService {
   constructor(private http: HttpClient) { }
 
   public getProducts(): Observable<Product[]> {
-    return this.http.get<Product[]>(environment.baseUrl+this.productUrl, {headers: environment.headers, withCredentials: environment.withCredentials});
+    return this.http.get<Product[]>(environment.baseUrl+this.productUrl, {headers: environment.headers});
   }
 
   public getSingleProduct(id: number): Observable<Product> {

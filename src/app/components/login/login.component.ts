@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-login',
@@ -23,8 +24,9 @@ export class LoginComponent implements OnInit {
   
   onSubmit(): void {
     this.authService.login(this.loginForm.get('email')?.value, this.loginForm.get('password')?.value).subscribe(
-      () => {
-        this.authService.loggedIn=true;
+      (res) => {
+        this.authService.loggedIn=true
+        environment.headers.Authorization = "Bearer " + res.token
       },
       (err) => console.log(err),
       () => this.router.navigate(['home'])

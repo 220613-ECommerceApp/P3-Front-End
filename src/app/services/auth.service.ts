@@ -15,11 +15,11 @@ export class AuthService {
 
   login(email: string, password: string): Observable<any> {
     const payload = {email:email, password:password};
-    return this.http.post<any>(`${this.authUrl}/login`, payload, {headers: environment.headers, withCredentials: environment.withCredentials});
+    return this.http.post<any>(`${this.authUrl}/login`, payload, {headers: environment.headers});
   }
 
   logout(): void{
-    this.http.post(`${this.authUrl}/logout`, null);
+    environment.headers.Authorization = ''
   }
 
   register(userName: string, email: string, password: string): Observable<any> {
