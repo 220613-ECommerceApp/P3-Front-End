@@ -10,13 +10,12 @@ phases:
     commands:
       - echo install process started
       - npm init --yes
-      - npm install --location=global npm@latest 
-      - npm install --location=global @angular/cli@latest
-      - npm install --location=global @angular-devkit/build-angular@latest
+      - npm install
+      - npm install --location=global @angular/cli
   build:
     commands:
       - echo build process started now
-      - ng build --configuration=production
+      - ng build --${"prod"}
   post_build:
     commands:
       - echo build process finished, we should upload to S3 now
