@@ -9,10 +9,7 @@ phases:
       nodejs: 16.x
     commands:
       - echo install process started
-      - npm init --yes
-      - npm install --force
-      - npm install @angular/cli --force
-      - npm link @angular/cli --force
+      - npm install
   build:
     commands:
       - echo build process started now
