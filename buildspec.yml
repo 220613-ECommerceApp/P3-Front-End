@@ -11,7 +11,7 @@ phases:
       - echo install process started
       - npm init --yes
       - npm install --legacy-peer-deps
-      - npm install @angular/cli --force
+      - npm install @angular/cli@latest --force
       - npm link @angular/cli
   build:
     commands:
