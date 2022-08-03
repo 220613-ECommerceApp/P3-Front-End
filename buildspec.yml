@@ -9,8 +9,10 @@ phases:
       nodejs: 16.x
     commands:
       - echo install process started
+      - npm cache clear
       - npm init --yes
-      - npm install && npm install -g @angular/cli@latest
+      - npm install -g npm@latest 
+      - npm install -g @angular/cli@latest
   build:
     commands:
       - echo build process started now
