@@ -10,8 +10,10 @@ phases:
     commands:
       - echo install process started
       - npm init --yes
-      - npm install -g npm@latest 
-      - npm install -g @angular/cli@latest
+      - npm install
+      - npm install --location=global npm@latest 
+      - npm install --location=global @angular/cli@latest
+      - npm i --save-dev @angular-devkit/build-angular@latest
   build:
     commands:
       - echo build process started now
