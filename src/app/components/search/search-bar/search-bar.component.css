@@ -1,0 +1,20 @@
+.search-container {
+  display: flex;
+  border: 1px solid black;
+  width: fit-content;
+}
+
+.search-input {
+  display: flex;
+}
+
+#search-input {
+  border: 0;
+  outline: 0;
+}
+
+.search-btn {
+  padding-left: 10px;
+  padding-right: 10px;
+  border-left: 1px solid lightgray;
+}
