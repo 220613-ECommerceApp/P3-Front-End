@@ -13,6 +13,10 @@ export class AuthService {
 
   constructor(private http: HttpClient) { }
 
+  updateBearer(): void {
+    environment.headers.Authorization = "Bearer " + localStorage.getItem("token")
+  }
+
   login(email: string, password: string): Observable<any> {
     const payload = {email:email, password:password};
     return this.http.post<any>(`${this.authUrl}/login`, payload, {headers: environment.headers});
@@ -20,6 +24,7 @@ export class AuthService {
 
   logout(): void{
     environment.headers.Authorization = ''
+    localStorage.removeItem("token")
   }
 
   register(userName: string, email: string, password: string): Observable<any> {

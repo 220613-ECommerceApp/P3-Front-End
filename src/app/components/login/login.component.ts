@@ -26,7 +26,7 @@ export class LoginComponent implements OnInit {
     this.authService.login(this.loginForm.get('email')?.value, this.loginForm.get('password')?.value).subscribe(
       (res) => {
         this.authService.loggedIn=true
-        environment.headers.Authorization = "Bearer " + res.token
+        localStorage.setItem("token", res.token)
       },
       (err) => console.log(err),
       () => this.router.navigate(['home'])
