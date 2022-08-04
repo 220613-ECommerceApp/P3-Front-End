@@ -13,7 +13,7 @@
             <td>{{product.product.id}}</td>
             <td>{{product.product.name}}</td>
             <!-- Testing functionality for adding and removing from the cart-->
-            <td><button class="btn btn-primary" (click)="removeQuantity()">-</button> {{product.quantity}}<button class="btn btn-primary" (click)="addQuantity()">+</button></td>
+            <td><button class="btn btn-primary" (click)="decreaseQuantity()">-</button> {{product.quantity}}<button class="btn btn-primary" (click)="increaseQuantity()">+</button></td>
             <td>{{product.product.description}}</td>
         </tr>
     </tbody>

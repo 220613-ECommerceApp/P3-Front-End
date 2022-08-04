@@ -42,22 +42,12 @@ export class CartComponent implements OnInit {
   }
 
   // Testing functionality for adding and removing from the cart
-  addQuantity(): void {
-    let cart = {
-      cartCount: +1,
-      products: [],
-      totalPrice: this.totalPrice
-    };
-    this.productService.setCart(cart);
+  increaseQuantity(): void {
+    
   }
 
-  removeQuantity(): void {
-    let cart = {
-      cartCount: -1,
-      products: [],
-      totalPrice: this.totalPrice
-    };
-    this.productService.setCart(cart);
+  decreaseQuantity(): void {
+
   }
 
   
