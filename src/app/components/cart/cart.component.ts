@@ -41,4 +41,25 @@ export class CartComponent implements OnInit {
     this.router.navigate(['/home']);
   }
 
+  // Testing functionality for adding and removing from the cart
+  addQuantity(): void {
+    let cart = {
+      cartCount: +1,
+      products: [],
+      totalPrice: this.totalPrice
+    };
+    this.productService.setCart(cart);
+  }
+
+  removeQuantity(): void {
+    let cart = {
+      cartCount: -1,
+      products: [],
+      totalPrice: this.totalPrice
+    };
+    this.productService.setCart(cart);
+  }
+
+  
+
 }
