@@ -43,13 +43,10 @@ export class CartComponent implements OnInit {
 
   // Testing functionality for adding and removing from the cart
   increaseQuantity(): void {
-    
+    console.log("Increasing Quantity");
   }
 
   decreaseQuantity(): void {
-
+    console.log("Increasing Quantity");
   }
-
-  
-
 }
