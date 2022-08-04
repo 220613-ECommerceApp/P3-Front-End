@@ -16,6 +16,8 @@ export class OrderHistoryComponent implements OnInit {
   quantity!: number;
   price!: number;
   timestamp!: number;  
+  orderHistoryProducts: Product[] = [];
+
 
   constructor(private productService: ProductService, private router: Router) { }
 
@@ -25,8 +27,9 @@ export class OrderHistoryComponent implements OnInit {
         this.products = orderHistory.products;
         this.products.forEach
           (element) => this.orderHistoryProducts.push(element.product)
-        );
-        this.timeStamps = orderHistory.timestamps;
+        this.quantity = orderHistory.quantity;
+        this.price = orderHistory.price;
+        this.timestamp = orderHistory.timestamp;
       }
     );
   }
