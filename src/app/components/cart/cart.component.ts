@@ -9,14 +9,13 @@ import { ProductService } from 'src/app/services/product.service';
   styleUrls: ['./cart.component.css']
 })
 export class CartComponent implements OnInit {
-
   products: {
     product: Product,
     quantity: number
   }[] = [];
   totalPrice!: number;
   cartProducts: Product[] = [];
-
+  
   constructor(private productService: ProductService, private router: Router) { }
 
   ngOnInit(): void {
