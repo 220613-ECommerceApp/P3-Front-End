@@ -13,17 +13,22 @@ export class AuthService {
 
   constructor(private http: HttpClient) { }
 
+  updateBearer(): void {
+    environment.headers.Authorization = "Bearer " + localStorage.getItem("token")
+  }
+
   login(email: string, password: string): Observable<any> {
     const payload = {email:email, password:password};
-    return this.http.post<any>(`${this.authUrl}/login`, payload, {headers: environment.headers, withCredentials: environment.withCredentials});
+    return this.http.post<any>(`${this.authUrl}/login`, payload, {headers: environment.headers});
   }
 
   logout(): void{
-    this.http.post(`${this.authUrl}/logout`, null);
+    environment.headers.Authorization = ''
+    localStorage.removeItem("token")
   }
 
-  register(firstName: string, lastName: string, email: string, password: string): Observable<any> {
-    const payload = {firstName: firstName, lastName: lastName, email: email, password: password};
+  register(userName: string, email: string, password: string): Observable<any> {
+    const payload = {username: userName, email: email, password: password};
     return this.http.post<any>(`${this.authUrl}/register`, payload, {headers: environment.headers});
   }
 }

@@ -4,7 +4,7 @@
 </div>
 <div class="container">
   <div class="row align-items-start">
-    <div class="col" *ngFor="let product of allProducts">
+    <div class="col" *ngFor="let product of getProducts()">
       <app-product-card
         class="cardListItem"
         [productInfo]="product"

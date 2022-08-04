@@ -13,6 +13,9 @@ import { DisplayProductsComponent } from './components/display-products/display-
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { OrderHistoryComponent } from './components/order-history/order-history.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { SearchResultComponent } from './components/search/search-result/search-result.component';
+import { SearchBarComponent } from './components/search/search-bar/search-bar.component';
 
 @NgModule({
   declarations: [
@@ -24,16 +27,19 @@ import { OrderHistoryComponent } from './components/order-history/order-history.
     CartComponent,
     CheckoutComponent,
     DisplayProductsComponent,
-    OrderHistoryComponent
+    OrderHistoryComponent,
+    SearchBarComponent,
+    SearchResultComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FontAwesomeModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

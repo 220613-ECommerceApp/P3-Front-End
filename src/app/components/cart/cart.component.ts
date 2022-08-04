@@ -40,4 +40,12 @@ export class CartComponent implements OnInit {
     this.router.navigate(['/home']);
   }
 
+  // Testing functionality for adding and removing from the cart
+  increaseQuantity(): void {
+    console.log("Increasing Quantity");
+  }
+
+  decreaseQuantity(): void {
+    console.log("Increasing Quantity");
+  }
 }
