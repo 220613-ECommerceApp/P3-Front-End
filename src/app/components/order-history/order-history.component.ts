@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Product } from 'src/app/models/product';
-import { ProductService } from 'src/app/services/product.service';
+import { OrderHistoryItem } from 'src/app/models/order-history-item';
+import { OrderHistoryService } from 'src/app/services/order-history.service';
 
 @Component({
   selector: 'app-order-history',
@@ -9,27 +9,25 @@ import { ProductService } from 'src/app/services/product.service';
   styleUrls: ['./order-history.component.css']
 })
 export class OrderHistoryComponent implements OnInit {
-  products: {
-    product: Product,
-    quantity: number
+  orderHistoryItemCount!: number;
+  orderHistoryItems: {
+    orderHistoryItem: OrderHistoryItem
   }[] = [];
-  quantity!: number;
-  price!: number;
-  timestamp!: number;  
-  orderHistoryProducts: Product[] = [];
+  orderHistory: OrderHistoryItem[] = [];
 
 
-  constructor(private productService: ProductService, private router: Router) { }
+
+  constructor(private orderHistoryService: OrderHistoryService, private router: Router) { }
 
   ngOnInit(): void {
-	    this.productService.getOrderHistory().subcribe(
+	    this.orderHistoryService.getOrderHistory().subscribe(
       (orderHistory) => {
-        this.products = orderHistory.products;
-        this.products.forEach
-          (element) => this.orderHistoryProducts.push(element.product)
-        this.quantity = orderHistory.quantity;
-        this.price = orderHistory.price;
-        this.timestamp = orderHistory.timestamp;
+        this.orderHistoryItems = orderHistory.orderHistoryItems;
+        this.orderHistoryItems.forEach
+        (
+          (element) => this.orderHistory.push(element.orderHistoryItem)
+        );
+        this.orderHistoryItemCount = orderHistory.orderHistoryItemCount
       }
     );
   }
@@ -37,19 +35,9 @@ export class OrderHistoryComponent implements OnInit {
 
   emptyOrderHistory(): void {
     let orderHistory = {
-	orderHistoryCount: 0,
-	products: [],
-	quanty: 0,
-	price: 0,
-    timeStamp: 0
+      orderHistoryItemCount: 0,
+      orderHistoryItems: [],
     };
-    
-    
-    this.productService.setOrderHistory(orderHistory);
+    this.orderHistoryService.setOrderHistory(orderHistory);
     this.router.navigate(['/home']);
-  }
-
-}
-
-
-
+  };

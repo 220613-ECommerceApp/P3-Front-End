@@ -1,43 +1,43 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { Product } from '../models/product';
+import { OrderHistoryItem } from '../models/order-history-item';
 import { environment } from 'src/environments/environment';
 import { AuthService } from './auth.service';
 
-interface Cart {
-  cartCount: number;
-  products: {
-    product: Product,
-    quantity: number
-  }[];
-  totalPrice: number;
-}
+interface OrderHistory {
+  orderHistoryItemCount: number;
+  orderHistoryItems: {
+    orderHistoryItem: OrderHistoryItem
+	}[];
+}  
 
 @Injectable({
   providedIn: 'root'
 })
-export class ProductService {
+export class OrderHistoryService {
 
-  private productUrl: string = "/api/product";
+  private orderHistoryUrl: string = "/api/orderHistory";
+  
+  private _orderHistory = new BehaviorSubject<OrderHistory>({
+	orderHistoryItemCount: 0,
+	orderHistoryItems: [],
+})
 
-  private _cart = new BehaviorSubject<Cart>({
-    cartCount: 0,
-    products: [],
-    totalPrice: 0.00
-  });
-
-  private _cart$ = this._cart.asObservable();
-
-  getCart(): Observable<Cart> {
-    return this._cart$;
-  }
-
-  setCart(latestValue: Cart) {
-    return this._cart.next(latestValue);
+  private _orderHistory$ = this._orderHistory.asObservable();
+  
+  getOrderHistory(): Observable<OrderHistory> {
+    return this._orderHistory$;
   }
   
+  setOrderHistory(latestValue: OrderHistory) {
+    return this._orderHistory.next(latestValue);
+  }	
+	
   constructor(private http: HttpClient, private auth: AuthService) { }
+
+// TO DO: ORGANIZE SO IT WORKS WITH BACK END
+
 
   public getProducts(): Observable<Product[]> {
     this.auth.updateBearer()

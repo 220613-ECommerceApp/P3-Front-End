@@ -10,14 +10,12 @@
       </tr>
     </thead>
     <tbody id="cart-table-body">
-        <tr *ngFor="let product of products;">
-            <td>{{product.product.id}}</td>
-            <td>{{product.product.name}}</td>
-            <td>{{product.quantity}}</td>
-            <td>{{product.product.description}}</td>
+        <tr *ngFor="let item of orderHistoryItems;">
+            <td>{{item.orderHistoryItem.id}}</td>
+            <td>{{item.orderHistoryItem.name}}</td>
+            <td>{{item.orderHistoryItem.totalQuantity}}</td>
+            <td>{{item.orderHistoryItem.totalPrice}}</td>
         </tr>
     </tbody>
 </table>
 <button class="btn btn-danger" [routerLink]="['/home']">Back</button>
-<button class="btn btn-warning" (click)="emptyCart()">Empty Cart</button>
-<button class="btn btn-primary" [routerLink]="['/checkout']">Proceed to Checkout (${{totalPrice}})</button>
