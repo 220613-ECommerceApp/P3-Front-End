@@ -14,53 +14,31 @@ import { ProductService } from 'src/app/services/product.service';
 export class CartComponent implements OnInit {
   cartitems: Observable<Cartitem[]> = new Observable<Cartitem[]>();
 
-  // products: {
-  //   product: Product;
-  //   quantity: number;
-  // }[] = [];
 
   totalPrice!: number;
   cartCount!: number;
 
-  // cartProducts: Product[] = [];
 
   constructor(
-    private productService: ProductService,
-    private router: Router
+     private router: Router
     ,
     private cs: CartService
   ) {}
 
   ngOnInit(): void {
-    // this.productService.getCart().subscribe((cart) => {
-    //   this.products = cart.products;
-    //   this.products.forEach((element) =>
-    //     this.cartProducts.push(element.product)
-    //   );
-    //   this.totalPrice = cart.totalPrice;
-    // });
-
+    
 
     this.cs.getCart();
     this.cartitems = this.cs.subject;
     this.getTotalPrice();
-    // this.getCartCount();
     
-
-    //test
-    // console.log(this.cs.getCartCount());
    
     
 
   }
 
   emptyCart(): void {
-    // let cart = {
-    //   cartCount: 0,
-    //   products: [],
-    //   totalPrice: 0.0,
-    // };
-    // this.productService.setCart(cart);
+     //TO-DO
     this.router.navigate(['/home']);
   }
 
@@ -81,13 +59,5 @@ export class CartComponent implements OnInit {
       });
     });
   }
-
-  // getCartCount(): void {
-  //   this.cartCount =0;
-  //   this.cartitems.forEach((e) => {
-  //      e.forEach((r) => {
-  //        this.cartCount += r.quantity;
-  //      });
-  //     });
-  // }
+ 
 }

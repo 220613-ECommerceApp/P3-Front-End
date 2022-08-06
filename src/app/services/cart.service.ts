@@ -31,41 +31,24 @@ export class CartService {
       });
   }
 
-  //  getCartCount():  number {
-  //    let  count = 3;
-  //   this.auth.updateBearer();
-  //    this.http
-  // .get<Cartitem[]>(environment.baseUrl + '/api/cart', {
-  //   headers: environment.headers,
-  // })
-  // .pipe(
-  //   catchError((e) => {
-  //     return throwError(e);
-  //   })
-  // )
-  // .subscribe( (data)  => {
-  //     data.forEach(p=>{
-  //     count += p.quantity;
-  //     console.log(count)
-  //   })
-  // });
-  //   return count;
-  // }
-
   async getCartCount(): Promise<number> {
     var count = 0;
     this.auth.updateBearer();
-    var data = await  this.http
+    var data = await this.http
       .get<Cartitem[]>(environment.baseUrl + '/api/cart', {
         headers: environment.headers,
-      }).toPromise()
+      })
+      .toPromise();
 
-      data.forEach(p=>{
+    data.forEach((p) => {
       count += p.quantity;
-       
-    })
-     
-    console.log(count)
+    });
+
+    console.log(count);
     return count;
   }
+
+  // async getTotalPrice(): Promise<number> {
+    
+  // }
 }
