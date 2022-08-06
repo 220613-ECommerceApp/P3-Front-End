@@ -24,7 +24,7 @@ export class CartService {
         })
       )
       .subscribe((data) => {
-        console.log(data);
+        // console.log(data);
         this.subject.next(data);
       });
   }

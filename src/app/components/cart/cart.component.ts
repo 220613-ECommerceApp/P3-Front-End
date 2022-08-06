@@ -5,6 +5,7 @@ import { Cartitem } from 'src/app/models/cartitem';
 import { Product } from 'src/app/models/product';
 import { CartService } from 'src/app/services/cart.service';
 import { ProductService } from 'src/app/services/product.service';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-cart',
@@ -25,7 +26,7 @@ cartitems:Observable<Cartitem[]> = new Observable<Cartitem[]>();
   //   quantity: number;
   // }[] = [];
 
-  // totalPrice!: number;
+  totalPrice!: number;
 
   // cartProducts: Product[] = [];
 
@@ -41,16 +42,17 @@ cartitems:Observable<Cartitem[]> = new Observable<Cartitem[]>();
     // });
 this.cs.getCart();
 this.cartitems = this.cs.subject;
-console.log(this.cartitems);
+// console.log(this.cartitems);
+this.getTotalPrice();
   }
 
   emptyCart(): void {
-    let cart = {
-      cartCount: 0,
-      products: [],
-      totalPrice: 0.0,
-    };
-    this.productService.setCart(cart);
+    // let cart = {
+    //   cartCount: 0,
+    //   products: [],
+    //   totalPrice: 0.0,
+    // };
+    // this.productService.setCart(cart);
     this.router.navigate(['/home']);
   }
 
@@ -63,6 +65,17 @@ console.log(this.cartitems);
     console.log('Increasing Quantity');
   }
 
+  getTotalPrice():void {
+    this.totalPrice =0;
+    this.cartitems.forEach(e=>{
+       e.forEach(r=>{
+         this.totalPrice += r.quantity * r.product.price;
+        
+       })
+    })
+
+
+  }
 
 
 }
