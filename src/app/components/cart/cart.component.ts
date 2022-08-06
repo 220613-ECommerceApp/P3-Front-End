@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
+import { Cartitem } from 'src/app/models/cartitem';
 import { Product } from 'src/app/models/product';
+import { CartService } from 'src/app/services/cart.service';
 import { ProductService } from 'src/app/services/product.service';
 
 @Component({
@@ -9,25 +12,36 @@ import { ProductService } from 'src/app/services/product.service';
   styleUrls: ['./cart.component.css'],
 })
 export class CartComponent implements OnInit {
-  products: {
-    product: Product;
-    quantity: number;
-  }[] = [];
 
-  totalPrice!: number;
 
-  cartProducts: Product[] = [];
+cartitems:Observable<Cartitem[]> = new Observable<Cartitem[]>();
 
-  constructor(private productService: ProductService, private router: Router) {}
+
+
+
+
+  // products: {
+  //   product: Product;
+  //   quantity: number;
+  // }[] = [];
+
+  // totalPrice!: number;
+
+  // cartProducts: Product[] = [];
+
+  constructor(private productService: ProductService, private router: Router, private cs: CartService) {}
 
   ngOnInit(): void {
-    this.productService.getCart().subscribe((cart) => {
-      this.products = cart.products;
-      this.products.forEach((element) =>
-        this.cartProducts.push(element.product)
-      );
-      this.totalPrice = cart.totalPrice;
-    });
+    // this.productService.getCart().subscribe((cart) => {
+    //   this.products = cart.products;
+    //   this.products.forEach((element) =>
+    //     this.cartProducts.push(element.product)
+    //   );
+    //   this.totalPrice = cart.totalPrice;
+    // });
+this.cs.getCart();
+this.cartitems = this.cs.subject;
+console.log(this.cartitems);
   }
 
   emptyCart(): void {
@@ -48,4 +62,7 @@ export class CartComponent implements OnInit {
   decreaseQuantity(): void {
     console.log('Increasing Quantity');
   }
+
+
+
 }
