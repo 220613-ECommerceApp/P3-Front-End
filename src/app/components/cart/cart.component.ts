@@ -2,9 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Cartitem } from 'src/app/models/cartitem';
-import { Product } from 'src/app/models/product';
 import { CartService } from 'src/app/services/cart.service';
-import { ProductService } from 'src/app/services/product.service';
 
 @Component({
   selector: 'app-cart',
@@ -30,7 +28,7 @@ export class CartComponent implements OnInit {
 
     this.cs.getCart();
     this.cartitems = this.cs.subject;
-    this.getTotalPrice();
+    this.cs.getTotalPrice().then(total=> this.totalPrice=total);
     
    
     
@@ -51,13 +49,6 @@ export class CartComponent implements OnInit {
     console.log('Decrease Quantity');
   }
 
-  getTotalPrice(): void {
-    this.totalPrice = 0;
-    this.cartitems.forEach((e) => {
-      e.forEach((r) => {
-        this.totalPrice += r.quantity * r.product.price;
-      });
-    });
-  }
+  
  
 }

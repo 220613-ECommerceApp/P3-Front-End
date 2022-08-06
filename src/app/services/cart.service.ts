@@ -48,7 +48,18 @@ export class CartService {
     return count;
   }
 
-  // async getTotalPrice(): Promise<number> {
-    
-  // }
+  async getTotalPrice(): Promise<number> {
+    var total = 0;
+    this.auth.updateBearer();
+    var data = await this.http
+      .get<Cartitem[]>(environment.baseUrl + '/api/cart', {
+        headers: environment.headers,
+      })
+      .toPromise();
+
+    data.forEach((p) => {
+      total += p.quantity * p.product.price;
+    });
+    return total;
+  }
 }
