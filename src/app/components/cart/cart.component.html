@@ -12,7 +12,6 @@
         <tr *ngFor="let cartitem of (cartitems | async)">
             <td>{{cartitem.product.id}}</td>
             <td>{{cartitem.product.name}}</td>
-            <!-- Testing functionality for adding and removing from the cart-->
             <td><button class="btn btn-primary" (click)="decreaseQuantity()">-</button> {{cartitem.quantity}}<button class="btn btn-primary" (click)="increaseQuantity()">+</button></td>
             <td>{{cartitem.product.description}}</td>
         </tr>

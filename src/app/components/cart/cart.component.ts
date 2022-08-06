@@ -5,7 +5,6 @@ import { Cartitem } from 'src/app/models/cartitem';
 import { Product } from 'src/app/models/product';
 import { CartService } from 'src/app/services/cart.service';
 import { ProductService } from 'src/app/services/product.service';
-import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-cart',
@@ -13,13 +12,7 @@ import { map } from 'rxjs/operators';
   styleUrls: ['./cart.component.css'],
 })
 export class CartComponent implements OnInit {
-
-
-cartitems:Observable<Cartitem[]> = new Observable<Cartitem[]>();
-
-
-
-
+  cartitems: Observable<Cartitem[]> = new Observable<Cartitem[]>();
 
   // products: {
   //   product: Product;
@@ -27,10 +20,16 @@ cartitems:Observable<Cartitem[]> = new Observable<Cartitem[]>();
   // }[] = [];
 
   totalPrice!: number;
+  cartCount!: number;
 
   // cartProducts: Product[] = [];
 
-  constructor(private productService: ProductService, private router: Router, private cs: CartService) {}
+  constructor(
+    private productService: ProductService,
+    private router: Router
+    ,
+    private cs: CartService
+  ) {}
 
   ngOnInit(): void {
     // this.productService.getCart().subscribe((cart) => {
@@ -40,10 +39,19 @@ cartitems:Observable<Cartitem[]> = new Observable<Cartitem[]>();
     //   );
     //   this.totalPrice = cart.totalPrice;
     // });
-this.cs.getCart();
-this.cartitems = this.cs.subject;
-// console.log(this.cartitems);
-this.getTotalPrice();
+
+
+    this.cs.getCart();
+    this.cartitems = this.cs.subject;
+    this.getTotalPrice();
+    // this.getCartCount();
+    
+
+    //test
+    // console.log(this.cs.getCartCount());
+   
+    
+
   }
 
   emptyCart(): void {
@@ -62,20 +70,24 @@ this.getTotalPrice();
   }
 
   decreaseQuantity(): void {
-    console.log('Increasing Quantity');
+    console.log('Decrease Quantity');
   }
 
-  getTotalPrice():void {
-    this.totalPrice =0;
-    this.cartitems.forEach(e=>{
-       e.forEach(r=>{
-         this.totalPrice += r.quantity * r.product.price;
-        
-       })
-    })
-
-
+  getTotalPrice(): void {
+    this.totalPrice = 0;
+    this.cartitems.forEach((e) => {
+      e.forEach((r) => {
+        this.totalPrice += r.quantity * r.product.price;
+      });
+    });
   }
 
-
+  // getCartCount(): void {
+  //   this.cartCount =0;
+  //   this.cartitems.forEach((e) => {
+  //      e.forEach((r) => {
+  //        this.cartCount += r.quantity;
+  //      });
+  //     });
+  // }
 }
