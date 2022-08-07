@@ -14,6 +14,7 @@ import { Observable } from 'rxjs';
 export class CartService {
   constructor(private http: HttpClient, private auth: AuthService) {}
 
+  cartitems: Cartitem[]=[];
   subject: Subject<Cartitem[]> = new Subject<Cartitem[]>();
 
   //fetch cartItem table for logged-in user
@@ -29,7 +30,8 @@ export class CartService {
         })
       )
       .subscribe((data) => {
-        this.subject.next(data);
+        this.cartitems=data;
+        this.subject.next(this.cartitems);
       });
   }
 
@@ -65,18 +67,28 @@ export class CartService {
     return total;
   }
 
-  addToCart(productId: number, quantity: number): Observable<any> {
+  addToCart(productId: number, quantity: number) {
     this.auth.updateBearer();
-    return this.http.post<any>(
-      environment.baseUrl + `/api/cart/addtocart/${productId}`,
-      {},
-      {
-        headers: new HttpHeaders({
-          Authorization: environment.headers.Authorization,
-          'Content-Type': environment.headers['Content-Type'],
-          quantity: `${quantity}`,
-        }),
-      }
-    );
+    this.http
+      .post<Cartitem>(
+        environment.baseUrl + `/api/cart/addtocart/${productId}`,
+        {},
+        {
+          headers: new HttpHeaders({
+            Authorization: environment.headers.Authorization,
+            'Content-Type': environment.headers['Content-Type'],
+            quantity: `${quantity}`,
+          }),
+        }
+      )
+      .pipe(
+        catchError((e) => {
+          return throwError(e);
+        })
+      )
+      .subscribe((data) => {
+        this.cartitems.push(data);
+        this.subject.next(this.cartitems);
+      });
   }
 }
