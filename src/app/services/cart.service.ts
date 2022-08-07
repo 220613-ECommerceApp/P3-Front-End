@@ -32,9 +32,9 @@ export class CartService {
   }
 
   async getCartCount(): Promise<number> {
-    var count = 0;
+    let count = 0;
     this.auth.updateBearer();
-    var data = await this.http
+    let data = await this.http
       .get<Cartitem[]>(environment.baseUrl + '/api/cart', {
         headers: environment.headers,
       })
@@ -49,9 +49,9 @@ export class CartService {
   }
 
   async getTotalPrice(): Promise<number> {
-    var total = 0;
+    let total = 0;
     this.auth.updateBearer();
-    var data = await this.http
+    let data = await this.http
       .get<Cartitem[]>(environment.baseUrl + '/api/cart', {
         headers: environment.headers,
       })
