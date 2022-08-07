@@ -5,6 +5,8 @@ import { environment } from 'src/environments/environment';
 import { Cartitem } from '../models/cartitem';
 import { catchError } from 'rxjs/operators';
 import { AuthService } from './auth.service';
+import { HttpHeaders } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -63,5 +65,18 @@ export class CartService {
     return total;
   }
 
-  
+  addToCart(productId: number, quantity: number): Observable<any> {
+    this.auth.updateBearer();
+    return this.http.post<any>(
+      environment.baseUrl + `/api/cart/addtocart/${productId}`,
+      {},
+      {
+        headers: new HttpHeaders({
+          Authorization: environment.headers.Authorization,
+          'Content-Type': environment.headers['Content-Type'],
+          quantity: `${quantity}`,
+        }),
+      }
+    );
+  }
 }
