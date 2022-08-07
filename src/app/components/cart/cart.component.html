@@ -12,7 +12,7 @@
         <tr *ngFor="let cartitem of (cartitems | async)">
             <td>{{cartitem.product.id}}</td>
             <td>{{cartitem.product.name}}</td>
-            <td><button class="btn btn-primary" (click)="decreaseQuantity()">-</button> {{cartitem.quantity}}<button class="btn btn-primary" (click)="increaseQuantity()">+</button></td>
+            <td><button class="btn btn-primary" (click)="decreaseQuantity($event)" [id]="cartitem.product.id+','+cartitem.quantity">-</button> {{cartitem.quantity}}<button class="btn btn-primary" (click)="increaseQuantity($event)"  [id]="cartitem.product.id+','+cartitem.quantity">+</button></td>
             <td>{{cartitem.product.description}}</td>
         </tr>
     </tbody>

@@ -45,7 +45,7 @@ export class ProductCardComponent implements OnInit {
     } else {
      this.cartservice.addToCart(product.id, 1);
     }
-    
+    location.reload();
   }
 
   ngOnDestroy() {}
