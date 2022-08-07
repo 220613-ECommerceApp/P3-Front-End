@@ -27,6 +27,7 @@ export class ProductCardComponent implements OnInit {
 
   async addToCart(product: Product): Promise<any> {
     let inCart = false;
+    let currentQuantity=0;
     let data = await this.http
       .get<Cartitem[]>(environment.baseUrl + '/api/cart', {
         headers: environment.headers,
@@ -36,14 +37,14 @@ export class ProductCardComponent implements OnInit {
     data.forEach((p) => {
       if (product.id == p.product.id) {
         inCart = true;
+        currentQuantity = p.quantity;
       }
     });
     if (inCart) {
-      console.log('increase quantity only');
-      
+        console.log(currentQuantity)
+        this.cartservice.updateQuantity(currentQuantity+1, product.id);      
     } else {
      this.cartservice.addToCart(product.id, 1);
-      
     }
     
   }

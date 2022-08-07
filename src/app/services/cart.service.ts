@@ -67,6 +67,27 @@ export class CartService {
     return total;
   }
 
+  updateQuantity(newQuantity: number, productId: number): void{
+    this.auth.updateBearer();
+    this.http
+      .put<Cartitem>(
+        environment.baseUrl + `/api/cart/updatecart/${productId}`,
+        {},
+        {
+          headers: new HttpHeaders({
+            Authorization: environment.headers.Authorization,
+            'Content-Type': environment.headers['Content-Type'],
+            quantity: `${newQuantity}`,
+          }),
+        }
+      )
+      .pipe(
+        catchError((e) => {
+          return throwError(e);
+        })
+      ).subscribe();
+  }
+
   addToCart(productId: number, quantity: number) {
     this.auth.updateBearer();
     this.http
