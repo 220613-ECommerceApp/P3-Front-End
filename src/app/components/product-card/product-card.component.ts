@@ -41,7 +41,6 @@ export class ProductCardComponent implements OnInit {
       }
     });
     if (inCart) {
-        console.log(currentQuantity)
         this.cartservice.updateQuantity(currentQuantity+1, product.id);      
     } else {
      this.cartservice.addToCart(product.id, 1);

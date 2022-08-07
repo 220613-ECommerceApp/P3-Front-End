@@ -36,7 +36,7 @@ export class CartComponent implements OnInit {
   }
 
   emptyCart(): void {
-     //TO-DO
+    this.cs.emptyCart();
     this.router.navigate(['/home']);
   }
 

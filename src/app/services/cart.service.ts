@@ -48,7 +48,6 @@ export class CartService {
       count += p.quantity;
     });
 
-    console.log(count);
     return count;
   }
 
@@ -111,5 +110,19 @@ export class CartService {
         this.cartitems.push(data);
         this.subject.next(this.cartitems);
       });
+  }
+
+  emptyCart():void{
+    this.auth.updateBearer();
+    this.http
+      .delete<Cartitem>(
+        environment.baseUrl + `/api/cart/clear`,{headers: environment.headers,}
+      )
+      .pipe(
+        catchError((e) => {
+          return throwError(e);
+        })
+      )
+      .subscribe();
   }
 }
