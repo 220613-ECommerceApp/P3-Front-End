@@ -1,6 +1,12 @@
-.table 
+.table, .th,.tr, .td
 {
-    margin: 3%;
+    margin: 5%;
+    text-align: center;
+    width: 90%;
+}
+
+.th,.tr, .td{
+    width: 50%;
 }
 
 .btn
