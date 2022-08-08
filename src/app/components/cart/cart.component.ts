@@ -12,43 +12,44 @@ import { CartService } from 'src/app/services/cart.service';
 export class CartComponent implements OnInit {
   cartitems: Observable<Cartitem[]> = new Observable<Cartitem[]>();
 
-
   totalPrice!: number;
   cartCount!: number;
 
-
-  constructor(
-     private router: Router
-    ,
-    private cs: CartService
-  ) {}
+  constructor(private router: Router, private cs: CartService) {}
 
   ngOnInit(): void {
-    
-
     this.cs.getCart();
     this.cartitems = this.cs.subject;
-    this.cs.getTotalPrice().then(total=> this.totalPrice=total);
-    
-   
-    
-
+    this.cs.getTotalPrice().then((total) => (this.totalPrice = total));
   }
 
   emptyCart(): void {
-     //TO-DO
+    this.cs.emptyCart();
     this.router.navigate(['/home']);
   }
 
   // Testing functionality for adding and removing from the cart
-  increaseQuantity(): void {
-    console.log('Increasing Quantity');
+  increaseQuantity(event: Event): void {
+    let elementId: string = (event.target as Element).id;
+    let id: number = +elementId.split(',')[0];
+    let currentQuantity: number = +elementId.split(',')[1];
+    this.cs.updateQuantity(currentQuantity + 1, id);
+    location.reload();
   }
 
-  decreaseQuantity(): void {
-    console.log('Decrease Quantity');
+  decreaseQuantity(event: Event): void {
+    let elementId: string = (event.target as Element).id;
+    let id: number = +elementId.split(',')[0];
+    let currentQuantity: number = +elementId.split(',')[1];
+    this.cs.updateQuantity(currentQuantity - 1, id);
+    location.reload();
   }
 
-  
- 
+  removeFromCart(event: Event): void {
+let elementId: string = (event.target as Element).id;
+let id: number = +elementId;
+this.cs.removeItem(id);
+location.reload();
+ }
+
 }
