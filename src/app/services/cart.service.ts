@@ -6,7 +6,6 @@ import { Cartitem } from '../models/cartitem';
 import { catchError } from 'rxjs/operators';
 import { AuthService } from './auth.service';
 import { HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -110,6 +109,23 @@ export class CartService {
         this.cartitems.push(data);
         this.subject.next(this.cartitems);
       });
+  }
+
+  removeItem(productId: number){
+     this.auth.updateBearer();
+     this.http
+       .delete<Cartitem>(
+         environment.baseUrl + `/api/cart/removefromcart/${productId}`,
+         {
+           headers: environment.headers,
+         }
+       )
+       .pipe(
+         catchError((e) => {
+           return throwError(e);
+         })
+       )
+       .subscribe();
   }
 
   emptyCart():void{

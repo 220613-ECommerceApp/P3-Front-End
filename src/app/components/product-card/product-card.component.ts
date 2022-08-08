@@ -1,13 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { EventEmitter, Output } from '@angular/core';
 import { Product } from 'src/app/models/product';
-import { AuthService } from 'src/app/services/auth.service';
 import { CartService } from 'src/app/services/cart.service';
-import { ProductService } from 'src/app/services/product.service';
 import { Cartitem } from 'src/app/models/cartitem';
 import { environment } from 'src/environments/environment';
-import { NavbarComponent } from '../navbar/navbar.component';
 
 @Component({
   selector: 'app-product-card',
