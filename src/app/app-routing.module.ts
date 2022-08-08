@@ -9,7 +9,7 @@ import { OrderHistoryComponent } from './components/order-history/order-history.
 import { SearchResultComponent } from './components/search/search-result/search-result.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/login', pathMatch: 'full' },
+  { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'home', component: DisplayProductsComponent },
