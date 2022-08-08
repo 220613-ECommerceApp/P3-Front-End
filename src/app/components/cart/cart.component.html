@@ -14,9 +14,9 @@
             <td>{{cartitem.product.id}}</td>
             <td>{{cartitem.product.name}}</td>
             <td>
-              <button class="btn btn-primary" (click)="removeFromCart($event)" [id]="cartitem.product.id">Remove from Cart</button>
-              <button class="btn btn-primary" (click)="decreaseQuantity($event)" [id]="cartitem.product.id+','+cartitem.quantity">-</button> {{cartitem.quantity}}<button class="btn btn-primary" (click)="increaseQuantity($event)"  [id]="cartitem.product.id+','+cartitem.quantity">+</button>
-              
+              <button class="btn btn-primary" (click)="removeFromCart($event)" [id]="cartitem.product.id" >Remove from Cart</button>
+              <input  class="user-quantity" type="number" [id]="cartitem.product.id" [value]="cartitem.quantity" />
+              <button class="btn btn-primary" [id]="cartitem.product.id" (click)="updateQuantity($event)">Update</button>
             </td>
             <td>{{cartitem.product.quantity}}</td>
             <td>{{cartitem.product.description}}</td>
