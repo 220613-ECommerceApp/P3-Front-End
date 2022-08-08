@@ -14,9 +14,9 @@
             <td>{{cartitem.product.id}}</td>
             <td>{{cartitem.product.name}}</td>
             <td>
-              <button type="button" class="btn btn-primary" (click)="removeFromCart($event)" [id]="cartitem.product.id+','+'r'+','+n" >Remove from Cart</button>
+              <button type="button" class="btn btn-primary" (click)="removeFromCart(cartitem.product.id)" [id]="cartitem.product.id+','+'r'+','+n" >Remove from Cart</button>
               <input  class="user-quantity" type="number" [id]="cartitem.product.id+','+'i'+','+n" [value]="cartitem.quantity" />
-              <button type="button" class="btn btn-primary" [id]="cartitem.product.id+','+'u'+','+n+','+cartitem.product.quantity" (click)="updateQuantity($event)">Update</button>
+              <button type="button" class="btn btn-primary" [id]="cartitem.product.id+','+'u'+','+n" (click)="updateQuantity(cartitem.product.id+','+'i'+','+n, cartitem.product.quantity, cartitem.product.id)">Update</button>
             </td>
             <td>{{cartitem.product.quantity}}</td>
             <td>{{cartitem.product.description}}</td>
