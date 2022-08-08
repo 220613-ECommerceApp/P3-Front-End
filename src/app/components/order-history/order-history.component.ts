@@ -15,10 +15,17 @@ export class OrderHistoryComponent implements OnInit {
   constructor(private orderHistoryService: OrderHistoryService, private router: Router) { }
 
   ngOnInit(): void {
-	    this.orderHistoryService.getOrderHistory().subscribe(
-      (orderHistory) => {
-        this.orderHistoryItems = orderHistory.orderHistoryItems;
-        this.orderHistoryItemCount = orderHistory.orderHistoryItemCount;
-      }
-    );
-  }}
+		this.orderHistoryService.getOrderHistoryItems().subscribe(
+      		(orderHistory) => {
+	    		//this.orderHistoryItemCount = orderHistory.length;
+        		//this.orderHistoryItems = orderHistory.orderHistoryItems;
+        
+        
+        		orderHistory.forEach(
+					(element) => this.orderHistoryItems.push(element)
+				);
+		
+      		}
+    	);
+  }
+}

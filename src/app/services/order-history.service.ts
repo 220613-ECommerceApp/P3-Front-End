@@ -36,12 +36,12 @@ export class OrderHistoryService {
 
 // TO DO: ORGANIZE SO IT WORKS WITH BACK END
 
-/*
-  public getOrderHistoryItems(): Observable<OrderHistory[][]> {
+
+  public getOrderHistoryItems(): Observable<OrderHistoryItem[][]> {
     this.auth.updateBearer()
-    return this.http.get<OrderHistoryItem[][]>(environment.baseUrl+this.productUrl, {headers: environment.headers});
+    return this.http.get<OrderHistoryItem[][]>(environment.baseUrl+this.orderHistoryUrl, {headers: environment.headers});
   }
-*/
+
 /*
   public getSingleProduct(id: number): Observable<Product> {
     return this.http.get<Product>(environment.baseUrl+id);
