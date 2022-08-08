@@ -1,75 +1,48 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Subscription } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
 import { Product } from 'src/app/models/product';
-import { ProductService } from 'src/app/services/product.service';
+import { CartService } from 'src/app/services/cart.service';
+import { Cartitem } from 'src/app/models/cartitem';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-product-card',
   templateUrl: './product-card.component.html',
-  styleUrls: ['./product-card.component.css']
+  styleUrls: ['./product-card.component.css'],
 })
-export class ProductCardComponent implements OnInit{
-
-  cartCount!: number;
-  products: {
-    product: Product,
-    quantity: number
-  }[] = [];
-  subscription!: Subscription;
-  totalPrice: number = 0;
-
+export class ProductCardComponent implements OnInit {
   @Input() productInfo!: Product;
 
-  constructor(private productService: ProductService) { }
-  
+  constructor(
+    private cartservice: CartService,
+    private http: HttpClient,
+  ) {}
+
   ngOnInit(): void {
-    this.subscription = this.productService.getCart().subscribe(
-      (cart) => {
-        this.cartCount = cart.cartCount;
-        this.products = cart.products;
-        this.totalPrice = cart.totalPrice;
-      }
-    );
   }
 
-  addToCart(product: Product): void {
-
+  async addToCart(product: Product): Promise<any> {
     let inCart = false;
+    let currentQuantity=0;
+    let data = await this.http
+      .get<Cartitem[]>(environment.baseUrl + '/api/cart', {
+        headers: environment.headers,
+      })
+      .toPromise();
 
-    this.products.forEach(
-      (element) => {
-        if(element.product == product){
-          ++element.quantity;
-          let cart = {
-            cartCount: this.cartCount + 1,
-            products: this.products,
-            totalPrice: this.totalPrice + product.price
-          };
-          this.productService.setCart(cart);
-          inCart=true;
-          return;
-        };
+    data.forEach((p) => {
+      if (product.id == p.product.id) {
+        inCart = true;
+        currentQuantity = p.quantity;
       }
-    );
-
-    if(inCart == false){
-      let newProduct = {
-        product: product,
-        quantity: 1
-      };
-      this.products.push(newProduct);
-      let cart = {
-        cartCount: this.cartCount + 1,
-        products: this.products,
-        totalPrice: this.totalPrice + product.price
-      }
-      this.productService.setCart(cart);
+    });
+    if (inCart) {
+        this.cartservice.updateQuantity(currentQuantity+1, product.id);      
+    } else {
+     this.cartservice.addToCart(product.id, 1);
     }
-      
+    location.reload();
   }
 
-  ngOnDestroy() {
-    this.subscription.unsubscribe();
-  }
-
+  ngOnDestroy() {}
 }

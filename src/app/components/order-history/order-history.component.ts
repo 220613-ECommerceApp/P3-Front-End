@@ -10,7 +10,7 @@ import { OrderHistoryService } from 'src/app/services/order-history.service';
 })
 export class OrderHistoryComponent implements OnInit {
   orderHistoryItemCount!: number;
-  orderHistoryItems : OrderHistoryItem[] = [];
+  orderHistoryItems : OrderHistoryItem[][] = [[]];
 
   constructor(private orderHistoryService: OrderHistoryService, private router: Router) { }
 

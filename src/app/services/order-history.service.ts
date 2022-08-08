@@ -7,7 +7,7 @@ import { AuthService } from './auth.service';
 
 interface OrderHistory {
   orderHistoryItemCount: number;
-  orderHistoryItems: OrderHistoryItem[];
+  orderHistoryItems: OrderHistoryItem[][];
 }  
 
 @Injectable({
@@ -36,12 +36,13 @@ export class OrderHistoryService {
 
 // TO DO: ORGANIZE SO IT WORKS WITH BACK END
 
-
-  public getProducts(): Observable<Product[]> {
+/*
+  public getOrderHistoryItems(): Observable<OrderHistory[][]> {
     this.auth.updateBearer()
-    return this.http.get<Product[]>(environment.baseUrl+this.productUrl, {headers: environment.headers});
+    return this.http.get<OrderHistoryItem[][]>(environment.baseUrl+this.productUrl, {headers: environment.headers});
   }
-
+*/
+/*
   public getSingleProduct(id: number): Observable<Product> {
     return this.http.get<Product>(environment.baseUrl+id);
   }
@@ -51,4 +52,5 @@ export class OrderHistoryService {
     const payload = JSON.stringify(products);
     return this.http.patch<any>(environment.baseUrl+this.productUrl, payload, {headers: environment.headers})
   }
+  */
 }
