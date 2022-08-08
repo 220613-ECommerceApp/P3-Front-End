@@ -10,12 +10,7 @@ import { OrderHistoryService } from 'src/app/services/order-history.service';
 })
 export class OrderHistoryComponent implements OnInit {
   orderHistoryItemCount!: number;
-  orderHistoryItems: {
-    orderHistoryItem: OrderHistoryItem
-  }[] = [];
-  orderHistory: OrderHistoryItem[] = [];
-
-
+  orderHistoryItems : OrderHistoryItem[] = [];
 
   constructor(private orderHistoryService: OrderHistoryService, private router: Router) { }
 
@@ -23,21 +18,7 @@ export class OrderHistoryComponent implements OnInit {
 	    this.orderHistoryService.getOrderHistory().subscribe(
       (orderHistory) => {
         this.orderHistoryItems = orderHistory.orderHistoryItems;
-        this.orderHistoryItems.forEach
-        (
-          (element) => this.orderHistory.push(element.orderHistoryItem)
-        );
-        this.orderHistoryItemCount = orderHistory.orderHistoryItemCount
+        this.orderHistoryItemCount = orderHistory.orderHistoryItemCount;
       }
     );
-  }
-
-
-  emptyOrderHistory(): void {
-    let orderHistory = {
-      orderHistoryItemCount: 0,
-      orderHistoryItems: [],
-    };
-    this.orderHistoryService.setOrderHistory(orderHistory);
-    this.router.navigate(['/home']);
-  };
+  }}

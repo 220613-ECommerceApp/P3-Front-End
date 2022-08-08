@@ -1,8 +1,8 @@
+import { Product } from "./product";
+
 export class OrderHistoryItem {
     id: number;
-    /** Should these Ids be imported objects or defined with {}'s?' */
-    userId: number;
-    productId: number;
+    product!: Product;
     name: string;
     /** Quantity bought */
     totalQuantity: number;
@@ -12,10 +12,9 @@ export class OrderHistoryItem {
     This will primarily be useful for bundling orders together (objects in the same cart will share the same or similar times). */
     purchaseTime: number;
 
-    constructor (id: number, userId: number, productId: number, name: string, user: number, totalQuantity: number, totalPrice: number,purchaseTime: number) {
+    constructor (id: number, product: Product, name: string, user: number, totalQuantity: number, totalPrice: number,purchaseTime: number) {
         this.id = id;
-        this.userId = userId;
-        this.productId = productId;
+        this.product = product;
     	this.name = name;
     	this.totalQuantity = totalQuantity;
     	this.totalPrice = totalPrice;

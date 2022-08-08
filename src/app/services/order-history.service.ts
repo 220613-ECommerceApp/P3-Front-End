@@ -7,9 +7,7 @@ import { AuthService } from './auth.service';
 
 interface OrderHistory {
   orderHistoryItemCount: number;
-  orderHistoryItems: {
-    orderHistoryItem: OrderHistoryItem
-	}[];
+  orderHistoryItems: OrderHistoryItem[];
 }  
 
 @Injectable({
