@@ -28,27 +28,12 @@ export class CartComponent implements OnInit {
     this.router.navigate(['/home']);
   }
 
-  // Testing functionality for adding and removing from the cart
-  // increaseQuantity(event: Event): void {
-  //   let elementId: string = (event.target as Element).id;
-  //   let id: number = +elementId.split(',')[0];
-  //   let currentQuantity: number = +elementId.split(',')[1];
-  //   this.cs.updateQuantity(currentQuantity + 1, id);
-  //   location.reload();
-  // }
-
-  // decreaseQuantity(event: Event): void {
-  //   let elementId: string = (event.target as Element).id;
-  //   let id: number = +elementId.split(',')[0];
-  //   let currentQuantity: number = +elementId.split(',')[1];
-  //   this.cs.updateQuantity(currentQuantity - 1, id);
-  //   location.reload();
-  // }
-
   updateQuantity(event: Event): void {
     let elementId: string = (event.target as Element).id;
-    let id: number = +elementId;
-    console.log(id)
+    let id: number = +elementId.split(',')[0];
+    let stock: number = +elementId.split(',')[3];
+    
+    console.log(id,stock)
      
 
     //update
@@ -56,7 +41,7 @@ export class CartComponent implements OnInit {
 
   removeFromCart(event: Event): void {
     let elementId: string = (event.target as Element).id;
-    let id: number = +elementId;
+    let id: number = +elementId.split(',')[0];
     this.cs.removeItem(id);
     location.reload();
   }
