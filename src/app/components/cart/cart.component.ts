@@ -28,28 +28,24 @@ export class CartComponent implements OnInit {
     this.router.navigate(['/home']);
   }
 
-  // Testing functionality for adding and removing from the cart
-  increaseQuantity(event: Event): void {
-    let elementId: string = (event.target as Element).id;
-    let id: number = +elementId.split(',')[0];
-    let currentQuantity: number = +elementId.split(',')[1];
-    this.cs.updateQuantity(currentQuantity + 1, id);
-    location.reload();
+  updateQuantity(inputId: string, stock:number, productId:number): void {
+    let userQuantity: number = +(<HTMLInputElement>document.getElementById(`${inputId}`)).value;
+    if(userQuantity<0){
+      //Throw Error
+    }else if(userQuantity==0){
+      this.cs.removeItem(productId);
+      location.reload();
+    } else if(userQuantity>stock){
+      //Throw Error
+    } else{
+      //Update
+      this.cs.updateQuantity(userQuantity, productId);
+      location.reload();
+    }
   }
 
-  decreaseQuantity(event: Event): void {
-    let elementId: string = (event.target as Element).id;
-    let id: number = +elementId.split(',')[0];
-    let currentQuantity: number = +elementId.split(',')[1];
-    this.cs.updateQuantity(currentQuantity - 1, id);
+  removeFromCart(productId: number): void {
+    this.cs.removeItem(productId);
     location.reload();
   }
-
-  removeFromCart(event: Event): void {
-let elementId: string = (event.target as Element).id;
-let id: number = +elementId;
-this.cs.removeItem(id);
-location.reload();
- }
-
 }

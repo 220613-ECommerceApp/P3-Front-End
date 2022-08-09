@@ -14,7 +14,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { OrderHistoryComponent } from './components/order-history/order-history.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { SearchResultComponent } from './components/search/search-result/search-result.component';
 import { SearchBarComponent } from './components/search/search-bar/search-bar.component';
 
 @NgModule({
@@ -29,7 +28,6 @@ import { SearchBarComponent } from './components/search/search-bar/search-bar.co
     DisplayProductsComponent,
     OrderHistoryComponent,
     SearchBarComponent,
-    SearchResultComponent,
   ],
   imports: [
     BrowserModule,

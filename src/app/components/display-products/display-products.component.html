@@ -1,6 +1,6 @@
 <app-navbar></app-navbar>
 <div class="search-container">
-  <app-search-bar></app-search-bar>
+  <app-search-bar (do-search)="searchHandler($event)"></app-search-bar>
 </div>
 <div class="container">
   <div class="row align-items-start">
