@@ -1,0 +1,25 @@
+<app-navbar></app-navbar>
+   <table class="table table-striped" id="cart-table">
+   <thead>
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Name</th>
+        <th scope="col">Quantity</th>
+        <th scope="col">Description</th>
+      </tr>
+    </thead>
+    <tbody id="history-table-body">
+        <tr *ngFor="let orders of orderHistoryItems;">
+            <td>
+            	<table>
+            		<tr *ngFor="let item of orders;">
+            			<td>{{item.product.name}}</td>
+            			<td>{{item.product.price}}</td>
+            			<td>{{item.quantity}}</td>
+            		</tr>
+            	</table>
+        	</td>
+        </tr>
+    </tbody>
+</table> -->
+<button class="btn btn-danger" [routerLink]="['/home']">Back</button>

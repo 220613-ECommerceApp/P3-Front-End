@@ -5,11 +5,12 @@ import { CheckoutComponent } from './components/checkout/checkout.component';
 import { DisplayProductsComponent } from './components/display-products/display-products.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
+import { OrderHistoryComponent } from './components/order-history/order-history.component';
 import { SearchResultComponent } from './components/search/search-result/search-result.component';
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/login', pathMatch: 'full' },
+  { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'home', component: DisplayProductsComponent },
@@ -17,6 +18,7 @@ const routes: Routes = [
   { path: 'checkout', component: CheckoutComponent },
   { path: 'search', component: SearchResultComponent },
   { path: 'user-profile', component: UserProfileComponent},
+  { path: "history", component: OrderHistoryComponent },
 ];
 
 @NgModule({
