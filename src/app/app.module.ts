@@ -12,9 +12,12 @@ import { CheckoutComponent } from './components/checkout/checkout.component';
 import { DisplayProductsComponent } from './components/display-products/display-products.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { OrderHistoryComponent } from './components/order-history/order-history.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { SearchBarComponent } from './components/search/search-bar/search-bar.component';
 import { SearchResultComponent } from './components/search/search-result/search-result.component';
+import { UserProfileComponent } from './components/user-profile/user-profile.component';
+
 
 @NgModule({
   declarations: [
@@ -26,9 +29,12 @@ import { SearchResultComponent } from './components/search/search-result/search-
     CartComponent,
     CheckoutComponent,
     DisplayProductsComponent,
+    OrderHistoryComponent,
     SearchBarComponent,
     SearchResultComponent,
+    UserProfileComponent,
   ],
+  
   imports: [
     BrowserModule,
     AppRoutingModule,

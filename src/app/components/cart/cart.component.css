@@ -3,6 +3,9 @@
     margin: 5%;
     text-align: center;
     width: 90%;
+    /*colors are temp. Waiting for cart design from UX*/
+    color:aliceblue;
+    background-color: rgb(34, 46, 53);
 }
 
 .th,.tr, .td{
