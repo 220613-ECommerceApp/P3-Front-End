@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { SearchQuery } from 'src/app/interfaces/search-query';
 import { Product } from 'src/app/models/product';
 import { ProductService } from 'src/app/services/product.service';
-import { SearchService } from 'src/app/services/search.service';
 
 @Component({
   selector: 'app-display-products',

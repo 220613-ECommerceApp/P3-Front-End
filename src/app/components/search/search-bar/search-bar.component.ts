@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { SearchService } from 'src/app/services/search.service';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { Tag } from 'src/app/models/tag';
