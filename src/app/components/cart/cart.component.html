@@ -10,7 +10,7 @@
       </tr>
     </thead>
     <tbody id="cart-table-body">
-        <tr *ngFor="let cartitem of (cartitems | async);let n=index">
+        <tr *ngFor="let cartitem of cartitems;let n=index">
             <td>{{cartitem.product.id}}</td>
             <td>{{cartitem.product.name}}</td>
             <td>

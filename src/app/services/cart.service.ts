@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Subject, throwError } from 'rxjs';
+import { throwError, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Cartitem } from '../models/cartitem';
 import { catchError } from 'rxjs/operators';
@@ -11,15 +11,13 @@ import { HttpHeaders } from '@angular/common/http';
   providedIn: 'root',
 })
 export class CartService {
+  
   constructor(private http: HttpClient, private auth: AuthService) {}
 
-  cartitems: Cartitem[]=[];
-  subject: Subject<Cartitem[]> = new Subject<Cartitem[]>();
-
   //fetch cartItem table for logged-in user
-  getCart(): void {
+  getCart(): Observable<Cartitem[]> {
     this.auth.updateBearer();
-    this.http
+    return this.http
       .get<Cartitem[]>(environment.baseUrl + '/api/cart', {
         headers: environment.headers,
       })
@@ -27,11 +25,7 @@ export class CartService {
         catchError((e) => {
           return throwError(e);
         })
-      )
-      .subscribe((data) => {
-        this.cartitems=data;
-        this.subject.next(this.cartitems);
-      });
+      );
   }
 
   async getCartCount(): Promise<number> {
@@ -65,7 +59,7 @@ export class CartService {
     return total;
   }
 
-  updateQuantity(newQuantity: number, productId: number): void{
+  updateQuantity(newQuantity: number, productId: number): void {
     this.auth.updateBearer();
     this.http
       .put<Cartitem>(
@@ -83,7 +77,8 @@ export class CartService {
         catchError((e) => {
           return throwError(e);
         })
-      ).subscribe();
+      )
+      .subscribe();
   }
 
   addToCart(productId: number, quantity: number) {
@@ -104,36 +99,33 @@ export class CartService {
         catchError((e) => {
           return throwError(e);
         })
-      )
-      .subscribe((data) => {
-        this.cartitems.push(data);
-        this.subject.next(this.cartitems);
-      });
+      ).subscribe();
+    
   }
 
-  removeItem(productId: number){
-     this.auth.updateBearer();
-     this.http
-       .delete<Cartitem>(
-         environment.baseUrl + `/api/cart/removefromcart/${productId}`,
-         {
-           headers: environment.headers,
-         }
-       )
-       .pipe(
-         catchError((e) => {
-           return throwError(e);
-         })
-       )
-       .subscribe();
-  }
-
-  emptyCart():void{
+  removeItem(productId: number) {
     this.auth.updateBearer();
     this.http
       .delete<Cartitem>(
-        environment.baseUrl + `/api/cart/clear`,{headers: environment.headers,}
+        environment.baseUrl + `/api/cart/removefromcart/${productId}`,
+        {
+          headers: environment.headers,
+        }
       )
+      .pipe(
+        catchError((e) => {
+          return throwError(e);
+        })
+      )
+      .subscribe();
+  }
+
+  emptyCart(): void {
+    this.auth.updateBearer();
+    this.http
+      .delete<Cartitem>(environment.baseUrl + `/api/cart/clear`, {
+        headers: environment.headers,
+      })
       .pipe(
         catchError((e) => {
           return throwError(e);

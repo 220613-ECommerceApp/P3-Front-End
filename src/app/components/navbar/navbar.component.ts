@@ -9,9 +9,9 @@ import { CartService } from 'src/app/services/cart.service';
   styleUrls: ['./navbar.component.css'],
 })
 export class NavbarComponent implements OnInit {
+
   cartCount!: number;
    
-
   constructor(
     private authService: AuthService,
     private router: Router,
@@ -20,8 +20,7 @@ export class NavbarComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    
-     this.cartservice.getCartCount().then(num=>this.cartCount=num);
+     //this.cartservice.getCartCount().then(num=>this.cartCount=num);
   }
 
   
