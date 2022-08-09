@@ -10,16 +10,17 @@ import { CartService } from 'src/app/services/cart.service';
   styleUrls: ['./cart.component.css'],
 })
 export class CartComponent implements OnInit {
-  cartitems: Observable<Cartitem[]> = new Observable<Cartitem[]>();
-
+  //cartitems: Observable<Cartitem[]> = new Observable<Cartitem[]>();
+  cartitems: Cartitem[] = [];
   totalPrice!: number;
   cartCount!: number;
 
   constructor(private router: Router, private cs: CartService) {}
 
   ngOnInit(): void {
-    this.cs.getCart();
-    this.cartitems = this.cs.subject;
+    this.cs.getCart().subscribe((e) => e.forEach(cartitem=>{
+      this.cartitems.push(cartitem);
+    }));
     this.cs.getTotalPrice().then((total) => (this.totalPrice = total));
   }
 
@@ -45,7 +46,13 @@ export class CartComponent implements OnInit {
   }
 
   removeFromCart(productId: number): void {
+    this.cartitems.forEach((e,i,o)=>{
+      if(e.id==productId){
+          o.splice(i,1);
+      }
+    })
+    
     this.cs.removeItem(productId);
-    location.reload();
+    //location.reload();
   }
 }
