@@ -1,20 +1,40 @@
 .search-container {
   display: flex;
-  border: 1px solid black;
+  border-radius: 25px;
   width: fit-content;
+  padding: 10px;
+  background-color: #32405e;
 }
 
 .search-input {
   display: flex;
+  width: 250px;
 }
 
-#search-input {
+input[type="text"] {
+  border: none;
+  background-color: #32405e;
+  color: #ffffff;
+  width: 100%;
+}
+
+input[type="text"]:focus {
+  outline: none;
+}
+
+select {
   border: 0;
   outline: 0;
+  background-color: #32405e;
+  color: #ffffff;
+}
+
+fa-icon {
+  color: #ffffff;
+  stroke: #ffffff;
 }
 
 .search-btn {
   padding-left: 10px;
   padding-right: 10px;
-  border-left: 1px solid lightgray;
 }
