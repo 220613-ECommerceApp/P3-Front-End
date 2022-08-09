@@ -12,6 +12,7 @@ import { CheckoutComponent } from './components/checkout/checkout.component';
 import { DisplayProductsComponent } from './components/display-products/display-products.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { OrderHistoryComponent } from './components/order-history/order-history.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { SearchBarComponent } from './components/search/search-bar/search-bar.component';
 
@@ -25,6 +26,7 @@ import { SearchBarComponent } from './components/search/search-bar/search-bar.co
     CartComponent,
     CheckoutComponent,
     DisplayProductsComponent,
+    OrderHistoryComponent,
     SearchBarComponent,
   ],
   imports: [
