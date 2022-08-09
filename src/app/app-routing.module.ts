@@ -7,6 +7,7 @@ import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { OrderHistoryComponent } from './components/order-history/order-history.component';
 import { SearchResultComponent } from './components/search/search-result/search-result.component';
+import { UserProfileComponent } from './components/user-profile/user-profile.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -16,6 +17,7 @@ const routes: Routes = [
   { path: 'cart', component: CartComponent },
   { path: 'checkout', component: CheckoutComponent },
   { path: 'search', component: SearchResultComponent },
+  { path: 'user-profile', component: UserProfileComponent},
   { path: "history", component: OrderHistoryComponent },
 ];
 

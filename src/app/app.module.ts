@@ -15,6 +15,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { OrderHistoryComponent } from './components/order-history/order-history.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { SearchBarComponent } from './components/search/search-bar/search-bar.component';
+import { SearchResultComponent } from './components/search/search-result/search-result.component';
+import { UserProfileComponent } from './components/user-profile/user-profile.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +30,10 @@ import { SearchBarComponent } from './components/search/search-bar/search-bar.co
     DisplayProductsComponent,
     OrderHistoryComponent,
     SearchBarComponent,
+    SearchResultComponent,
+    UserProfileComponent,
   ],
+  
   imports: [
     BrowserModule,
     AppRoutingModule,
