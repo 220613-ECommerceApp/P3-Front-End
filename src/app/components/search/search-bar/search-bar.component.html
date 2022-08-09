@@ -1,11 +1,14 @@
 <div class="search-container">
-  <div>
+  <div class="search-dropdown">
     <select name="tag" id="select-tag" [(ngModel)]="selectedOption">
       <option [value]="'all'">All</option>
       <option *ngFor="let tag of tags" [value]="tag.name">
         {{ tag.name }}
       </option>
     </select>
+  </div>
+  <div class="search-btn" (click)="searchClicked()">
+    <fa-icon [icon]="faSearch"></fa-icon>
   </div>
   <div class="search-input">
     <input
@@ -15,8 +18,5 @@
       autocomplete="off"
       (keyup.enter)="searchClicked()"
     />
-  </div>
-  <div class="search-btn" (click)="searchClicked()">
-    <fa-icon [icon]="faSearch"></fa-icon>
   </div>
 </div>

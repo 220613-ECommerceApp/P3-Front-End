@@ -3,7 +3,7 @@
   border-radius: 25px;
   width: fit-content;
   padding: 10px;
-  background-color: #32405e;
+  background-color: #c6c8cc;
 }
 
 .search-input {
@@ -13,8 +13,8 @@
 
 input[type="text"] {
   border: none;
-  background-color: #32405e;
-  color: #ffffff;
+  background-color: #c6c8cc;
+  color: #14213c;
   width: 100%;
 }
 
@@ -25,16 +25,21 @@ input[type="text"]:focus {
 select {
   border: 0;
   outline: 0;
-  background-color: #32405e;
-  color: #ffffff;
+  background-color: #c6c8cc;
+  color: #14213c;
 }
 
 fa-icon {
-  color: #ffffff;
-  stroke: #ffffff;
+  color: #14213c;
+  stroke: #14213c;
+}
+
+.search-dropdown {
+  padding-right: 5px;
 }
 
 .search-btn {
-  padding-left: 10px;
-  padding-right: 10px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-left: 1px solid grey;
 }
