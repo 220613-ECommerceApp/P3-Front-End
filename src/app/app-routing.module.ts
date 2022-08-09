@@ -16,9 +16,9 @@ const routes: Routes = [
   { path: 'home', component: DisplayProductsComponent },
   { path: 'cart', component: CartComponent },
   { path: 'checkout', component: CheckoutComponent },
+  { path: "history", component: OrderHistoryComponent },
   { path: 'search', component: SearchResultComponent },
   { path: 'user-profile', component: UserProfileComponent},
-  { path: "history", component: OrderHistoryComponent },
 ];
 
 @NgModule({
