@@ -47,6 +47,42 @@ export class SearchService {
     });
   }
 
+  public findProducts(
+    searchQuery: string,
+    startPrice?: number,
+    endPrice?: number,
+    tagName?: string
+  ): void {
+    let queryParams = new HttpParams();
+
+    if (typeof startPrice !== 'undefined') {
+      queryParams = queryParams.append('startPrice', startPrice);
+    }
+
+    if (typeof endPrice !== 'undefined') {
+      queryParams = queryParams.append('endPrice', endPrice);
+    }
+
+    if (typeof tagName !== 'undefined') {
+      queryParams = queryParams.append('tagName', tagName);
+    }
+
+    queryParams = queryParams.append('query', searchQuery);
+
+    let searchUrl: string = environment.baseUrl + this.productUrl;
+    this.auth.updateBearer();
+    this.http
+      .get<Product[]>(searchUrl, {
+        headers: environment.headers,
+        params: queryParams,
+      })
+      .subscribe(
+        (resp) => (this.products = resp),
+        (err) => console.log(err),
+        () => console.log('Products Retrieved')
+      );
+  }
+
   public getTags(): Observable<Tag[]> {
     let getTagUrl: string = environment.baseUrl + this.tagUrl;
     this.auth.updateBearer();

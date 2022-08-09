@@ -12,34 +12,23 @@ import { SearchService } from 'src/app/services/search.service';
 export class DisplayProductsComponent implements OnInit {
   allProducts: Product[] = [];
 
-  constructor(
-    private productService: ProductService,
-    private searchService: SearchService
-  ) {}
+  constructor(private productService: ProductService) {}
 
   ngOnInit(): void {
-    this.searchService.getProducts(' ').subscribe(
+    this.productService.getProducts().subscribe(
       (resp) => (this.allProducts = resp),
       (err) => console.log(err),
       () => console.log('Products Retrieved')
     );
   }
 
-  ngOnChanges(): void {
-    console.log();
-  }
-
-  getProducts(): Product[] {
-    return this.searchService.products;
-  }
-
-  searchHandler(search: SearchQuery): void {
-    this.searchService
-      .getProducts(search.query, undefined, undefined, search.tagName)
-      .subscribe(
-        (resp) => (this.allProducts = resp),
-        (err) => console.log(err),
-        () => console.log('Products Retrieved')
-      );
-  }
+  // searchHandler(search: SearchQuery): void {
+  //   this.searchService
+  //     .getProducts(search.query, undefined, undefined, search.tagName)
+  //     .subscribe(
+  //       (resp) => (this.allProducts = resp),
+  //       (err) => console.log(err),
+  //       () => console.log('Products Retrieved')
+  //     );
+  // }
 }

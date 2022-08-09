@@ -1,7 +1,7 @@
 <div class="search-container">
   <div>
     <select name="tag" id="select-tag" [(ngModel)]="selectedOption">
-      <option [value]="'all'" selected>All</option>
+      <option [value]="'all'">All</option>
       <option *ngFor="let tag of tags" [value]="tag.name">
         {{ tag.name }}
       </option>

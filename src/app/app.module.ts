@@ -14,6 +14,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { SearchBarComponent } from './components/search/search-bar/search-bar.component';
+import { SearchResultComponent } from './components/search/search-result/search-result.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { SearchBarComponent } from './components/search/search-bar/search-bar.co
     CheckoutComponent,
     DisplayProductsComponent,
     SearchBarComponent,
+    SearchResultComponent,
   ],
   imports: [
     BrowserModule,

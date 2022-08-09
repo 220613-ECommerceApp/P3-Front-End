@@ -3,6 +3,7 @@ import { SearchService } from 'src/app/services/search.service';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { Tag } from 'src/app/models/tag';
 import { SearchQuery } from 'src/app/interfaces/search-query';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-search-bar',
@@ -18,10 +19,7 @@ export class SearchBarComponent implements OnInit {
 
   tags: Tag[] = [];
 
-  @Output('do-search') searchEvent: EventEmitter<SearchQuery> =
-    new EventEmitter<SearchQuery>();
-
-  constructor(private searchService: SearchService) {}
+  constructor(private searchService: SearchService, private router: Router) {}
 
   ngOnInit(): void {
     this.searchService.getTags().subscribe(
@@ -36,6 +34,12 @@ export class SearchBarComponent implements OnInit {
       this.selectedOption === 'all' ? undefined : this.selectedOption;
     this.search.tagName = tagName;
     this.search.query = this.searchQuery === '' ? ' ' : this.searchQuery.trim();
-    this.searchEvent.emit(this.search);
+    this.searchService.findProducts(
+      this.search.query,
+      undefined,
+      undefined,
+      this.search.tagName
+    );
+    this.router.navigate(['/search']);
   }
 }
