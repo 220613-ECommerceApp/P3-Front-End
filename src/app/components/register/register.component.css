@@ -1,18 +1,29 @@
 #register-form
 {
-    padding-top: 3%;
-    padding-left: 1%;
+    border-radius: 25px;
+    background-color: #e5e5e50F;
+    margin-inline: auto;
+    padding: 2%;
     justify-content: center;
     width: 40%;
 }
 
 .btn
 {
+    margin: auto;
     margin-right: 2%;
+    background-color: #FCA311;
+    color: black; 
 }
 
 img 
 {
-    padding-left: 2%;
-    padding-top: 2%;
+    display: block;
+    margin-inline: auto;
+    padding: 2%;
+}
+
+label
+{
+    color: white;
 }
