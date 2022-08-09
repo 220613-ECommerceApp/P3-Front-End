@@ -22,7 +22,7 @@ export class UserService {
 
   // Get method to retrieve User from backend
 
-  getUser(): Observable<User> {  // How do I import user from backend?
+  getUser(): Observable<User> {  
     this.auth.updateBearer();
     return this.http.get<User>(this.apiUrl, httpOptions ); 
    
