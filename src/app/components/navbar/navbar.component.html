@@ -1,13 +1,24 @@
 <nav class="navbar navbar-light bg-light">
-    <h4>
-        <img src="../../../assets/images/pg-logo.svg" width="50%" height="50%" alt="Propane Gaming">
-    </h4>
+  <div class="container">
+    <a [routerLink]="['/home']" class="navbar-brand">
+      <img
+        src="../../../assets/images/pg-logo.svg"
+        width="50%"
+        height="50%"
+        alt="Propane Gaming"
+      />
+    </a>
     <form class="form-inline">
-        <button class = "userbtn" [routerLink]="['/user-profile']">Profile</button>
-        <button class="btn btn-light" [routerLink]="['/cart']">
-            Cart
-            <span class="badge badge-info">{{cartCount}}</span>
-        </button>
-        <button class="btn btn-outline-danger my-2 my-sm-0" (click)="logout();">Logout</button>
+      <a [routerLink]="['/home']">Home</a>
+      <a href="#">Wishlist</a>
+      <a [routerLink]="['/user-profile']">Profile</a>
+      <button class="btn btn-light" [routerLink]="['/cart']">
+        Cart
+        <span class="badge badge-info">{{ cartCount }}</span>
+      </button>
+      <button class="btn btn-outline-danger my-2 my-sm-0" (click)="logout()">
+        Logout
+      </button>
     </form>
+  </div>
 </nav>
