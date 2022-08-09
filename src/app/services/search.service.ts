@@ -17,35 +17,35 @@ export class SearchService {
 
   constructor(private http: HttpClient, private auth: AuthService) {}
 
-  public getProducts(
-    searchQuery: string,
-    startPrice?: number,
-    endPrice?: number,
-    tagName?: string
-  ): Observable<Product[]> {
-    let queryParams = new HttpParams();
+  // public getProducts(
+  //   searchQuery: string,
+  //   startPrice?: number,
+  //   endPrice?: number,
+  //   tagName?: string
+  // ): Observable<Product[]> {
+  //   let queryParams = new HttpParams();
 
-    if (typeof startPrice !== 'undefined') {
-      queryParams = queryParams.append('startPrice', startPrice);
-    }
+  //   if (typeof startPrice !== 'undefined') {
+  //     queryParams = queryParams.append('startPrice', startPrice);
+  //   }
 
-    if (typeof endPrice !== 'undefined') {
-      queryParams = queryParams.append('endPrice', endPrice);
-    }
+  //   if (typeof endPrice !== 'undefined') {
+  //     queryParams = queryParams.append('endPrice', endPrice);
+  //   }
 
-    if (typeof tagName !== 'undefined') {
-      queryParams = queryParams.append('tagName', tagName);
-    }
+  //   if (typeof tagName !== 'undefined') {
+  //     queryParams = queryParams.append('tagName', tagName);
+  //   }
 
-    queryParams = queryParams.append('query', searchQuery);
+  //   queryParams = queryParams.append('query', searchQuery);
 
-    let searchUrl: string = environment.baseUrl + this.productUrl;
-    this.auth.updateBearer();
-    return this.http.get<Product[]>(searchUrl, {
-      headers: environment.headers,
-      params: queryParams,
-    });
-  }
+  //   let searchUrl: string = environment.baseUrl + this.productUrl;
+  //   this.auth.updateBearer();
+  //   return this.http.get<Product[]>(searchUrl, {
+  //     headers: environment.headers,
+  //     params: queryParams,
+  //   });
+  // }
 
   public findProducts(
     searchQuery: string,
