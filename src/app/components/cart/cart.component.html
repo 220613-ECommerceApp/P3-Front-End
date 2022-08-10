@@ -3,7 +3,35 @@
 <div class="cart-container">
   <div class="cart-items-container">
     <p class="view-cart-text">View Your Cart</p>
-    <hr />
+
+    <div class="populate-cart">
+      <!--*ngFor-->
+      <div class="cartitem">
+        <hr class="line" />
+        <p class="title">Mincraft</p>
+        <p class="description">
+          Lorem Ipsum is simply dummy text of the printing and typesetting
+          industry. Lorem Ipsum has been the industry's standard dummy text ever
+          since simply dummy text of the printing simply dummy text
+        </p>
+        <img
+          src="https://upload.wikimedia.org/wikipedia/en/5/51/Minecraft_cover.png"
+          class="image"
+        />
+        <ul>
+          <li>Price:<br />$50.0</li>
+          <li>
+            Quantity:<br />
+            <input class="user-quantity" type="number" />
+            <button type="button" class="c-button">Update</button>
+          </li>
+          <li>Total:<br />$100.0</li>
+          <li>
+            <div class="r-button">Remove from Cart</div>
+          </li>
+        </ul>
+      </div>
+    </div>
   </div>
 
   <div class="checkout-container">
@@ -20,13 +48,12 @@
       $
       {{ totalPrice }}
     </p>
-    <hr />
-    <button class="btn btn-primary" [routerLink]="['/checkout']">
+    <hr class="line" />
+    <button class="c-button" [routerLink]="['/checkout']">
       Proceed to Checkout
     </button>
   </div>
 </div>
-
 <!-- <table class="table table-striped" id="cart-table">
     <thead>
       <tr>
