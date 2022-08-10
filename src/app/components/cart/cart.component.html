@@ -5,14 +5,20 @@
         <th scope="col">ID</th>
         <th scope="col">Name</th>
         <th scope="col">Quantity</th>
+        <th scope="col">Stock</th>
         <th scope="col">Description</th>
       </tr>
     </thead>
     <tbody id="cart-table-body">
-        <tr *ngFor="let cartitem of (cartitems | async)">
+        <tr *ngFor="let cartitem of cartitems;let n=index">
             <td>{{cartitem.product.id}}</td>
             <td>{{cartitem.product.name}}</td>
-            <td><button class="btn btn-primary" (click)="removeFromCart($event)" [id]="cartitem.product.id">Remove from Cart</button><button class="btn btn-primary" (click)="decreaseQuantity($event)" [id]="cartitem.product.id+','+cartitem.quantity">-</button> {{cartitem.quantity}}<button class="btn btn-primary" (click)="increaseQuantity($event)"  [id]="cartitem.product.id+','+cartitem.quantity">+</button></td>
+            <td>
+              <button type="button" class="btn btn-primary" (click)="removeFromCart(cartitem.product.id)" [id]="cartitem.product.id+','+'r'+','+n" >Remove from Cart</button>
+              <input  class="user-quantity" type="number" [id]="cartitem.product.id+','+'i'+','+n" [value]="cartitem.quantity" />
+              <button type="button" class="btn btn-primary" [id]="cartitem.product.id+','+'u'+','+n" (click)="updateQuantity(cartitem.product.id+','+'i'+','+n, cartitem.product.quantity, cartitem.product.id)">Update</button>
+            </td>
+            <td>{{cartitem.product.quantity}}</td>
             <td>{{cartitem.product.description}}</td>
         </tr>
     </tbody>

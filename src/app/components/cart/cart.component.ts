@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Observable } from 'rxjs';
 import { Cartitem } from 'src/app/models/cartitem';
 import { CartService } from 'src/app/services/cart.service';
 
@@ -10,17 +9,19 @@ import { CartService } from 'src/app/services/cart.service';
   styleUrls: ['./cart.component.css'],
 })
 export class CartComponent implements OnInit {
-  cartitems: Observable<Cartitem[]> = new Observable<Cartitem[]>();
-
-  totalPrice!: number;
-  cartCount!: number;
+  
+  cartitems: Cartitem[] = [];
+  totalPrice: number = 0;
+  cartCount: number = 0;
 
   constructor(private router: Router, private cs: CartService) {}
 
   ngOnInit(): void {
-    this.cs.getCart();
-    this.cartitems = this.cs.subject;
-    this.cs.getTotalPrice().then((total) => (this.totalPrice = total));
+    this.cs.getCart().subscribe((e) => e.forEach(cartitem=>{
+      this.cartitems.push(cartitem);
+      this.totalPrice += cartitem.quantity * cartitem.product.price;
+      this.cartCount +=cartitem.quantity;
+    }));
   }
 
   emptyCart(): void {
@@ -28,28 +29,41 @@ export class CartComponent implements OnInit {
     this.router.navigate(['/home']);
   }
 
-  // Testing functionality for adding and removing from the cart
-  increaseQuantity(event: Event): void {
-    let elementId: string = (event.target as Element).id;
-    let id: number = +elementId.split(',')[0];
-    let currentQuantity: number = +elementId.split(',')[1];
-    this.cs.updateQuantity(currentQuantity + 1, id);
-    location.reload();
+  updateQuantity(inputId: string, stock:number, productId:number): void {
+    let userQuantity: number = +(<HTMLInputElement>document.getElementById(`${inputId}`)).value;
+    if(userQuantity<0){
+      //Throw Error
+    }else if(userQuantity==0){
+      this.cartitems.forEach((e, i, o) => {
+        if (e.product.id == productId) {
+          o.splice(i, 1);
+          this.totalPrice -= e.quantity * e.product.price;
+          this.cartCount -= e.quantity;
+        }
+      });
+      this.cs.removeItem(productId);
+    } else if(userQuantity>stock){
+      //Throw Error
+    } else{
+      //Update
+       this.cartitems.forEach((e, i, o) => {
+        if (e.product.id == productId) {
+          this.totalPrice += ((userQuantity - e.quantity) * e.product.price);
+          this.cartCount += (userQuantity - e.quantity);
+        }
+      });
+      this.cs.updateQuantity(userQuantity, productId);
+    }
   }
 
-  decreaseQuantity(event: Event): void {
-    let elementId: string = (event.target as Element).id;
-    let id: number = +elementId.split(',')[0];
-    let currentQuantity: number = +elementId.split(',')[1];
-    this.cs.updateQuantity(currentQuantity - 1, id);
-    location.reload();
+  removeFromCart(productId: number): void {
+    this.cartitems.forEach((e,i,o)=>{
+      if(e.product.id==productId){
+          o.splice(i,1);
+          this.totalPrice -= e.quantity*e.product.price;
+          this.cartCount -= e.quantity;
+      }
+    })
+    this.cs.removeItem(productId);
   }
-
-  removeFromCart(event: Event): void {
-let elementId: string = (event.target as Element).id;
-let id: number = +elementId;
-this.cs.removeItem(id);
-location.reload();
- }
-
 }
