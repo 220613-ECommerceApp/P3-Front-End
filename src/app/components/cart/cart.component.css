@@ -1,23 +1,25 @@
-.table, .th,.tr, .td
-{
-    margin: 5%;
-    text-align: center;
-    width: 90%;
-    /*colors are temp. Waiting for cart design from UX*/
-    color:aliceblue;
-    background-color: rgb(34, 46, 53);
+.cart-container {
+  display: table;
+  margin: 0 auto;
+  margin-top: 120px;
 }
 
-.th,.tr, .td{
-    width: 50%;
+.cart-items-container {
+  float: left;
+  background-color: #e5e5e5;
+  width: 1000px;
+  height: 600px;
+  border-radius: 10px;
+  margin-right: 10px;
+  padding: 5%;
 }
 
-.btn
-{
-    margin-left: 2%;
+.checkout-container {
+  float: right;
+  background-color: #e5e5e5;
+  width: 250px;
+  height: 400px;
+  border-radius: 10px;
+  margin-left: 10px;
+  /* padding: 5%; */
 }
-
-.user-quantity{
-   margin-left: 18px;
-}
-
