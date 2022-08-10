@@ -17,9 +17,35 @@
 .checkout-container {
   float: right;
   background-color: #e5e5e5;
-  width: 250px;
-  height: 400px;
+  width: 275px;
+  height: 375px;
   border-radius: 10px;
   margin-left: 10px;
-  /* padding: 5%; */
+  padding: 2%;
+  text-align: center;
+}
+.checkout-container button {
+  background-color: #fca311;
+  border: #e5e5e5;
+  border-radius: 150px;
+  color: #14213d;
+  font-size: 1.1em;
+  font-weight: bolder;
+  margin-top: 50px;
+}
+
+.c-text {
+  display: flex;
+  padding-bottom: 10px;
+}
+
+.c-g-text {
+  display: flex;
+  font-weight: bold;
+}
+
+.view-cart-text {
+  font-size: 3em;
+  font-weight: bolder;
+  font-family: Arial, Helvetica, sans-serif;
 }

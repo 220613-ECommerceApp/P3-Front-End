@@ -2,10 +2,29 @@
 
 <div class="cart-container">
   <div class="cart-items-container">
-    <h1>View Your Cart</h1>
+    <p class="view-cart-text">View Your Cart</p>
+    <hr />
   </div>
 
-  <div class="checkout-container"></div>
+  <div class="checkout-container">
+    <p class="c-text">
+      Subtotal:
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      &nbsp; $
+      {{ totalPrice }}
+    </p>
+    <p class="c-text">Discount:</p>
+    <p class="c-text">Tax:</p>
+    <p class="c-g-text">
+      Grand Total: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;
+      $
+      {{ totalPrice }}
+    </p>
+    <hr />
+    <button class="btn btn-primary" [routerLink]="['/checkout']">
+      Proceed to Checkout
+    </button>
+  </div>
 </div>
 
 <!-- <table class="table table-striped" id="cart-table">
