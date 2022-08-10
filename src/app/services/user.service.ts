@@ -11,6 +11,8 @@ const httpOptions = {
   headers: environment.headers,
 };
 
+
+
 @Injectable({
   providedIn: 'root'
 })
@@ -32,12 +34,13 @@ export class UserService {
 
   }
 
-  //Update Method to update user from backend
 
-  // updateUser(User): Observable<User> {
-  //   const url = `${this.apiUrl}/${User.id}`;
-  //   return this.http.put<User>(url, User, httpOptions);
-  // }
+
+  // ADDING FUNCTIONALITY FOR UPDATING USER
+
+  updateUser(User: User): Observable<User>{
+
+    this.auth.updateBearer();
+    return this.http.put<User>(this.apiUrl, JSON.stringify(User), httpOptions);
+  }
 }
-
-// This is where I need to get the user info from backend
