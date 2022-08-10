@@ -26,23 +26,23 @@ Two is add in an update form that'll send a put (update) request-->
         showOrHideObject(): void {
         this.hide = !this.hide;
   }-->
-<div class = "updatebox">
-    <button id="updateButton" (click)="toggleUpdateForm()">Update Info</button>
-        <form id = "updatebox" [hidden] = "hideForm">
-            <p>First Name</p>
-            <input id = "first" [(ngModel)]="userEditing.firstName" type = "first" name="Enter First Name">
-            <p>Last Name</p>
-            <input id = "last" [(ngModel)]="userLastEditing.lastName" type = "last" name="Enter Last Name">
-            <p>Email</p>
-            <input id = "email" [(ngModel)]="userEmailEditing.email" type = "email" name="Enter Email">
-            <p>UserName</p>
-            <input id = "username" [(ngModel)]="userUsernameEditing.username" type = "username" name="Enter Username">
-            <p>Password</p>
-            <input id="password" [(ngModel)]="userPasswordEditing.password" type="password" name="Enter Password">
-            <input type="submit" type="button" value="Update">
-        </form>
+    <div class = "updatebox">
+        <button id="updateButton" (click)="toggleUpdateForm()">Update Info</button>
+            <form id = "updatebox" [hidden] = "hideForm">
+                <p>First Name</p>
+                <input id = "first" [(ngModel)]="userEditing.firstName" type = "first" name="Enter First Name">
+                <p>Last Name</p>
+                <input id = "last" [(ngModel)]="userLastEditing.lastName" type = "last" name="Enter Last Name">
+                <p>Email</p>
+                <input id = "email" [(ngModel)]="userEmailEditing.email" type = "email" name="Enter Email">
+                <p>UserName</p>
+                <input id = "username" [(ngModel)]="userUsernameEditing.username" type = "username" name="Enter Username">
+                <p>Password</p>
+                <input id="password" [(ngModel)]="userPasswordEditing.password" type="password" name="Enter Password">
+                <input type="submit" type="button" value="Update" (click) = "onUpdate()">
+            </form>
 
-</div>
+    </div>
 
 </div>
 
