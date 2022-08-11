@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { IUser } from 'src/app/components/Interfaces/IUser';
+import { ErrorService } from 'src/app/services/error.service';
 import { UserService } from 'src/app/services/user.service';
 import { User } from '../../models/user';
 
@@ -20,19 +21,6 @@ export class UserProfileComponent implements OnInit {
   userUsernameEditing: { username: string } = { username: "" };
   userEmailEditing: { email: string } = { email: "" };
   userPasswordEditing: { password: string } = { password: "" };
-
-  // ALERT FUNCTIONALITY
-  alertWarning:boolean=false;
-  alertSuccess:boolean=false;
-
-  closeAlertWarning(){
-    this.alertWarning=false;
-  }
-
-  closeAlertSuccess(){
-    this.alertSuccess=false;
-  }
-
 
   // Update Method
   onUpdate(): void {
@@ -55,17 +43,17 @@ export class UserProfileComponent implements OnInit {
       console.log("Checking UserService.update");
       this.userService.updateUser(user).subscribe(
         (response) => {
-          console.log(response);
+          ErrorService.setMessage("Success")
           this.user = response;
           this.toggleUpdateForm();
-          this.alertSuccess=true;
+          ErrorService.displaySuccess(true)
         },
 
         //error handling
         (error) => {
-          console.error(error);
+          ErrorService.setMessage("The email entered is already assocaited with another account.")
           console.log("There has been an error");
-          this.alertWarning=true;
+          ErrorService.displayWarning(true)
         }
 
       );
