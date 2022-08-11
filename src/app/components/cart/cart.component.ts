@@ -53,6 +53,7 @@ export class CartComponent implements OnInit {
         }
       });
       this.cs.updateQuantity(userQuantity, productId);
+      location.reload();
     }
   }
 
