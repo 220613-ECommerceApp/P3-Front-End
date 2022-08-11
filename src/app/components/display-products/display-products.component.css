@@ -3,6 +3,8 @@
   flex: 0 0 307px;
   padding-bottom: 6%;
   max-width: 400px;
+  display: flex;
+  justify-content: center;
   /* margin-left: 6%; */
 }
 
