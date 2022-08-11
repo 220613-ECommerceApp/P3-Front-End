@@ -3,22 +3,15 @@ import { Router } from '@angular/router';
 import { Product } from 'src/app/models/product';
 import { ProductService } from 'src/app/services/product.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { CartService } from 'src/app/services/cart.service';
+import { Cartitem } from 'src/app/models/cartitem';
 
 @Component({
   selector: 'app-checkout',
   templateUrl: './checkout.component.html',
-  styleUrls: ['./checkout.component.css']
+  styleUrls: ['./checkout.component.css'],
 })
 export class CheckoutComponent implements OnInit {
-
-  products: {
-    product: Product,
-    quantity: number
-  }[] = [];
-  totalPrice!: number;
-  cartProducts: Product[] = [];
-  finalProducts: {id: number, quantity: number}[] = []; 
-
   checkoutForm = new FormGroup({
     fname: new FormControl('', Validators.required),
     lname: new FormControl('', Validators.required),
@@ -29,50 +22,60 @@ export class CheckoutComponent implements OnInit {
     city: new FormControl('', Validators.required),
     state: new FormControl('', Validators.required),
     zipCode: new FormControl('', Validators.required),
-    country: new FormControl('', Validators.required)
+    country: new FormControl('', Validators.required),
   });
 
-  constructor(private productService: ProductService, private router: Router) { }
+  cartitems: Cartitem[] = [];
+  totalPrice: number = 0;
+  cartCount: number = 0;
+
+  productsDTO: {
+    id: number;
+    quantity: number;
+  }[] = [];
+
+  productsObject: {
+    product: Product;
+    quantity: number;
+  }[] = [];
+
+  constructor(
+    private ps: ProductService,
+    private router: Router,
+    private cs: CartService
+  ) {}
 
   ngOnInit(): void {
-    // this.productService.getCart().subscribe(
-    //   (cart) => {
-    //     this.products = cart.products;
-    //     this.products.forEach(
-    //       (element) => this.cartProducts.push(element.product)
-    //     );
-    //     this.totalPrice = cart.totalPrice;
-    //   }
-    // );
+    this.cs.getCart().subscribe((e) =>
+      e.forEach((cartitem) => {
+        this.cartitems.push(cartitem);
+        this.totalPrice += cartitem.quantity * cartitem.product.price;
+        this.cartCount += cartitem.quantity;
+        console.log(cartitem);
+        this.productsObject.push({
+          product: cartitem.product,
+          quantity: cartitem.quantity,
+        });
+        this.productsDTO.push({
+          id: cartitem.product.id,
+          quantity: cartitem.quantity,
+        });
+      })
+    );
   }
 
   onSubmit(): void {
-    // this.products.forEach(
-    //   (element) => {
-    //     const id = element.product.id;
-    //     const quantity = element.quantity
-    //     this.finalProducts.push({id, quantity})
-    //   } 
-    // );
 
-    // if(this.finalProducts.length > 0) {
-    //   this.productService.purchase(this.finalProducts).subscribe(
-    //     (resp) => console.log(resp),
-    //     (err) => console.log(err),
-    //     () => {
-    //       let cart = {
-    //         cartCount: 0,
-    //         products: [],
-    //         totalPrice: 0.00
-    //       };
-    //       this.productService.setCart(cart);
-    //       this.router.navigate(['/home']);
-    //     } 
-    //   );
+    if(this.cartCount<1){
+      //don't checkout. Add items to cart first
+    }else{
+      //update quantities for each product
+      this.ps.purchase(this.productsDTO);
 
-  //   } else {
-  //     this.router.navigate(['/home']);
-  //   }
-  }
+      //clearing the cart
+      this.cs.emptyCart();
 
+      this.router.navigate(['/home']);
+    }
+ }
 }
