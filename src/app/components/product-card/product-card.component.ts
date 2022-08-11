@@ -13,17 +13,15 @@ import { environment } from 'src/environments/environment';
 export class ProductCardComponent implements OnInit {
   @Input() productInfo!: Product;
 
-  constructor(
-    private cartservice: CartService,
-    private http: HttpClient,
-  ) {}
+  public showElement?: boolean;
 
-  ngOnInit(): void {
-  }
+  constructor(private cartservice: CartService, private http: HttpClient) {}
+
+  ngOnInit(): void {}
 
   async addToCart(product: Product): Promise<any> {
     let inCart = false;
-    let currentQuantity=0;
+    let currentQuantity = 0;
     let data = await this.http
       .get<Cartitem[]>(environment.baseUrl + '/api/cart', {
         headers: environment.headers,
@@ -37,9 +35,9 @@ export class ProductCardComponent implements OnInit {
       }
     });
     if (inCart) {
-        this.cartservice.updateQuantity(currentQuantity+1, product.id);      
+      this.cartservice.updateQuantity(currentQuantity + 1, product.id);
     } else {
-     this.cartservice.addToCart(product.id, 1);
+      this.cartservice.addToCart(product.id, 1);
     }
   }
 

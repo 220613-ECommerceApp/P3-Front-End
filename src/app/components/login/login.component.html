@@ -1,7 +1,8 @@
 <img src="../../../assets/images/pg-logo.svg" width="30%" height="30%" alt="Revature">
+<error-display></error-display>
 <form id="login-form" [formGroup]="loginForm">
     <div class="form-group">
-      <label for="exampleInputEmail1">Email address</label>
+      <label for="exampleInputEmail1">Email Address</label>
       <input type="email" class="form-control" formControlName="email" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
       <small id="emailHelp" class="form-text text-muted">Ensure you enter the correct email</small>
     </div>
@@ -9,6 +10,6 @@
       <label for="exampleInputPassword1">Password</label>
       <input type="password" class="form-control" formControlName="password" id="exampleInputPassword1" placeholder="Password">
     </div>
-    <button class="btn btn-primary" (click)="onSubmit()">Login</button>
-    <button class="btn btn-primary" [routerLink]="['/register']">Register</button>
+    <button class="btn btn-back" (click)="onSubmit()">Login</button>
+    <button class="btn btn-back" [routerLink]="['/register']">Register</button>
 </form>
