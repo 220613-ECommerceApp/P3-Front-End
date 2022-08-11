@@ -2,23 +2,25 @@
   size: auto;
   max-width: 275px;
   min-width: 200px;
-  height: 300px;
+  height: 280px;
+  max-height: 300px;
   transition: 0.2s ease-out;
   background-color: #303e5a;
   color: white;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
   border-radius: 15px;
+}
+
+.card-body {
+  padding-bottom: 0;
 }
 
 img {
   justify-content: center;
-  height: 150px;
-  width: auto;
+  height: 128px;
+  width: 128px;
   border-radius: 25px;
   left: 0;
-  padding-bottom: 10px;
+  margin-bottom: 10px;
 }
 
 div {
@@ -39,28 +41,12 @@ div {
   border-radius: 25px;
 }
 
-.card-body.top {
-  align-items: center;
-  display: flex;
-  flex-direction: column;
-}
-
-.card-body.top h5 {
-  align-self: flex-start;
-}
-
-.card-body.top img {
-  align-self: flex-start;
-}
-
 .card-body.bottom {
   width: 100%;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
 }
 
 .card-body.bottom h5 {
   margin: 0;
+  padding-right: 15px;
   font-weight: 600;
 }
