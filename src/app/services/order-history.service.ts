@@ -16,7 +16,7 @@ interface OrderHistory {
   providedIn: 'root'
 })
 export class OrderHistoryService {
-  private orderHistoryUrl: string = "/api/orderHistory";
+  private orderHistoryUrl: string = `/api/addToOrderHistory`;
   
   private _orderHistory = new BehaviorSubject<OrderHistory>({
 	orderHistoryItemCount: 0,
@@ -48,13 +48,13 @@ export class OrderHistoryService {
 
     this.http
     .post<{id: number, quantity: number}[]>(
-      environment.baseUrl,
-      productsDTO,
+      environment.baseUrl + this.orderHistoryUrl,
       {
         headers: new HttpHeaders({
           Authorization: environment.headers.Authorization,
           'Content-Type': environment.headers['Content-Type'],
-        })
+        }),
+        body : JSON.stringify(productsDTO)
       },
     );
   }
