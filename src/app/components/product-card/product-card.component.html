@@ -1,6 +1,7 @@
 <div class="card" style="width: 18rem">
-  <div class="card-body top">
+  <div class="card-body top" (lazyLoadImg)="showElement = true">
     <img
+      *ngIf="showElement"
       class="card-img-top"
       [src]="productInfo.image_url"
       alt="Card image cap"

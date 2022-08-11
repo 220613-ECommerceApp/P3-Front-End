@@ -18,6 +18,7 @@ import { SearchBarComponent } from './components/search/search-bar/search-bar.co
 
 import { SearchResultComponent } from './components/search/search-result/search-result.component';
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
+import { LazyLoadImgDirective } from './directives/lazy-load-img.directive';
 
 
 @NgModule({
@@ -34,6 +35,7 @@ import { UserProfileComponent } from './components/user-profile/user-profile.com
     SearchBarComponent,
     SearchResultComponent,
     UserProfileComponent,
+    LazyLoadImgDirective,
   ],
   
   imports: [
