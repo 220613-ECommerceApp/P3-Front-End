@@ -21,6 +21,18 @@ export class UserProfileComponent implements OnInit {
   userEmailEditing: { email: string } = { email: "" };
   userPasswordEditing: { password: string } = { password: "" };
 
+  // ALERT FUNCTIONALITY
+  alertWarning:boolean=false;
+  alertSuccess:boolean=false;
+
+  closeAlertWarning(){
+    this.alertWarning=false;
+  }
+
+  closeAlertSuccess(){
+    this.alertSuccess=false;
+  }
+
 
   // Update Method
   onUpdate(): void {
@@ -46,11 +58,14 @@ export class UserProfileComponent implements OnInit {
           console.log(response);
           this.user = response;
           this.toggleUpdateForm();
+          this.alertSuccess=true;
         },
 
         //error handling
         (error) => {
           console.error(error);
+          console.log("There has been an error");
+          this.alertWarning=true;
         }
 
       );
