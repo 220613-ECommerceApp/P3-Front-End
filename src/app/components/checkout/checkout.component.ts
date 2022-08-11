@@ -70,7 +70,7 @@ export class CheckoutComponent implements OnInit {
       //don't checkout. Add items to cart first
     }else{
       //update quantities for each product
-      this.ps.purchase(this.productsDTO);
+      this.ps.purchase(this.productsDTO).subscribe();
 
       //clearing the cart
       this.cs.emptyCart();
