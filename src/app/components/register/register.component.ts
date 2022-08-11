@@ -33,8 +33,9 @@ export class RegisterComponent implements OnInit {
     );
   }
 
-  trimInput(): void {
-    
+  trimInput(e: any): void {
+    e.target.value = e.target.value.trim().replace(/\s/g, "")
+    console.log(e.target.value)
   }
 
 }

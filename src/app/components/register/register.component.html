@@ -3,16 +3,16 @@
 <form ngNativeValidate id="register-form" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
     <div class="form-group">
       <label for="inputUserName">Username</label>
-      <input required type="text" class="form-control" formControlName="uname" id="inputUserName" placeholder="Enter Username">
+      <input required (change)="trimInput($event)" type="text" class="form-control" formControlName="uname" id="inputUserName" placeholder="Enter Username">
     </div>
     <div class="form-group">
       <label for="inputEmail">Email address</label>
-      <input required type="email" class="form-control" formControlName="email" id="inputEmail" aria-describedby="emailHelp" placeholder="Enter Email">
+      <input required (change)="trimInput($event)" type="email" class="form-control" formControlName="email" id="inputEmail" aria-describedby="emailHelp" placeholder="Enter Email">
       <small id="emailHelp" class="form-text text-muted">Ensure you enter the correct email</small>
     </div>
     <div class="form-group">
       <label for="inputPassword">Password</label>
-      <input required type="password" class="form-control" formControlName="password" id="inputPassword" placeholder="Enter Password">
+      <input required (change)="trimInput($event)" type="password" class="form-control" formControlName="password" id="inputPassword" placeholder="Enter Password">
     </div>
     <button class="btn btn-primary">Register</button>
 </form>
