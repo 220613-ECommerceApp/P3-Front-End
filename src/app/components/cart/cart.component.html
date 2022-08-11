@@ -9,12 +9,9 @@
       <div class="cartitem">
         <hr class="line" />
         <div class="cart-sections">
-          <img
-            src="https://upload.wikimedia.org/wikipedia/en/5/51/Minecraft_cover.png"
-            class="image"
-          />
+          <img [src]="cartitem.product.image_url" class="image" />
           <div class="cart-right-section">
-            <p class="title">Minecraft</p>
+            <p class="title">{{ cartitem.product.name }}</p>
             <p class="description">
               Lorem Ipsum is simply dummy text of the printing and typesetting
               industry. Lorem Ipsum has been the industry's standard dummy text
@@ -22,22 +19,48 @@
             <ul>
               <li>
                 <div class="item-headers-text">Price:</div>
-                <div class="item-data-text">$50.0</div>
+                <div class="item-data-text">${{ cartitem.product.price }}</div>
               </li>
               <li>
                 <div class="item-headers-text">Quantity:</div>
                 <div class="quantity-container">
-                  <input class="user-quantity" type="number" />
-                  <button type="button" class="q-button">Update</button>
+                  <input
+                    class="user-quantity"
+                    type="number"
+                    [id]="cartitem.product.id + ',' + 'i' + ',' + n"
+                    [value]="cartitem.quantity"
+                  />
+                  <button
+                    type="button"
+                    class="q-button"
+                    [id]="cartitem.product.id + ',' + 'u' + ',' + n"
+                    (click)="
+                      updateQuantity(
+                        cartitem.product.id + ',' + 'i' + ',' + n,
+                        cartitem.product.quantity,
+                        cartitem.product.id
+                      )
+                    "
+                  >
+                    Update
+                  </button>
                 </div>
               </li>
               <li>
                 <div class="item-headers-text">Total:</div>
-                <div class="item-data-text">$100.0</div>
+                <div class="item-data-text">
+                  ${{ cartitem.product.price * cartitem.quantity }}
+                </div>
               </li>
               <li>
                 <button type="button" class="w-button">Move to Wishlist</button>
-                <div class="r-button">Remove from Cart</div>
+                <div
+                  class="r-button"
+                  (click)="removeFromCart(cartitem.product.id)"
+                  [id]="cartitem.product.id + ',' + 'r' + ',' + n"
+                >
+                  Remove from Cart
+                </div>
               </li>
             </ul>
           </div>
@@ -52,10 +75,10 @@
       <div class="cd1 d">${{ totalPrice }}</div>
 
       <div class="ch2 c">Discount:</div>
-      <div class="cd2 d">${{ totalPrice }}</div>
+      <div class="cd2 d"></div>
 
       <div class="ch3 c">Tax:</div>
-      <div class="cd3 d">${{ totalPrice }}</div>
+      <div class="cd3 d"></div>
 
       <div class="ch4 c">Grand Total:</div>
       <div class="cd4 d">${{ totalPrice }}</div>
