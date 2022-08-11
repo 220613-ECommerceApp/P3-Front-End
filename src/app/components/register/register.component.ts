@@ -24,7 +24,6 @@ export class RegisterComponent implements OnInit {
   constructor(private authService: AuthService, private router: Router) { }
 
   ngOnInit(): void {
-    ErrorService.resetAlerts() // reset alerts due to static nature of service
   }
   
   onSubmit(): void {

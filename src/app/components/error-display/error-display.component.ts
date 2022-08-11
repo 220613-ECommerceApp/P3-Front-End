@@ -12,6 +12,7 @@ export class ErrorDisplayComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    ErrorService.resetAlerts() // reset alerts due to static nature of service
   }
 
   getAlertWarning(): boolean {

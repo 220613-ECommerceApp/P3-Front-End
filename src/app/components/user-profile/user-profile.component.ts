@@ -68,7 +68,6 @@ export class UserProfileComponent implements OnInit {
   constructor(private userService: UserService) { }
 
   ngOnInit(): void {
-    ErrorService.resetAlerts()
 
     console.log(this.userService);
 
