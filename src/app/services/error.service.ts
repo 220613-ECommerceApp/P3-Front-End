@@ -30,17 +30,14 @@ export class ErrorService {
   }
 
   // will display warning/success based on boolean value - true: display, false: hide
-  // returns the value
-  public static displayWarning(val: boolean): boolean{
+  public static displayWarning(val: boolean): void{
     this.alertWarning = val
     this.alertSuccess = false
-    return this.alertWarning
   }
 
-  public static displaySuccess(val: boolean): boolean {
+  public static displaySuccess(val: boolean): void {
     this.alertSuccess = val
     this.alertWarning = false
-    return this.alertSuccess
   }
 
   // closes the alert boxes
