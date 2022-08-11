@@ -1,5 +1,95 @@
 <app-navbar></app-navbar>
-<table class="table table-striped" id="cart-table">
+<div class="cart-container">
+  <div class="cart-items-container">
+    <p class="view-cart-text">View Your Cart</p>
+    <div
+      class="populate-cart"
+      *ngFor="let cartitem of cartitems; let n = index"
+    >
+      <div class="cartitem">
+        <hr class="line" />
+        <div class="cart-sections">
+          <img [src]="cartitem.product.image_url" class="image" />
+          <div class="cart-right-section">
+            <p class="title">{{ cartitem.product.name }}</p>
+            <p class="description">
+              Lorem Ipsum is simply dummy text of the printing and typesetting
+              industry. Lorem Ipsum has been the industry's standard dummy text
+            </p>
+            <ul>
+              <li>
+                <div class="item-headers-text">Price:</div>
+                <div class="item-data-text">${{ cartitem.product.price }}</div>
+              </li>
+              <li>
+                <div class="item-headers-text">Quantity:</div>
+                <div class="quantity-container">
+                  <input
+                    class="user-quantity"
+                    type="number"
+                    [id]="cartitem.product.id + ',' + 'i' + ',' + n"
+                    [value]="cartitem.quantity"
+                  />
+                  <button
+                    type="button"
+                    class="q-button"
+                    [id]="cartitem.product.id + ',' + 'u' + ',' + n"
+                    (click)="
+                      updateQuantity(
+                        cartitem.product.id + ',' + 'i' + ',' + n,
+                        cartitem.product.quantity,
+                        cartitem.product.id
+                      )
+                    "
+                  >
+                    Update
+                  </button>
+                </div>
+              </li>
+              <li>
+                <div class="item-headers-text">Total:</div>
+                <div class="item-data-text">
+                  ${{ cartitem.product.price * cartitem.quantity }}
+                </div>
+              </li>
+              <li>
+                <button type="button" class="w-button">Move to Wishlist</button>
+                <div
+                  class="r-button"
+                  (click)="removeFromCart(cartitem.product.id)"
+                  [id]="cartitem.product.id + ',' + 'r' + ',' + n"
+                >
+                  Remove from Cart
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="checkout-container">
+    <div class="checkout-grid">
+      <div class="ch1 c">Subtotal:</div>
+      <div class="cd1 d">${{ totalPrice }}</div>
+
+      <div class="ch2 c">Discount:</div>
+      <div class="cd2 d"></div>
+
+      <div class="ch3 c">Tax:</div>
+      <div class="cd3 d"></div>
+
+      <div class="ch4 c">Grand Total:</div>
+      <div class="cd4 d">${{ totalPrice }}</div>
+    </div>
+    <hr class="line" />
+    <button class="c-button" [routerLink]="['/checkout']">
+      Proceed to Checkout
+    </button>
+  </div>
+</div>
+<!-- <table class="table table-striped" id="cart-table">
     <thead>
       <tr>
         <th scope="col">ID</th>
@@ -14,7 +104,7 @@
             <td>{{cartitem.product.id}}</td>
             <td>{{cartitem.product.name}}</td>
             <td>
-              <button type="button" class="btn btn-primary" (click)="removeFromCart(cartitem.product.id)" [id]="cartitem.product.id+','+'r'+','+n" >Remove from Cart</button>
+              <button type="button" class="btn btn-primary" (click)="removeFromCart(cartitem.product.id)" [id]="cartitem.product.id+','+'r'+','+n" >Remove from Cart (${{cartitem.product.price*cartitem.quantity}})</button>
               <input  class="user-quantity" type="number" [id]="cartitem.product.id+','+'i'+','+n" [value]="cartitem.quantity" />
               <button type="button" class="btn btn-primary" [id]="cartitem.product.id+','+'u'+','+n" (click)="updateQuantity(cartitem.product.id+','+'i'+','+n, cartitem.product.quantity, cartitem.product.id)">Update</button>
             </td>
@@ -25,4 +115,4 @@
 </table>
 <button class="btn btn-danger" [routerLink]="['/home']">Back</button>
 <button class="btn btn-warning" (click)="emptyCart()">Empty Cart</button>
-<button class="btn btn-primary" [routerLink]="['/checkout']">Proceed to Checkout (${{totalPrice}})</button>
+<button class="btn btn-primary" [routerLink]="['/checkout']">Proceed to Checkout (${{totalPrice}})</button> -->
