@@ -5,7 +5,7 @@ import { faImages } from '@fortawesome/free-solid-svg-icons';
   selector: '[lazyLoadImg]',
 })
 export class LazyLoadImgDirective {
-  /*   Basic lazy loading for faImages, using Intersection Observer API
+  /*   Basic lazy loading for images, using Intersection Observer API
        https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API 
   */
 
@@ -30,7 +30,18 @@ export class LazyLoadImgDirective {
   };
 
   public ngAfterViewInit() {
-    this.intersectionObserver = new IntersectionObserver(this.handleIntersect);
-    this.intersectionObserver.observe(this.element);
+    /// check if browser supports Intersection Observer API
+    if (
+      'IntersectionObserver' in window &&
+      'IntersectionObserverEntry' in window &&
+      'intersectionRatio' in window.IntersectionObserverEntry.prototype
+    ) {
+      this.intersectionObserver = new IntersectionObserver(
+        this.handleIntersect
+      );
+      this.intersectionObserver.observe(this.element);
+    } else {
+      this.lazyLoadImg.emit();
+    }
   }
 }
