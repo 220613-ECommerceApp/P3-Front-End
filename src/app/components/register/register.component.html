@@ -14,6 +14,7 @@
       <label for="inputPassword">Password</label>
       <input required (change)="trimInput($event)" type="password" class="form-control" formControlName="password" id="inputPassword" placeholder="Enter Password">
     </div>
-    <button class="btn btn-primary">Register</button>
+    <button class="btn btn-back">Register</button>
+    <button class="btn btn-back" [routerLink]="['/login']">Already a User? Sign In</button>
 </form>
 
