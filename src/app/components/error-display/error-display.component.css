@@ -1,0 +1,12 @@
+p {
+    color: #FCA311;
+}
+
+.alert {
+    width: max-content;
+}
+
+#alert-container {
+    display: flex;
+    justify-content: center;
+}
