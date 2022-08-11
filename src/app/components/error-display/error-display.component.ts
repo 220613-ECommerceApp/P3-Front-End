@@ -6,12 +6,20 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./error-display.component.css']
 })
 export class ErrorDisplayComponent implements OnInit {
-  @Input() showError: boolean = false
+  @Input() alertWarning: boolean = false
+  @Input() alertSuccess: boolean = false
   @Input() errorMessage: string = ""
 
   constructor() { }
 
   ngOnInit(): void {
   }
-
+  
+    closeAlertWarning(){
+      this.alertWarning=false;
+    }
+  
+    closeAlertSuccess(){
+      this.alertSuccess=false;
+    }
 }

@@ -1,5 +1,5 @@
 <img src="../../../assets/images/pg-logo.svg" width="30%" height="30%" alt="Revature">
-<error-display [showError]="hasError" [errorMessage]="errMsg"></error-display>
+<error-display [alertWarning]="hasError" [errorMessage]="errMsg"></error-display>
 <form ngNativeValidate id="register-form" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
     <div class="form-group">
       <label for="inputUserName">Username</label>
