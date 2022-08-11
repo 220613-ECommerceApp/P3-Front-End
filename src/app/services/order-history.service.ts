@@ -45,17 +45,16 @@ export class OrderHistoryService {
 
   public addItemsToOrderHistory(productsDTO: {id: number, quantity: number}[]) {
     this.auth.updateBearer()
-
     this.http
     .post<{id: number, quantity: number}[]>(
       environment.baseUrl + this.orderHistoryUrl,
+      JSON.stringify(productsDTO),
       {
         headers: new HttpHeaders({
           Authorization: environment.headers.Authorization,
           'Content-Type': environment.headers['Content-Type'],
         }),
-        body : JSON.stringify(productsDTO)
-      },)
+      })
       .pipe(
         catchError((e) => {
           return throwError(e);
