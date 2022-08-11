@@ -16,7 +16,7 @@ interface OrderHistory {
   providedIn: 'root'
 })
 export class OrderHistoryService {
-  private orderHistoryUrl: string = `/api/addToOrderHistory`;
+  private orderHistoryUrl: string = `/api/orderHistory`;
   
   private _orderHistory = new BehaviorSubject<OrderHistory>({
 	orderHistoryItemCount: 0,
@@ -55,8 +55,13 @@ export class OrderHistoryService {
           'Content-Type': environment.headers['Content-Type'],
         }),
         body : JSON.stringify(productsDTO)
-      },
-    );
+      },)
+      .pipe(
+        catchError((e) => {
+          return throwError(e);
+        })
+      )
+      .subscribe();
   }
 
 /*
