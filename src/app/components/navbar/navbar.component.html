@@ -11,7 +11,9 @@
     <form class="form-inline">
       <a [routerLink]="['/home']">Home</a>
       <a href="#">Wishlist</a>
-      <a [routerLink]="['/user-profile']">Profile</a>
+      <a [routerLink]="['/user-profile']">
+        <fa-icon [icon]="faUser"></fa-icon>
+      </a>
       <button class="btn btn-light" [routerLink]="['/cart']">
         Cart
         <span class="badge badge-info">{{ cartCount }}</span>
