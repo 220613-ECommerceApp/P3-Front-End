@@ -5,9 +5,9 @@ import { Injectable } from '@angular/core';
 })
 export class ErrorService {
 
-  static message: string = ""
-  static alertWarning: boolean = false
-  static alertSuccess: boolean = false
+  static message: string = "" // message for the alert
+  static alertWarning: boolean = false // state of warning box
+  static alertSuccess: boolean = false // state of success box
 
   constructor() { }
 
@@ -23,23 +23,27 @@ export class ErrorService {
     return this.alertSuccess
   }
 
+  // set the message within the alert box
   public static setMessage(msg: string): string {
     this.message = msg
     return this.message
   }
 
+  // will display warning/success based on boolean value - true: display, false: hide
+  // returns the value
   public static displayWarning(val: boolean): boolean{
     this.alertWarning = val
-    this.alertSuccess = !val
+    this.alertSuccess = false
     return this.alertWarning
   }
 
   public static displaySuccess(val: boolean): boolean {
     this.alertSuccess = val
-    this.alertWarning = !val
+    this.alertWarning = false
     return this.alertSuccess
   }
 
+  // closes the alert boxes
   public static closeAlertWarning() {
     this.alertWarning = false
   }
@@ -48,7 +52,7 @@ export class ErrorService {
     this.alertSuccess = false
   }
 
-  // call on init for any component
+  // resets alerts, called on the error component itself
   public static resetAlerts() {
     this.alertSuccess = false
     this.alertWarning = false
