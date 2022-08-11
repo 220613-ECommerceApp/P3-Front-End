@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
+import { ErrorService } from 'src/app/services/error.service';
 
 @Component({
   selector: 'app-register',
@@ -23,15 +24,15 @@ export class RegisterComponent implements OnInit {
   constructor(private authService: AuthService, private router: Router) { }
 
   ngOnInit(): void {
+    ErrorService.resetAlerts() // reset alerts due to static nature of service
   }
   
   onSubmit(): void {
     this.authService.register(this.registerForm.get('uname')?.value, this.registerForm.get('email')?.value, this.registerForm.get('password')?.value).subscribe(
       () => console.log("New user registered"),
       (err) => {
-        console.log(err)
-        this.hasError = true
-        this.errMsg = err.error
+        this.hasError = ErrorService.displayWarning(true) // set the error state to true
+        ErrorService.setMessage(err.error) // set the error message
       },
       () => this.router.navigate(['login'])
     );
