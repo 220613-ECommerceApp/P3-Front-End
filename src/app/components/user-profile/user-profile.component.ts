@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
+import {Router} from '@angular/router';
 import { IUser } from 'src/app/components/Interfaces/IUser';
 import { ErrorService } from 'src/app/services/error.service';
 import { UserService } from 'src/app/services/user.service';
@@ -43,7 +44,7 @@ export class UserProfileComponent implements OnInit {
       console.log("Checking UserService.update");
       this.userService.updateUser(user).subscribe(
         (response) => {
-          ErrorService.setMessage("Success")
+          ErrorService.setMessage("Successfully Updated!")
           this.user = response;
           this.toggleUpdateForm();
           ErrorService.displaySuccess(true)
@@ -51,7 +52,7 @@ export class UserProfileComponent implements OnInit {
 
         //error handling
         (error) => {
-          ErrorService.setMessage("The email entered is already assocaited with another account.")
+          ErrorService.setMessage("The email entered is already associated with another account.")
           console.log("There has been an error");
           ErrorService.displayWarning(true)
         }
@@ -65,7 +66,7 @@ export class UserProfileComponent implements OnInit {
 
 
   // Importing service class
-  constructor(private userService: UserService) { }
+  constructor(private userService: UserService, private router: Router) { }
 
   ngOnInit(): void {
 
@@ -83,7 +84,9 @@ export class UserProfileComponent implements OnInit {
         this.userPasswordEditing.password = resp.password;
 
       },
-      (err) => console.log(err),
+      (err) => 
+      { if (err.status = 500) this.router.navigate(['login']) }
+
     );
   }
 
