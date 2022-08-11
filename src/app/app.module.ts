@@ -18,6 +18,7 @@ import { SearchBarComponent } from './components/search/search-bar/search-bar.co
 
 import { SearchResultComponent } from './components/search/search-result/search-result.component';
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
+import { ErrorDisplayComponent } from './components/error-display/error-display.component';
 
 
 @NgModule({
@@ -34,6 +35,7 @@ import { UserProfileComponent } from './components/user-profile/user-profile.com
     SearchBarComponent,
     SearchResultComponent,
     UserProfileComponent,
+    ErrorDisplayComponent,
   ],
   
   imports: [

@@ -10,6 +10,9 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class RegisterComponent implements OnInit {
 
+  hasError: boolean = false;
+  errMsg: string = "";
+
   registerForm = new FormGroup({
     uname: new FormControl(''),
     email: new FormControl(''),
@@ -25,9 +28,17 @@ export class RegisterComponent implements OnInit {
   onSubmit(): void {
     this.authService.register(this.registerForm.get('uname')?.value, this.registerForm.get('email')?.value, this.registerForm.get('password')?.value).subscribe(
       () => console.log("New user registered"),
-      (err) => console.log(err),
+      (err) => {
+        console.log(err)
+        this.hasError = true
+        this.errMsg = err.error
+      },
       () => this.router.navigate(['login'])
     );
+  }
+
+  trimInput(): void {
+    
   }
 
 }
