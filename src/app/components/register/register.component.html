@@ -1,18 +1,19 @@
 <img src="../../../assets/images/pg-logo.svg" width="30%" height="30%" alt="Revature">
-<form id="register-form" [formGroup]="registerForm">
+<error-display [showError]="hasError" [errorMessage]="errMsg"></error-display>
+<form ngNativeValidate id="register-form" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
     <div class="form-group">
       <label for="inputUserName">Username</label>
-      <input type="text" class="form-control" formControlName="uname" id="inputUserName" placeholder="Enter Username">
+      <input required type="text" class="form-control" formControlName="uname" id="inputUserName" placeholder="Enter Username">
     </div>
     <div class="form-group">
       <label for="inputEmail">Email address</label>
-      <input type="email" class="form-control" formControlName="email" id="inputEmail" aria-describedby="emailHelp" placeholder="Enter Email">
+      <input required type="email" class="form-control" formControlName="email" id="inputEmail" aria-describedby="emailHelp" placeholder="Enter Email">
       <small id="emailHelp" class="form-text text-muted">Ensure you enter the correct email</small>
     </div>
     <div class="form-group">
       <label for="inputPassword">Password</label>
-      <input type="password" class="form-control" formControlName="password" id="inputPassword" placeholder="Enter Password">
+      <input required type="password" class="form-control" formControlName="password" id="inputPassword" placeholder="Enter Password">
     </div>
-    <button class="btn btn-primary" (click)="onSubmit()">Register</button>
+    <button class="btn btn-primary">Register</button>
 </form>
 
