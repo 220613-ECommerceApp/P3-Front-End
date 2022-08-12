@@ -1,5 +1,4 @@
-import { TestBed, inject, waitForAsync } from '@angular/core/testing';
-import { HttpClient, HttpEvent, HttpEventType } from '@angular/common/http';
+import { TestBed } from '@angular/core/testing';
 import {
   HttpClientTestingModule,
   HttpTestingController,
