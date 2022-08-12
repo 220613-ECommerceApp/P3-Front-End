@@ -15,3 +15,8 @@ a:hover {
 .active {
   color: #f8a22d;
 }
+
+.search-container {
+  display: flex;
+  justify-content: center;
+}
