@@ -5,14 +5,17 @@
       <h1 class="styled">Search Results</h1>
     </div>
     <div>
-      <hr class="line">
+      <hr class="line" />
     </div>
     <div class="textblurb">Here are the products that match your search.</div>
-  </div>   
-  <div class="container-cards">
+  </div>
+  <div class="container cards">
     <div class="row align-items-start">
-    <!-- <div>  -->
-      <div class="col" *ngFor="let product of getProducts()">
+      <!-- <div>  -->
+      <div
+        class="col d-flex justify-content-center"
+        *ngFor="let product of getProducts()"
+      >
         <app-product-card
           class="cardListItem"
           [productInfo]="product"

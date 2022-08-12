@@ -13,7 +13,6 @@
     flex: 0 0 307px;
     margin-left: 4%;
     padding-left: 3%;
-
   }
 }
 /* medium size viewport */
@@ -39,16 +38,13 @@
 
 .container {
   margin-top: 85px;
-  align-self: flex-start;
-  display: flex;
-  flex-direction: column;
   background-color: #e5e5e5;
   padding: 35px;
   border-radius: 20px;
-  width: 750px;
-  justify-content: center;
-  align-items: center;
-  white-space: nowrap;
+}
+
+.cards {
+  margin: 0;
 }
 
 .container-title {
@@ -81,7 +77,6 @@ h1.styled {
   font-weight: 600;
 }
 
-
 :host ::ng-deep .card {
   background-color: #ffffff !important;
   color: black !important;
@@ -96,8 +91,8 @@ h1.styled {
   background-color: #000000;
   margin-bottom: 30px;
   width: 20%;
-  text-align:left;
-  margin-left:0;
+  text-align: left;
+  margin-left: 0;
   opacity: 0.1;
 }
 
