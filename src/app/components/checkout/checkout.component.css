@@ -15,6 +15,10 @@
     
 }
 
+h6, span{
+    color: #000000;
+}
+
 body{
 
     background-color: #eee;
@@ -102,12 +106,10 @@ input::-webkit-inner-spin-button {
 
 .yellow{
 
-    color: #efc248; 
+    color: #edb825; 
 }
 
-.text-darker span{
-    color: #14213d;
-}
+
 
 .decoration{
 
@@ -137,7 +139,5 @@ input::-webkit-inner-spin-button {
 
 .mb-4{
     color:#eee;
-    font-weight: 600;
     font-size: 1.04em;
-    
 }
