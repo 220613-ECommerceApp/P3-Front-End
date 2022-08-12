@@ -6,7 +6,6 @@
 .container {
   display: flex;
   justify-content: space-between;
-
 }
 
 .navBut {
@@ -15,10 +14,12 @@
   color: #14213d;
 }
 
-
 .navBut:hover {
-
   color: #fca311;
+}
+
+.navBut:hover .icon-style {
+  background-color: #fca311;
 }
 
 .active {
@@ -28,4 +29,37 @@
 .search-container {
   display: flex;
   justify-content: center;
+  align-self: center;
+}
+
+.form-inline img {
+  width: 30px;
+  height: 30px;
+}
+
+.icon-style,
+.user-icon .cart-icon .exit-icon {
+  width: 30px;
+  height: 30px;
+  mask-size: contain;
+  mask-position: center;
+  mask-repeat: no-repeat;
+  background-color: #14213d;
+}
+
+.user-icon {
+  mask-image: url("/assets/icons/user-login-icon.svg");
+}
+
+.cart-icon {
+  mask-image: url("/assets/icons/shopping-cart-icon.svg");
+}
+
+.exit-icon {
+  mask-image: url("/assets/icons/sign-out-icon.svg");
+}
+
+.navbar-brand img {
+  width: 150px;
+  height: auto;
 }
