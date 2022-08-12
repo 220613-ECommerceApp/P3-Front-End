@@ -1,5 +1,7 @@
 <app-navbar></app-navbar>
 
+<div class="allContent">
+
 <h1 id="header"> Account Information </h1>
 <error-display></error-display>
 
@@ -12,7 +14,7 @@
     
 
     <p> Password: <span class="spoiler" >{{user?.password}}</span></p>
-    <button class="btn btn-back" id="historybtn" [routerLink]="['/history']">View Your Order History</button>
+    <button class="btn btn-order" id="historybtn" [routerLink]="['/history']">View Your Order History</button>
 </div>
 <!-- There are basically two things we need to do on this form
 One is get the User's Data and Display it
@@ -82,4 +84,4 @@ Two is add in an update form that'll send a put (update) request-->
 
 </div>
 
-<button class="btn btn-back" [routerLink]="['/home']">Back</button>
+</div>
