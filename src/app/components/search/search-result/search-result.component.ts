@@ -15,4 +15,8 @@ export class SearchResultComponent implements OnInit {
   getProducts(): Product[] {
     return this.searchService.products;
   }
+
+  getSearchString(): string {
+    return this.searchService.searchString;
+  }
 }

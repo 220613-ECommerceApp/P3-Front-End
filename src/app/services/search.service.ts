@@ -13,6 +13,8 @@ export class SearchService {
   private productUrl: string = '/api/product/search/superSearch';
   private tagUrl: string = '/api/tag';
 
+  searchString: string = '';
+
   products: Product[] = [];
 
   constructor(private http: HttpClient, private auth: AuthService) {}
