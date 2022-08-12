@@ -51,7 +51,6 @@ export class CheckoutComponent implements OnInit {
         this.cartitems.push(cartitem);
         this.totalPrice += cartitem.quantity * cartitem.product.price;
         this.cartCount += cartitem.quantity;
-        console.log(cartitem);
         this.productsObject.push({
           product: cartitem.product,
           quantity: cartitem.quantity,

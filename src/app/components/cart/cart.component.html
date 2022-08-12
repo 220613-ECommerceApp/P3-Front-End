@@ -2,7 +2,11 @@
 <div class="cart-container">
   <div class="cart-items-container">
     <p class="view-cart-text">View Your Cart</p>
-    <div
+    <div *ngIf="cartCount<=0">
+    Your cart is empty ...
+    </div>
+    <div class="over-flow-control" #populate_cart>
+      <div
       class="populate-cart"
       *ngFor="let cartitem of cartitems; let n = index"
     >
@@ -70,6 +74,8 @@
         </div>
       </div>
     </div>
+    </div>
+    
   </div>
 
   <div class="checkout-container">
