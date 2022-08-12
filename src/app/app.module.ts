@@ -15,10 +15,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { OrderHistoryComponent } from './components/order-history/order-history.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { SearchBarComponent } from './components/search/search-bar/search-bar.component';
-
 import { SearchResultComponent } from './components/search/search-result/search-result.component';
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
-
+import { WishlistComponent } from './components/wishlist/wishlist.component';
+import { ProductService } from './services/product.service';
 
 @NgModule({
   declarations: [
@@ -34,6 +34,7 @@ import { UserProfileComponent } from './components/user-profile/user-profile.com
     SearchBarComponent,
     SearchResultComponent,
     UserProfileComponent,
+    WishlistComponent,
   ],
   
   imports: [
@@ -44,7 +45,7 @@ import { UserProfileComponent } from './components/user-profile/user-profile.com
     ReactiveFormsModule,
     FontAwesomeModule,
   ],
-  providers: [],
+  providers: [ProductService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

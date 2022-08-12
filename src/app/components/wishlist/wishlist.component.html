@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title></title>
+        <link rel="stylesheet" href="wishlist.component.css">
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+         rel="stylesheet">
+         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+ 
+    </head>
+   
+   
+   
+   <table class="table table-striped" id="wishlist-table">
+   <thead>
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Name</th>
+        <th scope="col">Description</th>
+      </tr>
+    </thead>
+    <tbody id="wishlist-table-body">
+        <tr *ngFor="let item of wishlistItems;">
+            
+      
+            			<td>{{item.product.name}}</td>
+            			<td>{{item.product.price}}</td>	
+                  <img src="images/minecraft_detail.png">
+                  
+
+        </tr>
+    </tbody>
+</table> -->
+<button class="btn btn-danger" [routerLink]="['/home']">Back</button>
+<div class="row">
+
+  <div class="col-4">
+      <img src="images/minecraft_detail.png">
+      <h4>Baseball Cap</h4>
+      
+      <p>$51</p>
+  </div>
+  <div class="col-4">
+      <img src="images/mario_gold_detail.png">
+      <h4>Tee shirt</h4>
+      <div class="rating">
+          <i class="fa fa-star"></i>
+          <i class="fa fa-star"></i>
+          <i class="fa fa-star"></i>
+          <i class="fa fa-star-half-o"></i>
+          <i class="fa fa-star-o"></i>   
+      </div>
+      <p>$51</p>
+  </div>
+  <div class="col-4">
+      <img src="images/minecraft_detail.png">
+      <h4>Coat</h4>
+      <div class="rating">
+          <i class="fa fa-star"></i>
+          <i class="fa fa-star"></i>
+          <i class="fa fa-star"></i>
+          <i class="fa fa-star"></i>
+          <i class="fa fa-star-half-o"></i>   
+      </div>
+      <p>$51</p>
+  </div>
+  <div class="col-4">
+      <img src="images/prey_detail.png">
+      <h4>HeadPhones</h4>
+      <div class="rating">
+          <i class="fa fa-star"></i>
+          <i class="fa fa-star"></i>
+          <i class="fa fa-star"></i>
+          <i class="fa fa-star"></i>
+          <i class="fa fa-star-o"></i>   
+      </div>
+      <p>51</p>
+  </div>
+

@@ -11,8 +11,8 @@ import { HttpHeaders } from '@angular/common/http';
   providedIn: 'root',
 })
 export class CartService {
-  
-  constructor(private http: HttpClient, private auth: AuthService) {}
+
+  constructor(private http: HttpClient, private auth: AuthService) { }
 
   //fetch cartItem table for logged-in user
   getCart(): Observable<Cartitem[]> {
@@ -100,7 +100,7 @@ export class CartService {
           return throwError(e);
         })
       ).subscribe();
-    
+
   }
 
   removeItem(productId: number) {
