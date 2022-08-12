@@ -10,12 +10,10 @@ describe('LazyLoadImgDirective', () => {
   let mockElementRef: ElementRef;
 
   beforeEach(() => {
-    TestBed.configureTestingModule({});
     TestBed.configureTestingModule({
-      imports: [LazyLoadImgDirective],
+      declarations: [LazyLoadImgDirective],
       providers: [{ provide: ElementRef, useValue: MockElementRef }],
     });
-
     mockElementRef = TestBed.inject(ElementRef);
   });
 
