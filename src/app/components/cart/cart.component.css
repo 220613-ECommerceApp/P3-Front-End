@@ -190,3 +190,8 @@ button,
 .cart-sections {
   display: flex;
 }
+
+.error{
+  /* background-color: red; */
+}
+

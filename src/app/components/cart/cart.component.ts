@@ -11,7 +11,6 @@ import { ErrorService } from 'src/app/services/error.service';
   styleUrls: ['./cart.component.css'],
 })
 export class CartComponent implements OnInit {
-  
   cartitems: Cartitem[] = [];
   totalPrice: number = 0;
   cartCount: number = 0;
@@ -19,11 +18,13 @@ export class CartComponent implements OnInit {
   constructor(private router: Router, private cs: CartService) {}
 
   ngOnInit(): void {
-    this.cs.getCart().subscribe((e) => e.forEach(cartitem=>{
-      this.cartitems.push(cartitem);
-      this.totalPrice += cartitem.quantity * cartitem.product.price;
-      this.cartCount +=cartitem.quantity;
-    }));
+    this.cs.getCart().subscribe((e) =>
+      e.forEach((cartitem) => {
+        this.cartitems.push(cartitem);
+        this.totalPrice += cartitem.quantity * cartitem.product.price;
+        this.cartCount += cartitem.quantity;
+      })
+    );
   }
 
   emptyCart(): void {
@@ -31,13 +32,15 @@ export class CartComponent implements OnInit {
     this.router.navigate(['/home']);
   }
 
-  updateQuantity(inputId: string, stock:number, productId:number): void {
-    let userQuantity: number = +(<HTMLInputElement>document.getElementById(`${inputId}`)).value;
-    if(userQuantity<0){
+  updateQuantity(inputId: string, stock: number, productId: number): void {
+    let userQuantity: number = +(<HTMLInputElement>(
+      document.getElementById(`${inputId}`)
+    )).value;
+    if (userQuantity < 0) {
       //Throw error
       ErrorService.displayWarning(true); // set the error state to true
       ErrorService.setMessage('Quantity must not be less than zero'); // set the error message
-    }else if(userQuantity==0){
+    } else if (userQuantity == 0) {
       ErrorService.displayWarning(false);
       this.cartitems.forEach((e, i, o) => {
         if (e.product.id == productId) {
@@ -47,17 +50,17 @@ export class CartComponent implements OnInit {
         }
       });
       this.cs.removeItem(productId);
-    } else if(userQuantity>stock){
+    } else if (userQuantity > stock) {
       //Throw error
       ErrorService.displayWarning(true); // set the error state to true
       ErrorService.setMessage('Quantity must not exceed inventory'); // set the error message
-    } else{
+    } else {
       //Update
       ErrorService.displayWarning(false);
-       this.cartitems.forEach((e, i, o) => {
+      this.cartitems.forEach((e, i, o) => {
         if (e.product.id == productId) {
-          this.totalPrice += ((userQuantity - e.quantity) * e.product.price);
-          this.cartCount += (userQuantity - e.quantity);
+          this.totalPrice += (userQuantity - e.quantity) * e.product.price;
+          this.cartCount += userQuantity - e.quantity;
         }
       });
       this.cs.updateQuantity(userQuantity, productId);
@@ -66,13 +69,24 @@ export class CartComponent implements OnInit {
   }
 
   removeFromCart(productId: number): void {
-    this.cartitems.forEach((e,i,o)=>{
-      if(e.product.id==productId){
-          o.splice(i,1);
-          this.totalPrice -= e.quantity*e.product.price;
-          this.cartCount -= e.quantity;
+    this.cartitems.forEach((e, i, o) => {
+      if (e.product.id == productId) {
+        o.splice(i, 1);
+        this.totalPrice -= e.quantity * e.product.price;
+        this.cartCount -= e.quantity;
       }
-    })
+    });
     this.cs.removeItem(productId);
+  }
+
+  goTocheckout(){
+    if(this.cartCount==0){
+      //Throw error
+      ErrorService.displayWarning(true); // set the error state to true
+      ErrorService.setMessage('Add items to your cart first'); // set the error message
+    }else{
+      ErrorService.displayWarning(false);
+      this.router.navigate(['/checkout']);
+    }
   }
 }
