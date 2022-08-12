@@ -5,7 +5,14 @@
 
 .btn
 {
-    margin-left: 2%;
+  background-color: #fca311;
+  border: #e5e5e5;
+  border-radius: 150px;
+  color: #14213d;
+  font-size: 1em;
+
+  font-weight: bolder;
+    
 }
 
 body{
@@ -81,7 +88,7 @@ input::-webkit-inner-spin-button {
 
 .card-blue{
 
-    background-color: #F26925;
+    background-color: #ffffff;
 }
 
 .hightlight{
@@ -95,7 +102,11 @@ input::-webkit-inner-spin-button {
 
 .yellow{
 
-    color: #fdcc49; 
+    color: #efc248; 
+}
+
+.text-darker span{
+    color: #14213d;
 }
 
 .decoration{
@@ -104,11 +115,7 @@ input::-webkit-inner-spin-button {
     font-size: 14px;
 }
 
-.btn-success {
-    color: #fff;
-    background-color: #F26925;
-    border-color:#F26925;
-}
+ 
 
 .btn-success:hover {
     color: #fff;
@@ -116,9 +123,21 @@ input::-webkit-inner-spin-button {
     border-color: green;
 }
 
+.btn-danger:hover{
+    color: #fff;
+    background-color:rgb(255, 0, 0);
+    border-color: rgb(255, 0, 0);
+}
 
 .decoration:hover{
 
     text-decoration: none;
     color: #fdcc49; 
+}
+
+.mb-4{
+    color:#eee;
+    font-weight: 600;
+    font-size: 1.04em;
+    
 }
