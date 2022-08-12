@@ -1,0 +1,16 @@
+<app-navbar></app-navbar>
+   <table class="table table-striped" id="cart-table">
+   <thead>
+      <tr>
+        <th scope="col">Name</th>
+        <th scope="col">Description</th>
+      </tr>
+    </thead>
+    <tbody id="history-table-body">
+        <tr *ngFor="let wishlistItem of wishlistItems;">
+            <td>{{wishlistItem.product.name}}</td>
+            <td>{{wishlistItem.product.description}}</td>
+        </tr>
+    </tbody>
+</table> -->
+<button class="btn btn-danger" [routerLink]="['/user-profile']">Back</button>
