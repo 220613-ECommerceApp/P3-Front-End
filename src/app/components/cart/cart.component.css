@@ -1,7 +1,7 @@
 .cart-container {
   display: table;
   margin: 0 auto;
-  margin-top: 95px;
+  margin-top: 40px;
 }
 
 .cart-items-container {
@@ -193,4 +193,8 @@ button,
 
 .cart-sections {
   display: flex;
+}
+
+.error{
+  height: 52px;
 }
