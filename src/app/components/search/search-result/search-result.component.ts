@@ -19,4 +19,8 @@ export class SearchResultComponent implements OnInit {
   getSearchString(): string {
     return this.searchService.searchString;
   }
+
+  getSearchTag(): any {
+    return this.searchService.searchTag;
+  }
 }

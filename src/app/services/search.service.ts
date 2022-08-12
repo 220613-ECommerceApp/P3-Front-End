@@ -14,6 +14,7 @@ export class SearchService {
   private tagUrl: string = '/api/tag';
 
   searchString: string = '';
+  searchTag?: string = '';
 
   products: Product[] = [];
 
