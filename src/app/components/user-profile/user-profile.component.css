@@ -71,3 +71,13 @@ input .ng-valid{
     border: 3px solid green;
     padding: 10px;
 }
+
+.spoiler{ 
+    color: black; 
+    background-color:black;
+  }
+  
+.spoiler:hover{
+    color: white;
+}
+  
