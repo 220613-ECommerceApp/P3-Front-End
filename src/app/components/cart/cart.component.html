@@ -26,7 +26,7 @@
             <ul>
               <li>
                 <div class="item-headers-text">Price:</div>
-                <div class="item-data-text">${{ cartitem.product.price }}</div>
+                <div class="item-data-text">${{ cartitem.product.price | number : '1.2-2' }}</div>
               </li>
               <li>
                 <div class="item-headers-text">Quantity:</div>
@@ -56,7 +56,7 @@
               <li>
                 <div class="item-headers-text">Total:</div>
                 <div class="item-data-text">
-                  ${{ cartitem.product.price * cartitem.quantity }}
+                  ${{ cartitem.product.price * cartitem.quantity | number : '1.2-2' }}
                 </div>
               </li>
               <li>
@@ -81,7 +81,7 @@
   <div class="checkout-container">
     <div class="checkout-grid">
       <div class="ch1 c">Subtotal:</div>
-      <div class="cd1 d">${{ totalPrice }}</div>
+      <div class="cd1 d">${{ totalPrice  | number : '1.2-2' }}</div>
 
       <div class="ch2 c">Discount:</div>
       <div class="cd2 d"></div>
@@ -90,7 +90,7 @@
       <div class="cd3 d"></div>
 
       <div class="ch4 c">Grand Total:</div>
-      <div class="cd4 d">${{ totalPrice }}</div>
+      <div class="cd4 d">${{ totalPrice | number : '1.2-2' }}</div>
     </div>
     <hr class="line" />
     <button class="c-button" [routerLink]="['/checkout']">

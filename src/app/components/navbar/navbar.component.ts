@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { faUser } from '@fortawesome/free-solid-svg-icons';
+import { faUser , faShoppingCart} from '@fortawesome/free-solid-svg-icons';
 import { AuthService } from 'src/app/services/auth.service';
 import { CartService } from 'src/app/services/cart.service';
  
@@ -12,6 +12,7 @@ import { CartService } from 'src/app/services/cart.service';
 export class NavbarComponent implements OnInit {
 
   faUser = faUser;
+  faCart = faShoppingCart;
 
   cartCount!: number;
    
