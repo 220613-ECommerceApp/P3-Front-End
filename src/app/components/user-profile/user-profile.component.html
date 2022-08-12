@@ -3,73 +3,82 @@
 <h1 id="header"> Account Information </h1>
 <error-display></error-display>
 
-<p> User ID: {{user?.id}}</p>
-<p> First Name: {{user?.firstname}}</p>
-<p> Last Name: {{user?.lastname}}</p>
-<p> Username: {{user?.username}}</p>
-<p> Email: {{user?.email}}</p>
-<p> Password: {{user?.password}}</p>
+<div class="Infofor">
+    <p> User ID: {{user?.id}}</p>
+    <p> First Name: {{user?.firstname}}</p>
+    <p> Last Name: {{user?.lastname}}</p>
+    <p> Username: {{user?.username}}</p>
+    <p> Email: {{user?.email}}</p>
+    
+
+    <p> Password: <span class="spoiler" >{{user?.password}}</span></p>
+    <button class="btn btn-back" id="historybtn" [routerLink]="['/history']">View Your Order History</button>
+</div>
 <!-- There are basically two things we need to do on this form
 One is get the User's Data and Display it
 Two is add in an update form that'll send a put (update) request-->
 
 <div id="user-container">
 
-    <div class="userInformation">
 
-
-    </div>
 
 
     <div class="updatebox">
-        <button id="updateButton" (click)="toggleUpdateForm()">Update Info</button>
+        <button id="updateButton" class="btn btnF" (click)="toggleUpdateForm()">Update Info</button>
         <form id="updatebox" [formGroup]="updateForm" [hidden]="hideForm">
+            <div class="userInformation">
+                <div class="form-group">
+                    <p>First Name</p>
+                    <input id="first" formControlName="firstName" [(ngModel)]="userEditing.firstName" type="text"
+                        name="Enter First Name">
+                    <div *ngIf="submitted && updateForm.controls.firstName.errors" class="text-danger">
+                        <div *ngIf="updateForm.controls.firstName.errors.required">First name is required</div>
+                    </div>
+                </div>
 
-            <div class="form-group">
-                <p>First Name</p>
-                <input id="first" formControlName="firstName" [(ngModel)]="userEditing.firstName" type="text"
-                    name="Enter First Name">
-                <div *ngIf="submitted && updateForm.controls.firstName.errors" class="text-danger">
-                    <div *ngIf="updateForm.controls.firstName.errors.required">First name is required</div>
+
+                <p>Last Name</p>
+                <input id="last" formControlName="lastName" [(ngModel)]="userLastEditing.lastName" type="text"
+                    name="Enter Last Name">
+                <div *ngIf="submitted && updateForm.controls.lastName.errors" class="text-danger">
+                    <div *ngIf="updateForm.controls.lastName.errors.required">Last name is required</div>
+                </div>
+
+                <p>Email</p>
+                <input id="email" formControlName="email" [(ngModel)]="userEmailEditing.email" type="email"
+                    name="Enter Email">
+                <div *ngIf="submitted && updateForm.controls.email.errors" class="text-danger">
+                    <div *ngIf="updateForm.controls.email.errors.required">Email is required</div>
+                    <div *ngIf="updateForm.controls.email.errors.email">Must be a valid email address</div>
+                </div>
+
+                <p>Username</p>
+                <input id="username" formControlName="userName" [(ngModel)]="userUsernameEditing.username" type="text"
+                    name="Enter Username">
+                <div *ngIf="submitted && updateForm.controls.userName.errors" class="text-danger">
+                    <div *ngIf="updateForm.controls.userName.errors.required">Username is required</div>
+                </div>
+
+                <p>Password</p>
+                <input id="password" [ngClass]="{ 'is-invalid': submitted && updateForm.controls.password.errors }"
+                    formControlName="password" [(ngModel)]="userPasswordEditing.password" type="password"
+                    name="Enter Password">
+                <div *ngIf="submitted && updateForm.controls.password.errors" class="text-danger">
+                    <div *ngIf="updateForm.controls.password.errors.required">Password is required</div>
+                    <div *ngIf="updateForm.controls.password.errors.minlength">Password must be at least 6 characters
+                    </div>
+                </div>
+
+
+
+                <div class="updaterBtn">
+                    <input type="submit" class="btn uBtn" type="button" value="Update" (click)="onUpdate()">
                 </div>
             </div>
-
-
-            <p>Last Name</p>
-            <input id="last" formControlName="lastName" [(ngModel)]="userLastEditing.lastName" type="text"
-                name="Enter Last Name">
-            <div *ngIf="submitted && updateForm.controls.lastName.errors" class="text-danger">
-                <div *ngIf="updateForm.controls.lastName.errors.required">Last name is required</div>
-            </div>
-
-            <p>Email</p>
-            <input id="email" formControlName="email" [(ngModel)]="userEmailEditing.email" type="email"
-                name="Enter Email">
-            <div *ngIf="submitted && updateForm.controls.email.errors" class="text-danger">
-                <div *ngIf="updateForm.controls.email.errors.required">Email is required</div>
-                <div *ngIf="updateForm.controls.email.errors.email">Must be a valid email address</div>
-            </div>
-
-            <p>UserName</p>
-            <input id="username" formControlName="userName" [(ngModel)]="userUsernameEditing.username" type="text"
-                name="Enter Username">
-            <div *ngIf="submitted && updateForm.controls.userName.errors" class="text-danger">
-                <div *ngIf="updateForm.controls.userName.errors.required">Username is required</div>
-            </div>
-
-            <p>Password</p>
-            <input id="password" [ngClass]="{ 'is-invalid': submitted && updateForm.controls.password.errors }"
-                formControlName="password" [(ngModel)]="userPasswordEditing.password" type="password"
-                name="Enter Password">
-            <div *ngIf="submitted && updateForm.controls.password.errors" class="text-danger">
-                <div *ngIf="updateForm.controls.password.errors.required">Password is required</div>
-                <div *ngIf="updateForm.controls.password.errors.minlength">Password must be at least 6 characters</div>
-            </div>
-
-            <input type="submit" type="button" value="Update" (click)="onUpdate()">
         </form>
 
     </div>
+
 
 </div>
 

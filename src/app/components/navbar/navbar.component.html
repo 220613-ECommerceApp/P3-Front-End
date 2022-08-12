@@ -8,17 +8,20 @@
         alt="Propane Gaming"
       />
     </a>
+    <div class="search-container">
+      <app-search-bar></app-search-bar>
+    </div>
     <form class="form-inline">
-      <a [routerLink]="['/home']">Home</a>
-      <a href="#">Wishlist</a>
-      <a [routerLink]="['/user-profile']">
+
+      <button class="navBut btn btn-light" href="#">Wishlist</button>
+      <button class="navBut btn btn-light" [routerLink]="['/user-profile']">
         <fa-icon [icon]="faUser"></fa-icon>
-      </a>
-      <button class="btn btn-light" [routerLink]="['/cart']">
-        Cart
-        <span class="badge badge-info">{{ cartCount }}</span>
       </button>
-      <button class="btn btn-outline-danger my-2 my-sm-0" (click)="logout()">
+      <button class="navBut btn btn-light" [routerLink]="['/cart']">
+
+        <fa-icon [icon]="faCart"></fa-icon>
+      </button>
+      <button *ngIf="userLoggedIn" class="btn btn-outline-danger my-2 my-sm-0" (click)="logout()">
         Logout
       </button>
     </form>
