@@ -1,22 +1,24 @@
 <app-navbar></app-navbar>
 
 <h1 id="header"> Account Information </h1>
-<p> User ID: {{user?.id}}</p>
-<p> First Name: {{user?.firstname}}</p>
-<p> Last Name: {{user?.lastname}}</p>
-<p> Username: {{user?.username}}</p>
-<p> Email: {{user?.email}}</p>
-<p> Password: {{user?.password}}</p>
+<div class="Infofor">
+    <p> User ID: {{user?.id}}</p>
+    <p> First Name: {{user?.firstname}}</p>
+    <p> Last Name: {{user?.lastname}}</p>
+    <p> Username: {{user?.username}}</p>
+    <p> Email: {{user?.email}}</p>
+    <p> Password: {{user?.password}}</p>
+</div>
 <!-- There are basically two things we need to do on this form
 One is get the User's Data and Display it
 Two is add in an update form that'll send a put (update) request-->
 
 <div id="user-container">
 
-    <div class= "userInformation">
+    
 
 
-    </div>
+    
 
 
     <!-- Will be used with hidden toggle to allow users to update their info
@@ -26,28 +28,28 @@ Two is add in an update form that'll send a put (update) request-->
         showOrHideObject(): void {
         this.hide = !this.hide;
   }-->
-    <div class = "updatebox">
-        <button id="updateButton" (click)="toggleUpdateForm()">Update Info</button>
-            <form id = "updatebox" [hidden] = "hideForm">
-                <p>First Name</p>
-                <input id = "first" [(ngModel)]="userEditing.firstName" type = "first" name="Enter First Name">
-                <p>Last Name</p>
-                <input id = "last" [(ngModel)]="userLastEditing.lastName" type = "last" name="Enter Last Name">
-                <p>Email</p>
-                <input id = "email" [(ngModel)]="userEmailEditing.email" type = "email" name="Enter Email">
-                <p>UserName</p>
-                <input id = "username" [(ngModel)]="userUsernameEditing.username" type = "username" name="Enter Username">
-                <p>Password</p>
-                <input id="password" [(ngModel)]="userPasswordEditing.password" type="password" name="Enter Password">
-                <input type="submit" type="button" value="Update" (click) = "onUpdate()">
-            </form>
+    <div class="updatebox">
+        <button id="updateButton" class="btn btnF"(click)="toggleUpdateForm()">Update Info</button>
+        <form id="updatebox" [hidden]="hideForm">
+            <div class="userInformation">
+            <p>First Name</p>
+            <input id="first" [(ngModel)]="userEditing.firstName" type="first" name="Enter First Name">
+            <p>Last Name</p>
+            <input id="last" [(ngModel)]="userLastEditing.lastName" type="last" name="Enter Last Name">
+            <p>Email</p>
+            <input id="email" [(ngModel)]="userEmailEditing.email" type="email" name="Enter Email">
+            <p>UserName</p>
+            <input id="username" [(ngModel)]="userUsernameEditing.username" type="username" name="Enter Username">
+            <p>Password</p>
+            <input id="password" [(ngModel)]="userPasswordEditing.password" type="password" name="Enter Password">
+            <div class="updaterBtn">
+                <input type="submit" class="btn uBtn" type="button" value="Update" (click)="onUpdate()">
+            </div>
+        </div>
+        </form>
 
     </div>
 
 </div>
 
 <button class="btn btn-back" [routerLink]="['/home']">Back</button>
-
-
-
-
