@@ -8,11 +8,15 @@
   float: left;
   background-color: #e5e5e5;
   width: 1150px;
-  height: 750px;
+  height: 770px;
   border-radius: 10px;
   margin-right: 10px;
   padding: 4%;
+}
+
+.over-flow-control{
   overflow-y: scroll;
+  height: 625px;
 }
 
 .checkout-container {
@@ -177,6 +181,7 @@ button,
   width: 162px;
   border-radius: 10px;
   border: 1px solid #000000;
+  background-color: #303e5a;
 }
 .cart-right-section {
   margin-left: -40px;
