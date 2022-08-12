@@ -1,8 +1,26 @@
+import { ElementRef } from '@angular/core';
+import { TestBed } from '@angular/core/testing';
 import { LazyLoadImgDirective } from './lazy-load-img.directive';
 
-describe('LazyLoadImgDirective', () => {
+class MockElementRef extends ElementRef {
+  nativeElement = {};
+}
+
+describe('StaredDirective', () => {
+  let mockElementRef: ElementRef;
+
+  beforeEach(() => {
+    TestBed.configureTestingModule({});
+    TestBed.configureTestingModule({
+      imports: [LazyLoadImgDirective],
+      providers: [{ provide: ElementRef, useValue: MockElementRef }],
+    });
+
+    mockElementRef = TestBed.inject(ElementRef);
+  });
+
   it('should create an instance', () => {
-    const directive = new LazyLoadImgDirective();
+    const directive = new LazyLoadImgDirective(mockElementRef);
     expect(directive).toBeTruthy();
   });
 });
