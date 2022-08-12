@@ -1,5 +1,12 @@
 .form-inline {
+  display: flex;
   gap: 15px;
+}
+
+.container {
+  display: flex;
+  justify-content: space-between;
+
 }
 
 a {
@@ -9,9 +16,14 @@ a {
 }
 
 a:hover {
-  color: #f8a22d;
+  color: #fca311;
 }
 
 .active {
-  color: #f8a22d;
+  color: #fca311;
+}
+
+.search-container {
+  display: flex;
+  justify-content: center;
 }
