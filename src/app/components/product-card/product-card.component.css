@@ -2,7 +2,7 @@
   size: auto;
   max-width: 300px;
   min-width: 200px;
-  height: 320px;
+  height: auto;
   max-height: 400px;
   transition: 0.1s ease-out;
   background-color: #303e5a;
@@ -17,8 +17,8 @@
 
 img {
   justify-content: center;
-  height: 130px;
-  width: 130px;
+  height: 150px;
+  width: 150px;
   border-radius: 25px;
   left: 0;
   margin-bottom: 10px;
@@ -59,6 +59,7 @@ div {
 
 .card-title {
   font-size: 18;
+  height:68px;
   margin-bottom:0;
   padding: 10px;
 }
