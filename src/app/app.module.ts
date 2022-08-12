@@ -15,13 +15,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { OrderHistoryComponent } from './components/order-history/order-history.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { SearchBarComponent } from './components/search/search-bar/search-bar.component';
-
 import { SearchResultComponent } from './components/search/search-result/search-result.component';
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
-import { LazyLoadImgDirective } from './directives/lazy-load-img.directive';
-import { ErrorDisplayComponent } from './components/error-display/error-display.component';
-
-
+import { WishlistComponent } from './components/wishlist/wishlist.component';
+import { ProductService } from './services/product.service';
 
 @NgModule({
   declarations: [
@@ -37,10 +34,9 @@ import { ErrorDisplayComponent } from './components/error-display/error-display.
     SearchBarComponent,
     SearchResultComponent,
     UserProfileComponent,
-    LazyLoadImgDirective,
-    ErrorDisplayComponent,
+    WishlistComponent,
   ],
-  
+
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -49,7 +45,7 @@ import { ErrorDisplayComponent } from './components/error-display/error-display.
     ReactiveFormsModule,
     FontAwesomeModule,
   ],
-  providers: [],
+  providers: [ProductService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

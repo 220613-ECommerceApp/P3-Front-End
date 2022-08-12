@@ -1,15 +1,27 @@
-<div class="card d-flex flex-column align-items-center" style="width: 18rem">
-  <div
-    class="card-body d-flex flex-column align-items-center"
-    (lazyLoadImg)="showElement = true"
-  >
-    <img
-      *ngIf="showElement"
-      class="card-img-top align-self-start"
-      [src]="productInfo.image_url"
-      alt="Card image cap"
-    />
-    <h6 class="card-title align-self-center">{{ productInfo.name }}</h6>
+<div class="card" style="width: 18rem;">
+    <img class="card-img-top" [src]="productInfo.image_url" alt="Card image cap">
+    <div class="card-body">
+      <h5 class="card-title">{{productInfo.name}}</h5>
+
+      <p class="card-text">{{productInfo.description}}</p>
+    </div>
+    <div class="input-group input-group-sm mb-3">
+      <div class="input-group-prepend">
+        <span class="input-group-text" id="inputGroup-sizing-sm">$</span>
+      </div>
+      <input type="number" class="form-control" aria-label="Sizing example input" [value]="productInfo.price" aria-describedby="inputGroup-sizing-sm" disabled>
+    </div>
+    <div class="input-group input-group-sm mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="inputGroup-sizing-sm">Quantity in Stock</span>
+        </div>
+        <input type="number" class="form-control" aria-label="Sizing example input" [value]="productInfo.quantity" aria-describedby="inputGroup-sizing-sm" disabled>
+      </div>
+    <div class="card-body">
+        <button class="btn btn-outline-success" (click)="addToCart(productInfo)" data-inline="true">Add to Cart</button>
+        <button class="btn btn-outline-success" (click)="addToWishlist(productInfo)" data-inline="true">Wishlist</button>
+
+    </div>
   </div>
   <div
     class="card-body bottom d-flex justify-content-around align-items-center"
