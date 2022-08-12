@@ -1,28 +1,26 @@
 <nav class="navbar navbar-light bg-light">
   <div class="container">
     <a [routerLink]="['/home']" class="navbar-brand">
-      <img
-        src="../../../assets/images/pg-logo.svg"
-        width="50%"
-        height="50%"
-        alt="Propane Gaming"
-      />
+      <img src="../../../assets/images/pg-logo.svg" alt="Propane Gaming" />
     </a>
     <div class="search-container">
       <app-search-bar></app-search-bar>
     </div>
     <form class="form-inline">
-
       <button class="navBut btn btn-light" href="#">Wishlist</button>
       <button class="navBut btn btn-light" [routerLink]="['/user-profile']">
-        <fa-icon [icon]="faUser"></fa-icon>
+        <div class="icon-style user-icon"></div>
       </button>
       <button class="navBut btn btn-light" [routerLink]="['/cart']">
-
-        <fa-icon [icon]="faCart"></fa-icon>
+        <div class="icon-style cart-icon"></div>
+        <span class="badge badge-info">{{ cartCount }}</span>
       </button>
-      <button *ngIf="userLoggedIn" class="btn btn-outline-danger my-2 my-sm-0" (click)="logout()">
-        Logout
+      <button
+        *ngIf="userLoggedIn"
+        class="navBut btn btn-light"
+        (click)="logout()"
+      >
+        <div class="icon-style exit-icon"></div>
       </button>
     </form>
   </div>
