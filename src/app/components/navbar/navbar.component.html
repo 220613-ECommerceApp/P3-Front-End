@@ -15,7 +15,7 @@
         <fa-icon [icon]="faUser"></fa-icon>
       </a>
       <button class="btn btn-light" [routerLink]="['/cart']">
-        Cart
+        <fa-icon [icon]="faCart"></fa-icon>
         <span class="badge badge-info">{{ cartCount }}</span>
       </button>
       <button class="btn btn-outline-danger my-2 my-sm-0" (click)="logout()">
