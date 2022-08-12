@@ -27,8 +27,8 @@ export class AuthService {
     localStorage.removeItem("token")
   }
 
-  register(userName: string, email: string, password: string): Observable<any> {
-    const payload = {username: userName, email: email, password: password};
+  register(userName: string, firstName: string, lastName: string, email: string, password: string): Observable<any> {
+    const payload = {username: userName, firstname: firstName, lastname: lastName, email: email, password: password};
     return this.http.post<any>(`${this.authUrl}/register`, payload, {headers: environment.headers});
   }
 }

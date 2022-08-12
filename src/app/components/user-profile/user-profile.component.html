@@ -9,7 +9,10 @@
     <p> Last Name: {{user?.lastname}}</p>
     <p> Username: {{user?.username}}</p>
     <p> Email: {{user?.email}}</p>
-    <p> Password: {{user?.password}}</p>
+    
+
+    <p> Password: <span class="spoiler" >{{user?.password}}</span></p>
+    <button class="btn btn-back" id="historybtn" [routerLink]="['/history']">View Your Order History</button>
 </div>
 <!-- There are basically two things we need to do on this form
 One is get the User's Data and Display it

@@ -9,13 +9,15 @@
 
 }
 
-a {
+.navBut {
   text-decoration: none;
   font-weight: bold;
   color: #14213d;
 }
 
-a:hover, .btn:hover {
+
+.navBut:hover {
+
   color: #fca311;
 }
 
