@@ -1,4 +1,7 @@
+import { Type } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ProductService } from 'src/app/services/product.service';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 import { DisplayProductsComponent } from './display-products.component';
 
@@ -8,9 +11,9 @@ describe('DisplayProductsComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ DisplayProductsComponent ]
-    })
-    .compileComponents();
+      imports: [HttpClientTestingModule],
+      declarations: [DisplayProductsComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {
@@ -21,5 +24,19 @@ describe('DisplayProductsComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should call ProductService on init', () => {
+    //get the service to spy on
+    let service = fixture.debugElement.injector.get<ProductService>(
+      ProductService as Type<ProductService>
+    );
+
+    //create a spy to watch this service
+    let serviceSpy = spyOn(service, 'getProducts').and.callThrough();
+
+    component.ngOnInit();
+
+    expect(serviceSpy).toHaveBeenCalled();
   });
 });

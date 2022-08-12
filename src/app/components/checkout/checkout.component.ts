@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Product } from 'src/app/models/product';
 import { ProductService } from 'src/app/services/product.service';
+import { OrderHistoryService } from 'src/app/services/order-history.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { CartService } from 'src/app/services/cart.service';
 import { Cartitem } from 'src/app/models/cartitem';
@@ -42,7 +43,8 @@ export class CheckoutComponent implements OnInit {
   constructor(
     private ps: ProductService,
     private router: Router,
-    private cs: CartService
+    private cs: CartService,
+    private ohs: OrderHistoryService
   ) {}
 
   ngOnInit(): void {
@@ -51,7 +53,6 @@ export class CheckoutComponent implements OnInit {
         this.cartitems.push(cartitem);
         this.totalPrice += cartitem.quantity * cartitem.product.price;
         this.cartCount += cartitem.quantity;
-        console.log(cartitem);
         this.productsObject.push({
           product: cartitem.product,
           quantity: cartitem.quantity,
@@ -74,7 +75,7 @@ export class CheckoutComponent implements OnInit {
 
       //clearing the cart
       this.cs.emptyCart();
-
+      this.ohs.addItemsToOrderHistory(this.productsDTO);
       this.router.navigate(['/home']);
     }
  }

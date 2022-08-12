@@ -5,28 +5,36 @@ import { Product } from '../models/product';
 import { environment } from 'src/environments/environment';
 import { AuthService } from './auth.service';
 
-
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ProductService {
+  private productUrl: string = '/api/product';
 
-  private productUrl: string = "/api/product";
-
-  constructor(private http: HttpClient, private auth: AuthService) { }
+  constructor(private http: HttpClient, private auth: AuthService) {}
 
   public getProducts(): Observable<Product[]> {
-    this.auth.updateBearer()
-    return this.http.get<Product[]>(environment.baseUrl+this.productUrl, {headers: environment.headers});
+    this.auth.updateBearer();
+    return this.http.get<Product[]>(environment.baseUrl + this.productUrl, {
+      headers: environment.headers,
+    });
   }
 
   public getSingleProduct(id: number): Observable<Product> {
-    return this.http.get<Product>(environment.baseUrl+id);
+    return this.http.get<Product>(
+      environment.baseUrl + this.productUrl + '/' + id
+    );
   }
 
-  public purchase(products: {id:number, quantity:number}[]): Observable<any> {
-    this.auth.updateBearer()
+  public purchase(
+    products: { id: number; quantity: number }[]
+  ): Observable<any> {
+    this.auth.updateBearer();
     const payload = JSON.stringify(products);
-    return this.http.patch<any>(environment.baseUrl+this.productUrl, payload, {headers: environment.headers})
+    return this.http.patch<any>(
+      environment.baseUrl + this.productUrl,
+      payload,
+      { headers: environment.headers }
+    );
   }
 }
