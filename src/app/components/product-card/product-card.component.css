@@ -42,6 +42,18 @@ div {
   border-radius: 25px;
   margin-bottom: 0px;
 }
+.btn_grey {
+  background-color: #ababab;
+  color: #ffffff;
+  font-weight: bold;
+  text-transform: uppercase;
+  border-radius: 25px;
+  margin-bottom: 0px;
+  padding-top: 6px;
+  padding-bottom: 6px;
+  padding-left: 12px;
+  padding-right: 12px;
+}
 
 .card-body.bottom {
   width: 100%;
