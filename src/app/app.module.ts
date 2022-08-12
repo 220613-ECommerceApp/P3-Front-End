@@ -22,6 +22,7 @@ import { LazyLoadImgDirective } from './directives/lazy-load-img.directive';
 import { ErrorDisplayComponent } from './components/error-display/error-display.component';
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
