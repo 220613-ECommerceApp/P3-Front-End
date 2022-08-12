@@ -4,10 +4,12 @@ h1{
 }
 p{
     padding-left: 25px;
-    color: #14213d;
-    font-size: xx-large;
-    font-variant: small-caps;
+    color: azure;
+    font-size: large;
+    margin: 15px;
+
 }
+
 
 input .ng-invalid{
     border-left: 5px solid red;
@@ -24,16 +26,30 @@ input .ng-valid{
 .Infofor,
 .userInformation {
     flex: 25 25 25px;
+    padding: 10px;
     max-width: 400px;
-    background-color: #e5e5e5;
+    background-color:  #e5e5e50F;
     border-radius: 50px;
     margin-left: 15px;
-    text-align: center;
+    justify-content: left;
+
 }
+
+
+#first,
+#last,
+#email,
+#username,
+#password{
+    margin-left:35px;
+    padding: 5px;
+}
+
 
 .btn-back,
 .uBtn,
-.btnF {
+.btnF,
+.btn-order {
     background-color: #fca311;
     border: #e5e5e5;
     border-radius: 150px;
@@ -48,7 +64,7 @@ input .ng-valid{
 }
 
 .uBtn {
-    margin-left: 0px;
+    margin-left: 50px;
     padding-left: 40px;
     padding-right: 40px;
 }
@@ -56,7 +72,7 @@ input .ng-valid{
 .btn-back {
     padding-left: 50px;
     padding-right: 50px;
-    margin-left: 145px;
+    margin-left:145px; 
 }
 
 .btnF {
@@ -79,5 +95,11 @@ input .ng-valid{
   
 .spoiler:hover{
     color: white;
+}
+
+#historybtn{
+    padding-left: 25px;
+    padding-right: 25px;
+    margin-left: 70px;
 }
   
