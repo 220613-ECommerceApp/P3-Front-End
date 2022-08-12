@@ -15,6 +15,8 @@ export class SearchService {
 
   searchString: string = '';
   searchTag?: string = '';
+  minPrice: number = 0;
+  maxPrice: number = 0;
 
   products: Product[] = [];
 

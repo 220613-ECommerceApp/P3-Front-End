@@ -20,6 +20,7 @@ import { SearchResultComponent } from './components/search/search-result/search-
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
 import { LazyLoadImgDirective } from './directives/lazy-load-img.directive';
 import { ErrorDisplayComponent } from './components/error-display/error-display.component';
+import { FilterSearchComponent } from './components/search/filter-search/filter-search.component';
 
 
 
@@ -39,6 +40,7 @@ import { ErrorDisplayComponent } from './components/error-display/error-display.
     UserProfileComponent,
     LazyLoadImgDirective,
     ErrorDisplayComponent,
+    FilterSearchComponent,
   ],
   
   imports: [
