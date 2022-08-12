@@ -1,7 +1,7 @@
 .cart-container {
   display: table;
   margin: 0 auto;
-  margin-top: 95px;
+  margin-top: 40px;
 }
 
 .cart-items-container {
@@ -118,6 +118,10 @@
   overflow: hidden;
 }
 
+#quantity-text-alignment{
+  margin-left:-35.8px ;
+}
+
 ul > li {
   display: inline-block;
   margin-right: 25px;
@@ -189,4 +193,8 @@ button,
 
 .cart-sections {
   display: flex;
+}
+
+.error{
+  height: 52px;
 }

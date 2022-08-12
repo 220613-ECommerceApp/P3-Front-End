@@ -1,9 +1,20 @@
 h1{
     color:azure;
+    padding-left: 25px;
+    text-align: center;
 }
 p{
-    color:azure;
+    padding-left: 25px;
+    color: azure;
+    font-size: large;
+
 }
+.allContent {
+    display: table;
+    margin: 0 auto;
+    margin-top: 50px;
+  }
+  
 
 input .ng-invalid{
     border-left: 5px solid red;
@@ -16,3 +27,116 @@ input .ng-valid{
 .error{
     color: red;
 }
+
+.Infofor,
+.userInformation {
+    flex: 25 25 25px;
+    float: left;
+    padding: 10px;
+    max-width: 400px;
+    background-color:  #e5e5e50F;
+    border-radius: 50px;
+    margin-left: 15px;
+    justify-content: center;
+
+}
+
+.userInformation{
+    padding-right: 40px;
+    margin-top: 20px;
+}
+
+.userInformation p{
+    margin-top: 15px;
+    margin-bottom: -3px;
+}
+
+.Infofor{
+    margin-top: 30px;
+    margin-left:70px;
+}
+.Infofor p{
+    margin: 15px;
+    margin-top: 15px;
+}
+
+
+#user-container{
+    float: right;
+    margin: 5px;
+    margin-left: 50px;
+}
+
+
+#first,
+#last,
+#email,
+#username,
+#password{
+    margin-left:25px;
+}
+
+
+.btn-back,
+.uBtn,
+.btnF,
+.btn-order {
+    background-color: #fca311;
+    border: #e5e5e5;
+    border-radius: 150px;
+    color: #14213d;
+    font-size: 1em;
+    padding-left: 6px;
+    padding-right: 6px;
+    font-weight: 700;
+    margin-bottom: 15px;
+    margin-left: 25px;
+    margin-top: 5px;
+}
+
+.uBtn {
+    margin-left: 50px;
+    padding-left: 40px;
+    padding-right: 40px;
+    margin-top: 15px;
+}
+
+
+.btnF {
+    padding-left: 25px;
+    padding-right: 25px;
+    margin-left: 50px;
+}
+
+.allDem {
+    margin: auto;
+    width: 50%;
+    border: 3px solid green;
+    padding: 10px;
+}
+
+.spoiler{ 
+    color: black; 
+    background-color:black;
+  }
+  
+.spoiler:hover{
+    color: white;
+}
+
+#historybtn{
+    padding-left: 25px;
+    padding-right: 25px;
+    margin-left: 50px;
+}
+
+#redFirst,
+#redlast,
+#redEmail1,
+#redEmail2,
+#redUsername,
+#redPassword1,
+#redPwassword2 {
+    margin-left: 25px;
+}
+  

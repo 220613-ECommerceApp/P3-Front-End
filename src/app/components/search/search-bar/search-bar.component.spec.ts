@@ -1,4 +1,7 @@
-import { HttpClientTestingModule } from '@angular/common/http/testing';
+import {
+  HttpClientTestingModule,
+  HttpTestingController,
+} from '@angular/common/http/testing';
 import { Type } from '@angular/core';
 import {
   ComponentFixture,
@@ -17,6 +20,7 @@ import { SearchBarComponent } from './search-bar.component';
 describe('SearchBarComponent', () => {
   let component: SearchBarComponent;
   let fixture: ComponentFixture<SearchBarComponent>;
+  let httpMock: HttpTestingController;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -28,6 +32,7 @@ describe('SearchBarComponent', () => {
       ],
       declarations: [SearchBarComponent],
     }).compileComponents();
+    httpMock = TestBed.inject(HttpTestingController);
   });
 
   beforeEach(() => {

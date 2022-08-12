@@ -14,6 +14,7 @@ export class ProductCardComponent implements OnInit {
   @Input() productInfo!: Product;
 
   public showElement?: boolean;
+  private counterCheck: number = 0;
 
   constructor(private cartservice: CartService, private http: HttpClient) {}
 
@@ -32,8 +33,13 @@ export class ProductCardComponent implements OnInit {
       if (product.id == p.product.id) {
         inCart = true;
         currentQuantity = p.quantity;
-      }
+       
+        }
     });
+    if (currentQuantity >= product.quantity){
+      console.log("STOP") //Stock is not enough
+      return;
+    }
     if (inCart) {
       this.cartservice.updateQuantity(currentQuantity + 1, product.id);
     } else {
