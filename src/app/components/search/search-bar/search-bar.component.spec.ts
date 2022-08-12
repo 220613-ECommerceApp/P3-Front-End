@@ -9,6 +9,7 @@ import {
 } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { SearchService } from 'src/app/services/search.service';
+import { SearchResultComponent } from '../search-result/search-result.component';
 
 import { SearchBarComponent } from './search-bar.component';
 
@@ -18,7 +19,12 @@ describe('SearchBarComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule, RouterTestingModule],
+      imports: [
+        HttpClientTestingModule,
+        RouterTestingModule.withRoutes([
+          { path: 'search', component: SearchResultComponent },
+        ]),
+      ],
       declarations: [SearchBarComponent],
     }).compileComponents();
   });
