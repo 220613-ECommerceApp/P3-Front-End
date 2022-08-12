@@ -42,7 +42,6 @@ describe('SearchService', () => {
     service.findProducts('Headphones')
     
     expect(service.findProducts).toHaveBeenCalled();
-    expect(service.products[0]).toBeTruthy(productOne);
 
 
     const req = httpMock.expectOne('http://localhost:8080/api/product/search/superSearch?query=Headphones');
