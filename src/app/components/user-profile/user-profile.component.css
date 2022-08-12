@@ -1,6 +1,7 @@
 h1{
     color:azure;
     padding-left: 25px;
+    text-align: center;
 }
 p{
     padding-left: 25px;
@@ -9,7 +10,12 @@ p{
     margin: 15px;
 
 }
-
+.allContent {
+    display: table;
+    margin: 0 auto;
+    margin-top: 50px;
+  }
+  
 
 input .ng-invalid{
     border-left: 5px solid red;
@@ -26,6 +32,7 @@ input .ng-valid{
 .Infofor,
 .userInformation {
     flex: 25 25 25px;
+    float: left;
     padding: 10px;
     max-width: 400px;
     background-color:  #e5e5e50F;
@@ -33,6 +40,17 @@ input .ng-valid{
     margin-left: 15px;
     justify-content: left;
 
+}
+
+.Infofor{
+    margin-top: 50px;
+    margin-left:70px;
+}
+
+#user-container{
+    float: right;
+    margin: 5px;
+    margin-left: 50px;
 }
 
 
@@ -78,7 +96,9 @@ input .ng-valid{
 .btnF {
     padding-left: 25px;
     padding-right: 25px;
-    margin-left: 145px;
+    position:absolute;
+   top:45px;
+   right:10px;
 }
 
 .allDem {
@@ -100,6 +120,6 @@ input .ng-valid{
 #historybtn{
     padding-left: 25px;
     padding-right: 25px;
-    margin-left: 70px;
+    margin-left: 50px;
 }
   

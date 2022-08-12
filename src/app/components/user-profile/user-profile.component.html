@@ -6,14 +6,14 @@
 <error-display></error-display>
 
 <div class="Infofor">
-    <p> User ID: {{user?.id}}</p>
-    <p> First Name: {{user?.firstname}}</p>
-    <p> Last Name: {{user?.lastname}}</p>
-    <p> Username: {{user?.username}}</p>
-    <p> Email: {{user?.email}}</p>
+    <p> <strong>User ID:</strong> {{user?.id}}</p>
+    <p> <strong> First Name:</strong> {{user?.firstname}}</p>
+    <p> <strong> Last Name:</strong> {{user?.lastname}}</p>
+    <p> <strong>Username:</strong> {{user?.username}}</p>
+    <p> <strong>Email:</strong> {{user?.email}}</p>
     
 
-    <p> Password: <span class="spoiler" >{{user?.password}}</span></p>
+    <p> <strong> Password:</strong> <span class="spoiler" >{{user?.password}}</span></p>
     <button class="btn btn-order" id="historybtn" [routerLink]="['/history']">View Your Order History</button>
 </div>
 <!-- There are basically two things we need to do on this form
@@ -30,7 +30,7 @@ Two is add in an update form that'll send a put (update) request-->
         <form id="updatebox" [formGroup]="updateForm" [hidden]="hideForm">
             <div class="userInformation">
                 <div class="form-group">
-                    <p>First Name</p>
+                    <p><strong> First Name</strong></p>
                     <input id="first" formControlName="firstName" [(ngModel)]="userEditing.firstName" type="text"
                         name="Enter First Name">
                     <div *ngIf="submitted && updateForm.controls.firstName.errors" class="text-danger">
@@ -39,14 +39,14 @@ Two is add in an update form that'll send a put (update) request-->
                 </div>
 
 
-                <p>Last Name</p>
+                <p><strong>Last Name</strong></p>
                 <input id="last" formControlName="lastName" [(ngModel)]="userLastEditing.lastName" type="text"
                     name="Enter Last Name">
                 <div *ngIf="submitted && updateForm.controls.lastName.errors" class="text-danger">
                     <div *ngIf="updateForm.controls.lastName.errors.required">Last name is required</div>
                 </div>
 
-                <p>Email</p>
+                <p><strong>Email</strong></p>
                 <input id="email" formControlName="email" [(ngModel)]="userEmailEditing.email" type="email"
                     name="Enter Email">
                 <div *ngIf="submitted && updateForm.controls.email.errors" class="text-danger">
@@ -54,14 +54,14 @@ Two is add in an update form that'll send a put (update) request-->
                     <div *ngIf="updateForm.controls.email.errors.email">Must be a valid email address</div>
                 </div>
 
-                <p>Username</p>
+                <p><strong>Username</strong></p>
                 <input id="username" formControlName="userName" [(ngModel)]="userUsernameEditing.username" type="text"
                     name="Enter Username">
                 <div *ngIf="submitted && updateForm.controls.userName.errors" class="text-danger">
                     <div *ngIf="updateForm.controls.userName.errors.required">Username is required</div>
                 </div>
 
-                <p>Password</p>
+                <p><strong>Password</strong></p>
                 <input id="password" [ngClass]="{ 'is-invalid': submitted && updateForm.controls.password.errors }"
                     formControlName="password" [(ngModel)]="userPasswordEditing.password" type="password"
                     name="Enter Password">
