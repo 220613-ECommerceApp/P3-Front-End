@@ -1,8 +1,12 @@
 h1{
     color:azure;
+    padding-left: 25px;
 }
 p{
-    color:azure;
+    padding-left: 25px;
+    color: #14213d;
+    font-size: xx-large;
+    font-variant: small-caps;
 }
 
 input .ng-invalid{
@@ -15,4 +19,55 @@ input .ng-valid{
 
 .error{
     color: red;
+}
+
+.Infofor,
+.userInformation {
+    flex: 25 25 25px;
+    max-width: 400px;
+    background-color: #e5e5e5;
+    border-radius: 50px;
+    margin-left: 15px;
+    text-align: center;
+}
+
+.btn-back,
+.uBtn,
+.btnF {
+    background-color: #fca311;
+    border: #e5e5e5;
+    border-radius: 150px;
+    color: #14213d;
+    font-size: 1em;
+    padding-left: 6px;
+    padding-right: 6px;
+    font-weight: 700;
+    margin-bottom: 25px;
+    margin-left: 25px;
+    margin-top: 25px;
+}
+
+.uBtn {
+    margin-left: 0px;
+    padding-left: 40px;
+    padding-right: 40px;
+}
+
+.btn-back {
+    padding-left: 50px;
+    padding-right: 50px;
+    margin-left: 145px;
+}
+
+.btnF {
+    padding-left: 25px;
+    padding-right: 25px;
+    margin-left: 145px;
+}
+
+.allDem {
+    margin: auto;
+    width: 50%;
+    border: 3px solid green;
+    padding: 10px;
 }
