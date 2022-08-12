@@ -75,12 +75,12 @@ export class WishlistService {
   }
 
 
-addToWishlist(productIdDTO: {productId: number})   {
+addToWishlist(ProductId: {productId: number})   {
   this.auth.updateBearer();
   this.http
     .post<{productId: number}>(
       environment.baseUrl + `/api/addToWishlist`,
-      JSON.stringify(productIdDTO),
+      JSON.stringify(ProductId),
 
       {
         headers: new HttpHeaders({
