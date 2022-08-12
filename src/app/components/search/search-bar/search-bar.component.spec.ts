@@ -3,6 +3,7 @@ import { Type } from '@angular/core';
 import {
   ComponentFixture,
   fakeAsync,
+  flush,
   TestBed,
   tick,
 } from '@angular/core/testing';
@@ -43,12 +44,13 @@ describe('SearchBarComponent', () => {
   });
 
   it('should call searchClicked when search icon clicked', fakeAsync(() => {
-    spyOn(component, 'searchClicked');
+    let searchClickSpy = spyOn(component, 'searchClicked').and.callThrough();
 
     let button =
       fixture.debugElement.nativeElement.querySelector('.search-btn');
     button.click();
     tick();
-    expect(component.searchClicked).toHaveBeenCalled();
+    expect(searchClickSpy).toHaveBeenCalled();
+    flush();
   }));
 });
