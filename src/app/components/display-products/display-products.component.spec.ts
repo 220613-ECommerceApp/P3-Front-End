@@ -1,13 +1,9 @@
 import { Type } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ProductService } from 'src/app/services/product.service';
-import {
-  HttpClientTestingModule,
-  HttpTestingController,
-} from '@angular/common/http/testing';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 import { DisplayProductsComponent } from './display-products.component';
-import { HttpClient, HttpHandler } from '@angular/common/http';
 
 describe('DisplayProductsComponent', () => {
   let component: DisplayProductsComponent;
@@ -15,8 +11,8 @@ describe('DisplayProductsComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
+      imports: [HttpClientTestingModule],
       declarations: [DisplayProductsComponent],
-      providers: [HttpClient, HttpHandler],
     }).compileComponents();
   });
 
