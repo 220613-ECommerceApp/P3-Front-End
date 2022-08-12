@@ -23,7 +23,7 @@ export class ProductCardComponent implements OnInit {
     private wishlistService: WishlistService,
   ) {}
 
-  constructor(private cartservice: CartService, private http: HttpClient) {}
+  // constructor(private cartservice: CartService, private http: HttpClient) {}
 
   ngOnInit(): void {}
 

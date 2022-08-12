@@ -1,3 +1,4 @@
+import { ErrorDisplayComponent } from './components/error-display/error-display.component';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
@@ -35,6 +36,7 @@ import { ProductService } from './services/product.service';
     SearchResultComponent,
     UserProfileComponent,
     WishlistComponent,
+    ErrorDisplayComponent
   ],
 
   imports: [
