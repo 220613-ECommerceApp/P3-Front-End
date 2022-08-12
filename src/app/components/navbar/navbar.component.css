@@ -15,7 +15,7 @@ a {
   color: #14213d;
 }
 
-a:hover {
+a:hover, .btn:hover {
   color: #fca311;
 }
 

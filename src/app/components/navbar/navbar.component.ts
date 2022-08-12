@@ -14,17 +14,12 @@ export class NavbarComponent implements OnInit {
   faUser = faUser;
   faCart = faShoppingCart;
 
-  cartCount!: number;
-   
   constructor(
     private authService: AuthService,
-    private router: Router,
-    private cartservice: CartService
-    
+    private router: Router    
   ) {}
 
   ngOnInit(): void {
-     //this.cartservice.getCartCount().then(num=>this.cartCount=num);
   }
 
   
