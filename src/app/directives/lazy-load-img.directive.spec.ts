@@ -6,7 +6,7 @@ class MockElementRef extends ElementRef {
   nativeElement = {};
 }
 
-describe('StaredDirective', () => {
+describe('LazyLoadImgDirective', () => {
   let mockElementRef: ElementRef;
 
   beforeEach(() => {
