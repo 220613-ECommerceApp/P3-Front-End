@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Cartitem } from 'src/app/models/cartitem';
 import { CartService } from 'src/app/services/cart.service';
+import { ErrorService } from 'src/app/services/error.service';
+
 
 @Component({
   selector: 'app-cart',
@@ -32,8 +34,11 @@ export class CartComponent implements OnInit {
   updateQuantity(inputId: string, stock:number, productId:number): void {
     let userQuantity: number = +(<HTMLInputElement>document.getElementById(`${inputId}`)).value;
     if(userQuantity<0){
-      //Throw Error
+      //Throw error
+      ErrorService.displayWarning(true); // set the error state to true
+      ErrorService.setMessage('Quantity must not be less than zero'); // set the error message
     }else if(userQuantity==0){
+      ErrorService.displayWarning(false);
       this.cartitems.forEach((e, i, o) => {
         if (e.product.id == productId) {
           o.splice(i, 1);
@@ -43,9 +48,12 @@ export class CartComponent implements OnInit {
       });
       this.cs.removeItem(productId);
     } else if(userQuantity>stock){
-      //Throw Error
+      //Throw error
+      ErrorService.displayWarning(true); // set the error state to true
+      ErrorService.setMessage('Quantity must not exceed inventory'); // set the error message
     } else{
       //Update
+      ErrorService.displayWarning(false);
        this.cartitems.forEach((e, i, o) => {
         if (e.product.id == productId) {
           this.totalPrice += ((userQuantity - e.quantity) * e.product.price);

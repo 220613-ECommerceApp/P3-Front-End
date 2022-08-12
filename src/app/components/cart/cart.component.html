@@ -1,4 +1,5 @@
 <app-navbar></app-navbar>
+<error-display></error-display>
 <div class="cart-container">
   <div class="cart-items-container">
     <p class="view-cart-text">View Your Cart</p>
@@ -93,7 +94,7 @@
       <div class="cd4 d">${{ totalPrice | number : '1.2-2' }}</div>
     </div>
     <hr class="line" />
-    <button class="c-button" [routerLink]="['/checkout']">
+    <button class="c-button" (click)="goTocheckout()">
       Proceed to Checkout
     </button>
   </div>
