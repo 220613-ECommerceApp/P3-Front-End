@@ -5,11 +5,14 @@
   >
     <img
       *ngIf="showElement"
-      class="card-img-top align-self-start"
+      class="card-img-top"
       [src]="productInfo.image_url"
       alt="Card image cap"
     />
-    <h6 class="card-title align-self-center">{{ productInfo.name }}</h6>
+    <h5 class="card-title align-self-center">{{ productInfo.name }}</h5>
+  </div>
+  <div>
+    <h6 class="card-title align-self-center">{{"In Stock: " + productInfo.quantity }}</h6>
   </div>
   <div
     class="card-body bottom d-flex justify-content-around align-items-center"
