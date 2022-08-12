@@ -1,7 +1,7 @@
 .cart-container {
   display: table;
   margin: 0 auto;
-  margin-top: 95px;
+  margin-top: 40px;
 }
 
 .cart-items-container {
@@ -118,11 +118,15 @@
   overflow: hidden;
 }
 
+ul{
+  margin-left: 20px;
+}
+
 ul > li {
   display: inline-block;
-  margin-right: 25px;
-  margin-left: 25px;
-  width: 160px;
+  width: auto;
+  margin-left: 0px;
+  padding-right: 60px;
 }
 li {
   margin-right: 22px;
@@ -155,7 +159,7 @@ ul li:not(:last-child) {
 .user-quantity {
   width: 75px;
   border: #e5e5e5;
-  margin-left: -35px;
+  margin-left: 0px;
   margin-right: 5px;
 }
 
@@ -189,4 +193,8 @@ button,
 
 .cart-sections {
   display: flex;
+}
+
+.error{
+  height: 52px;
 }
