@@ -40,7 +40,7 @@ describe('ProductService', () => {
     });
 
     // The following `expectOne()` will match the request's URL.
-    const req = httpMock.expectOne('http://localhost:80801');
+    const req = httpMock.expectOne('http://localhost:8080/api/product/1');
 
     // Assert that the request is a GET.
     expect(req.request.method).toEqual('GET');
