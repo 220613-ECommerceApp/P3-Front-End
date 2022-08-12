@@ -18,7 +18,7 @@ const httpOptions = {
 })
 export class UserService {
 
-  private apiUrl = 'http://localhost:8080/users'
+  private apiUrl = '/users'
 
   constructor(private http: HttpClient, private auth: AuthService) { }
 
@@ -28,7 +28,7 @@ export class UserService {
   getUser(): Observable<User> {  
 
     this.auth.updateBearer();
-    return this.http.get<User>(this.apiUrl, httpOptions ); 
+    return this.http.get<User>(environment.baseUrl + this.apiUrl, httpOptions ); 
    
    
 
@@ -41,6 +41,6 @@ export class UserService {
   updateUser(User: User): Observable<User>{
 
     this.auth.updateBearer();
-    return this.http.put<User>(this.apiUrl, JSON.stringify(User), httpOptions);
+    return this.http.put<User>(environment.baseUrl + this.apiUrl, JSON.stringify(User), httpOptions);
   }
 }
