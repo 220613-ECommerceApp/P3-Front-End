@@ -8,6 +8,7 @@ import {
   tick,
 } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
+import { throwError, of } from 'rxjs';
 import { SearchService } from 'src/app/services/search.service';
 import { SearchResultComponent } from '../search-result/search-result.component';
 
@@ -44,7 +45,20 @@ describe('SearchBarComponent', () => {
     let service = fixture.debugElement.injector.get<SearchService>(
       SearchService as Type<SearchService>
     );
-    let serviceSpy = spyOn(service, 'getTags').and.callThrough();
+    let serviceSpy = spyOn(service, 'getTags').and.callFake(() => {
+      return of([]);
+    });
+    component.ngOnInit();
+    expect(serviceSpy).toHaveBeenCalled();
+  });
+
+  it('getTags should print error to the console', () => {
+    let service = fixture.debugElement.injector.get<SearchService>(
+      SearchService as Type<SearchService>
+    );
+    let serviceSpy = spyOn(service, 'getTags').and.returnValue(
+      throwError({ status: 404 })
+    );
     component.ngOnInit();
     expect(serviceSpy).toHaveBeenCalled();
   });
