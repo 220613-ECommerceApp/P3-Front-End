@@ -13,7 +13,6 @@ export class CartComponent implements OnInit {
   cartitems: Cartitem[] = [];
   totalPrice: number = 0;
   cartCount: number = 0;
-  populate: boolean = false;
 
   constructor(private router: Router, private cs: CartService) {}
 

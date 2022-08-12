@@ -15,7 +15,7 @@
 }
 
 .over-flow-control{
-  overflow-y: scroll;
+  overflow-y: auto;
   height: 625px;
 }
 
