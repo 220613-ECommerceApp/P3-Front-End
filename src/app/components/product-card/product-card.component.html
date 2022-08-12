@@ -14,7 +14,7 @@
   <div
     class="card-body bottom d-flex justify-content-around align-items-center"
   >
-    <h5 class="align-middle">${{ productInfo.price }}</h5>
+    <h5 class="align-middle">${{ productInfo.price.toFixed(2) }}</h5>
     <button class="btn align-middle" (click)="addToCart(productInfo)">
       add to cart
     </button>
