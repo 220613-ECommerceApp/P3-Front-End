@@ -21,8 +21,7 @@ import { UserProfileComponent } from './components/user-profile/user-profile.com
 import { LazyLoadImgDirective } from './directives/lazy-load-img.directive';
 import { ErrorDisplayComponent } from './components/error-display/error-display.component';
 import { FilterSearchComponent } from './components/search/filter-search/filter-search.component';
-
-
+import { WishlistComponent } from './components/wishlist/wishlist.component';
 
 @NgModule({
   declarations: [
@@ -41,6 +40,7 @@ import { FilterSearchComponent } from './components/search/filter-search/filter-
     LazyLoadImgDirective,
     ErrorDisplayComponent,
     FilterSearchComponent,
+    WishlistComponent,
   ],
   
   imports: [

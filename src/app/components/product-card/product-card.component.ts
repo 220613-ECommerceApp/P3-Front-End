@@ -4,6 +4,8 @@ import { Product } from 'src/app/models/product';
 import { CartService } from 'src/app/services/cart.service';
 import { Cartitem } from 'src/app/models/cartitem';
 import { environment } from 'src/environments/environment';
+import { WishlistItem } from 'src/app/models/wishlist-item';
+import { WishlistService } from 'src/app/services/wishlist.service';
 
 @Component({
   selector: 'app-product-card',
@@ -16,7 +18,7 @@ export class ProductCardComponent implements OnInit {
   public showElement?: boolean;
   private counterCheck: number = 0;
 
-  constructor(private cartservice: CartService, private http: HttpClient) {}
+  constructor(private cartservice: CartService, private wishlistservice: WishlistService,private http: HttpClient) {}
 
   ngOnInit(): void {}
 
@@ -45,6 +47,24 @@ export class ProductCardComponent implements OnInit {
     } else {
       this.cartservice.addToCart(product.id, 1);
     }
+  }
+
+  async addToWishlist(product: Product): Promise<any> {
+    let inWishList = false;
+    let data = await this.http
+      .get<WishlistItem[]>(environment.baseUrl + '/api/getWishList', {
+        headers: environment.headers,
+      })
+      .toPromise();
+      data.forEach((p) => {
+        if (product.id == p.product.id) {
+          inWishList = true;
+        }
+      });
+
+      if (!inWishList){
+        this.wishlistservice.addToWishlist({productId: product.id})
+      }
   }
 
   ngOnDestroy() {}

@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { Cartitem } from 'src/app/models/cartitem';
 import { CartService } from 'src/app/services/cart.service';
 import { ErrorService } from 'src/app/services/error.service';
+import { WishlistService } from 'src/app/services/wishlist.service';
 
 
 @Component({
@@ -15,7 +16,7 @@ export class CartComponent implements OnInit {
   totalPrice: number = 0;
   cartCount: number = 0;
 
-  constructor(private router: Router, private cs: CartService) {}
+  constructor(private router: Router, private cs: CartService, private ws: WishlistService,) {}
 
   ngOnInit(): void {
     this.cs.getCart().subscribe((e) =>
@@ -77,6 +78,11 @@ export class CartComponent implements OnInit {
       }
     });
     this.cs.removeItem(productId);
+  }
+
+  removeFromCartAndAddToWishlist(productId: number){
+    this.removeFromCart(productId);
+    this.ws.addToWishlist({productId: productId});
   }
 
   goTocheckout(){
