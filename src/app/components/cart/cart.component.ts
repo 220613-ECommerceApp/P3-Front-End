@@ -5,7 +5,6 @@ import { CartService } from 'src/app/services/cart.service';
 import { ErrorService } from 'src/app/services/error.service';
 import { WishlistService } from 'src/app/services/wishlist.service';
 
-
 @Component({
   selector: 'app-cart',
   templateUrl: './cart.component.html',
@@ -16,16 +15,21 @@ export class CartComponent implements OnInit {
   totalPrice: number = 0;
   cartCount: number = 0;
 
-  constructor(private router: Router, private cs: CartService, private ws: WishlistService,) {}
+  constructor(
+    private router: Router,
+    private cs: CartService,
+    private ws: WishlistService
+  ) {}
 
   ngOnInit(): void {
-    this.cs.getCart().subscribe((e) =>
+    this.cs.getCart().subscribe((e) => {
       e.forEach((cartitem) => {
         this.cartitems.push(cartitem);
         this.totalPrice += cartitem.quantity * cartitem.product.price;
         this.cartCount += cartitem.quantity;
-      })
-    );
+        this.cs.addToCartProduct(cartitem.product.id, cartitem.quantity);
+      });
+    });
   }
 
   emptyCart(): void {
@@ -65,7 +69,9 @@ export class CartComponent implements OnInit {
         }
       });
       this.cs.updateQuantity(userQuantity, productId);
-      location.reload();
+      this.router.navigate(['cart']).then(() => {
+        window.location.reload();
+      });
     }
   }
 
@@ -80,17 +86,17 @@ export class CartComponent implements OnInit {
     this.cs.removeItem(productId);
   }
 
-  removeFromCartAndAddToWishlist(productId: number){
+  removeFromCartAndAddToWishlist(productId: number) {
     this.removeFromCart(productId);
-    this.ws.addToWishlist({productId: productId});
+    this.ws.addToWishlist({ productId: productId });
   }
 
-  goTocheckout(){
-    if(this.cartCount==0){
+  goTocheckout() {
+    if (this.cartCount == 0) {
       //Throw error
       ErrorService.displayWarning(true); // set the error state to true
       ErrorService.setMessage('Add items to your cart first'); // set the error message
-    }else{
+    } else {
       ErrorService.displayWarning(false);
       this.router.navigate(['/checkout']);
     }

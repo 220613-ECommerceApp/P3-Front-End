@@ -64,7 +64,7 @@
   height: auto;
 }
 
-.button2{
+.button2 {
   background-color: #eeeeee; /* Green */
   border: none;
   color: rgb(0, 0, 0);
@@ -75,4 +75,15 @@
   font-size: 16px;
   border-radius: 8px;
   font-weight: bold;
+}
+
+.warp-icon {
+  width: 30px;
+  height: 30px;
+  position: relative;
+}
+
+.badge-pos {
+  position: absolute;
+  top: 16px;
 }
