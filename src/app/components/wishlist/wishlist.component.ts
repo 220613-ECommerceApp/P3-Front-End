@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { WishlistItem } from 'src/app/models/wishlist-item';
+import { CartService } from 'src/app/services/cart.service';
 import { WishlistService } from 'src/app/services/wishlist.service';
 
 @Component({
@@ -11,7 +12,7 @@ import { WishlistService } from 'src/app/services/wishlist.service';
 export class WishlistComponent implements OnInit {
   wishlistItems: WishlistItem[] = [];
 
-  constructor(private wishlistService: WishlistService, private router: Router) { }
+  constructor(private wishlistService: WishlistService, private cartService: CartService, private router: Router) { }
 
   ngOnInit(): void {
     this.wishlistService.getWishlistItems().subscribe(
@@ -23,6 +24,11 @@ export class WishlistComponent implements OnInit {
 
   removeFromWishlist(wishlistId: number){
     this.wishlistService.removeFromWishlist(wishlistId);
+  }
+
+  removeFromWishlistAndAddToCart(wishlistId: number, productId: number){
+    this.removeFromWishlist(wishlistId);
+    this.cartService.addToCart(productId, 1);
   }
 }
 
