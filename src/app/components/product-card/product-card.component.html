@@ -16,13 +16,11 @@
       {{ "In Stock: " + productInfo.quantity }}
     </h6>
   </div>
-  <div
-    class="card-body bottom d-flex justify-content-around align-items-center"
-  >
+  <div class="card-body bottom d-flex flex-column align-items-center">
     <h5 class="align-middle">${{ productInfo.price.toFixed(2) }}</h5>
     <button
       [ngClass]="{
-        'btn align-middle': productInfo.quantity > 0,
+        'btn align-middle ': productInfo.quantity > 0,
         'btn_grey align-middle': productInfo.quantity <= 0
       }"
       (click)="productInfo.quantity > 0 && addToCart(productInfo)"

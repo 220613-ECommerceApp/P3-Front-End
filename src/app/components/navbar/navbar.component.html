@@ -7,14 +7,33 @@
       <app-search-bar></app-search-bar>
     </div>
     <form class="form-inline">
-      <button class="navBut btn btn-light" [routerLink]="['/wishlist']">Wishlist</button>
-      <button class="navBut btn btn-light" [routerLink]="['/user-profile']">
+      <button
+        class="navBut btn btn-light"
+        [ngClass]="isCurrentLocation('/wishlist') ? ' active-btn' : ''"
+        [routerLink]="['/wishlist']"
+      >
+        Wishlist
+      </button>
+      <button
+        class="navBut btn btn-light"
+        [ngClass]="isCurrentLocation('/user-profile') ? ' active-btn' : ''"
+        [routerLink]="['/user-profile']"
+      >
         <div class="icon-style user-icon"></div>
       </button>
-      <button class="navBut btn btn-light" [routerLink]="['/cart']">
-        <div class="icon-style cart-icon"></div>
-        <span class="badge badge-info">{{ cartCount }}</span>
+      <button
+        class="navBut btn btn-light"
+        [ngClass]="isCurrentLocation('/cart') ? ' active-btn' : ''"
+        [routerLink]="['/cart']"
+      >
+        <div class="wrap-icon">
+          <div class="icon-style cart-icon"></div>
+          <ng-template [ngIf]="cartCount !== 0">
+            <div class="badge badge-info badge-pos">{{ cartCount }}</div>
+          </ng-template>
+        </div>
       </button>
+      
       <button
         *ngIf="userLoggedIn"
         class="navBut btn btn-light"
