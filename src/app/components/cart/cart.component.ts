@@ -15,6 +15,7 @@ export class CartComponent implements OnInit {
   cartitems: Cartitem[] = [];
   totalPrice: number = 0;
   cartCount: number = 0;
+  timer: any = 0;
 
   constructor(private router: Router, private cs: CartService, private ws: WishlistService,) {}
 
@@ -70,14 +71,22 @@ export class CartComponent implements OnInit {
   }
 
   removeFromCart(productId: number): void {
+    let productName: string = '';
+    
     this.cartitems.forEach((e, i, o) => {
       if (e.product.id == productId) {
         o.splice(i, 1);
         this.totalPrice -= e.quantity * e.product.price;
         this.cartCount -= e.quantity;
+        productName = e.product.name;
       }
     });
     this.cs.removeItem(productId);
+    //timed success message
+    ErrorService.displaySuccess(true); // set the success state to true
+    ErrorService.setMessage(`Product:  [${productName.toUpperCase()}]  was removed from cart successfully`); // set the success message
+    clearTimeout(this.timer);
+    this.timer = setTimeout(this.hideAlert, 2500);
   }
 
   removeFromCartAndAddToWishlist(productId: number){
@@ -94,5 +103,9 @@ export class CartComponent implements OnInit {
       ErrorService.displayWarning(false);
       this.router.navigate(['/checkout']);
     }
+  }
+
+  hideAlert(){
+    ErrorService.displaySuccess(false);
   }
 }
