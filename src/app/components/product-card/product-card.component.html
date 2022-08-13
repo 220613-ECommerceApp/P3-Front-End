@@ -12,17 +12,22 @@
     <h5 class="card-title align-self-center">{{ productInfo.name }}</h5>
   </div>
   <div>
-    <h6 class="card-body2 align-self-center" id = "17">{{"In Stock: " + productInfo.quantity }}</h6>
+    <h6 class="card-body2 align-self-center" id="17">
+      {{ "In Stock: " + productInfo.quantity }}
+    </h6>
   </div>
   <div
     class="card-body bottom d-flex justify-content-around align-items-center"
   >
     <h5 class="align-middle">${{ productInfo.price.toFixed(2) }}</h5>
-    <button [ngClass]="{
-      'btn align-middle':productInfo.quantity>0,
-      'btn_grey align-middle':productInfo.quantity<=0
-    }" (click)="productInfo.quantity>0 && addToCart(productInfo)">
-      {{productInfo.quantity>0?'add to cart':'out of stock'}}
+    <button
+      [ngClass]="{
+        'btn align-middle': productInfo.quantity > 0,
+        'btn_grey align-middle': productInfo.quantity <= 0
+      }"
+      (click)="productInfo.quantity > 0 && addToCart(productInfo)"
+    >
+      {{ productInfo.quantity > 0 ? "add to cart" : "out of stock" }}
     </button>
     <button class="btn align-middle" (click)="addToWishlist(productInfo)">
       add to wishlist

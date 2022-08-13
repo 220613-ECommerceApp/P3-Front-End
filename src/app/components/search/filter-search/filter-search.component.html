@@ -1,0 +1,26 @@
+<div class="container">
+  <div class="error"><error-display></error-display></div>
+  <form class="form-inline">
+    <label class="mr-sm-2" for="inlineFormInputMin">Min price:</label>
+    <input
+      type="number"
+      step="0.01"
+      class="form-control mr-sm-2"
+      id="inlineFormInputMin"
+      name="minPrice"
+      [(ngModel)]="minPrice"
+      placeholder="$ Min"
+    />
+    <label class="mr-sm-2" for="inlineFormInputMax">Max price:</label>
+    <input
+      type="number"
+      step="0.01"
+      class="form-control mr-sm-2"
+      id="inlineFormInputMax"
+      name="maxPrice"
+      [(ngModel)]="maxPrice"
+      placeholder="$ Max"
+    />
+    <button class="btn btn-light" (click)="filterClicked()">Go</button>
+  </form>
+</div>

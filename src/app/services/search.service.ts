@@ -13,6 +13,11 @@ export class SearchService {
   private productUrl: string = '/api/product/search/superSearch';
   private tagUrl: string = '/api/tag';
 
+  searchString: string = '';
+  searchTag?: string = '';
+  minPrice: number = 0;
+  maxPrice: number = 0;
+
   products: Product[] = [];
 
   constructor(private http: HttpClient, private auth: AuthService) {}
