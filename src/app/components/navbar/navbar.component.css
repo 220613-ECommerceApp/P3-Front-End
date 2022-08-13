@@ -22,7 +22,11 @@
   background-color: #fca311;
 }
 
-.active {
+.active-btn .icon-style {
+  background-color: #fca311;
+}
+
+.active-btn {
   color: #fca311;
 }
 
@@ -64,7 +68,7 @@
   height: auto;
 }
 
-.button2{
+.button2 {
   background-color: #eeeeee; /* Green */
   border: none;
   color: rgb(0, 0, 0);
