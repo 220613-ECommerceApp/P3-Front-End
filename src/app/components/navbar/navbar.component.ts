@@ -22,6 +22,10 @@ export class NavbarComponent implements OnInit {
     //this.cartservice.getCartCount().then(num=>this.cartCount=num);
   }
 
+  isCurrentLocation(url: string): boolean {
+    return this.router.url === url;
+  }
+
   logout() {
     this.authService.logout();
     window.location.reload();
