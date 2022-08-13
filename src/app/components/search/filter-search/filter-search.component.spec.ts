@@ -1,4 +1,7 @@
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { RouterTestingModule } from '@angular/router/testing';
+import { SearchResultComponent } from '../search-result/search-result.component';
 
 import { FilterSearchComponent } from './filter-search.component';
 
@@ -8,9 +11,14 @@ describe('FilterSearchComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ FilterSearchComponent ]
-    })
-    .compileComponents();
+      imports: [
+        HttpClientTestingModule,
+        RouterTestingModule.withRoutes([
+          { path: 'search', component: SearchResultComponent },
+        ]),
+      ],
+      declarations: [FilterSearchComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {
