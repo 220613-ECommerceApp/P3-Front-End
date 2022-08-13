@@ -20,5 +20,9 @@ export class WishlistComponent implements OnInit {
       }
     );
   }
+
+  removeFromWishlist(wishlistId: number){
+    this.wishlistService.removeFromWishlist(wishlistId);
+  }
 }
 

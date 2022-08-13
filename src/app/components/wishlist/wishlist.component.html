@@ -10,6 +10,7 @@
         <tr *ngFor="let wishlistItem of wishlistItems;">
             <td>{{wishlistItem.product.name}}</td>
             <td>{{wishlistItem.product.description}}</td>
+            <td><button class="btn align-middle" (click)="removeFromWishlist(wishlistItem.id)">remove from wishlist</button></td>
         </tr>
     </tbody>
 </table> -->

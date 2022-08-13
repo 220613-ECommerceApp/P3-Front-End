@@ -37,4 +37,23 @@ export class WishlistService {
       })
     ).subscribe();
   }
+
+  removeFromWishlist(wishlistId: number){
+    this.auth.updateBearer();
+    this.http
+    .delete(
+      environment.baseUrl + `/api/removeFromWishList/${wishlistId}`,
+      {
+        headers: new HttpHeaders({
+          Authorization: environment.headers.Authorization,
+          'Content-Type': environment.headers['Content-Type'],
+        }),
+      },
+    )
+    .pipe(
+      catchError((e) => {
+        return throwError(e);
+      })
+    ).subscribe();
+  }
 }
