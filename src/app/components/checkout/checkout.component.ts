@@ -48,7 +48,7 @@ export class CheckoutComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.cs.getCart().subscribe((e) =>
+    this.cs.getCart().subscribe((e) => {
       e.forEach((cartitem) => {
         this.cartitems.push(cartitem);
         this.totalPrice += cartitem.quantity * cartitem.product.price;
@@ -62,7 +62,12 @@ export class CheckoutComponent implements OnInit {
           quantity: cartitem.quantity,
         });
       })
-    );
+    },
+    (err) => {
+      if(err.status == 401) {
+        this.router.navigate(["login"])
+      }
+    });
   }
 
   onSubmit(): void {

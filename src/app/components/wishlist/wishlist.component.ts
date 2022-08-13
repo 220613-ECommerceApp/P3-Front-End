@@ -18,7 +18,12 @@ export class WishlistComponent implements OnInit {
     this.wishlistService.getWishlistItems().subscribe(
       (wishlist) => {
         this.wishlistItems = wishlist;
-      }
+      },
+      (err) => {
+				if(err.status == 401) {
+					this.router.navigate(["login"])
+				}
+			}
     );
   }
 
