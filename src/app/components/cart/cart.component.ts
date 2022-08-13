@@ -23,12 +23,14 @@ export class CartComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.cs.getCart().subscribe((e) =>
-      e.forEach((cartitem) => {
-        this.cartitems.push(cartitem);
-        this.totalPrice += cartitem.quantity * cartitem.product.price;
-        this.cartCount += cartitem.quantity;
-      })
+    this.cs.getCart().subscribe((e) => {
+        e.forEach((cartitem) => {
+          this.cartitems.push(cartitem);
+          this.totalPrice += cartitem.quantity * cartitem.product.price;
+          this.cartCount += cartitem.quantity;
+        })
+      },
+      (err) => { if(err.status == 401) this.router.navigate(['login']) }
     );
   }
 

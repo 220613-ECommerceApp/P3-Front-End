@@ -24,6 +24,10 @@ export class NavbarComponent implements OnInit {
 
   logout() {
     this.authService.logout();
-    window.location.reload();
+    if(this.router.url == "/home") {
+      window.location.reload();
+    } else {
+      this.router.navigate(["home"]);
+    }
   }
 }

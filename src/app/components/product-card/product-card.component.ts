@@ -6,6 +6,7 @@ import { Cartitem } from 'src/app/models/cartitem';
 import { environment } from 'src/environments/environment';
 import { WishlistItem } from 'src/app/models/wishlist-item';
 import { WishlistService } from 'src/app/services/wishlist.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-product-card',
@@ -18,26 +19,32 @@ export class ProductCardComponent implements OnInit {
   public showElement?: boolean;
   private counterCheck: number = 0;
 
-  constructor(private cartservice: CartService, private wishlistservice: WishlistService,private http: HttpClient) {}
+  constructor(private cartservice: CartService, private wishlistservice: WishlistService, private http: HttpClient, private router: Router) {}
 
   ngOnInit(): void {}
 
   async addToCart(product: Product): Promise<any> {
     let inCart = false;
     let currentQuantity = 0;
-    let data = await this.http
-      .get<Cartitem[]>(environment.baseUrl + '/api/cart', {
-        headers: environment.headers,
-      })
-      .toPromise();
-
-    data.forEach((p) => {
-      if (product.id == p.product.id) {
-        inCart = true;
-        currentQuantity = p.quantity;
-       
-        }
-    });
+    try {
+      let data = await this.http
+        .get<Cartitem[]>(environment.baseUrl + '/api/cart', {
+          headers: environment.headers,
+        })
+        .toPromise();
+        data.forEach((p) => {
+          if (product.id == p.product.id) {
+            inCart = true;
+            currentQuantity = p.quantity;
+           
+            }
+        });
+    } catch (e: any) {
+      if(e.status == 401) {
+        this.router.navigate(["login"])
+        return
+      }
+    }
     if (currentQuantity >= product.quantity){
       console.log("STOP") //Stock is not enough
       return;
@@ -51,17 +58,23 @@ export class ProductCardComponent implements OnInit {
 
   async addToWishlist(product: Product): Promise<any> {
     let inWishList = false;
-    let data = await this.http
-      .get<WishlistItem[]>(environment.baseUrl + '/api/getWishList', {
-        headers: environment.headers,
-      })
-      .toPromise();
-      data.forEach((p) => {
-        if (product.id == p.product.id) {
-          inWishList = true;
+    try {
+      let data = await this.http
+        .get<WishlistItem[]>(environment.baseUrl + '/api/getWishList', {
+          headers: environment.headers,
+        })
+        .toPromise();
+        data.forEach((p) => {
+          if (product.id == p.product.id) {
+            inWishList = true;
+          }
+        });        
+      } catch (e: any) {
+        if(e.status == 401) {
+          this.router.navigate(["login"])
+          return
         }
-      });
-
+      }
       if (!inWishList){
         this.wishlistservice.addToWishlist({productId: product.id})
       }
