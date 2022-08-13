@@ -23,13 +23,14 @@ export class CartComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.cs.getCart().subscribe((e) =>
+    this.cs.getCart().subscribe((e) => {
       e.forEach((cartitem) => {
         this.cartitems.push(cartitem);
         this.totalPrice += cartitem.quantity * cartitem.product.price;
         this.cartCount += cartitem.quantity;
-      })
-    );
+        this.cs.addToCartProduct(cartitem.product.id, cartitem.quantity);
+      });
+    });
   }
 
   emptyCart(): void {
@@ -77,7 +78,9 @@ export class CartComponent implements OnInit {
         }
       });
       this.cs.updateQuantity(userQuantity, productId);
-      location.reload();
+      this.router.navigate(['cart']).then(() => {
+        window.location.reload();
+      });
     }
   }
 
@@ -121,7 +124,6 @@ export class CartComponent implements OnInit {
       this.router.navigate(['/checkout']);
     }
   }
-
   hideAlert() {
     ErrorService.displaySuccess(false);
   }
