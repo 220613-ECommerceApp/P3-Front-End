@@ -2,8 +2,8 @@
   size: auto;
   max-width: 300px;
   min-width: 200px;
-  height: auto;
-  max-height: 400px;
+  min-height: 440px;
+  max-height: 450px;
   transition: 0.1s ease-out;
   background-color: #303e5a;
   color: white;
@@ -59,18 +59,19 @@ div {
   width: 100%;
   margin-top: 0;
   padding-top: 0;
+  gap: 9px;
 }
 
 .card-body.bottom h5 {
   margin-top: 20px;
   padding-right: 15px;
   font-weight: 600;
-  margin-bottom: 20px;
+  margin-bottom: 7px;
 }
 
 .card-title {
   font-size: 18;
-  height:68px;
-  margin-bottom:0;
+  height: 68px;
+  margin-bottom: 0;
   padding: 10px;
 }
