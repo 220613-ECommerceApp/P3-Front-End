@@ -1,15 +1,20 @@
 h1{
     color:azure;
     padding-left: 25px;
+    text-align: center;
 }
 p{
     padding-left: 25px;
     color: azure;
     font-size: large;
-    margin: 15px;
 
 }
-
+.allContent {
+    display: table;
+    margin: 0 auto;
+    margin-top: 50px;
+  }
+  
 
 input .ng-invalid{
     border-left: 5px solid red;
@@ -26,13 +31,40 @@ input .ng-valid{
 .Infofor,
 .userInformation {
     flex: 25 25 25px;
+    float: left;
     padding: 10px;
     max-width: 400px;
     background-color:  #e5e5e50F;
     border-radius: 50px;
     margin-left: 15px;
-    justify-content: left;
+    justify-content: center;
 
+}
+
+.userInformation{
+    padding-right: 40px;
+    margin-top: 20px;
+}
+
+.userInformation p{
+    margin-top: 15px;
+    margin-bottom: -3px;
+}
+
+.Infofor{
+    margin-top: 30px;
+    margin-left:70px;
+}
+.Infofor p{
+    margin: 15px;
+    margin-top: 15px;
+}
+
+
+#user-container{
+    float: right;
+    margin: 5px;
+    margin-left: 50px;
 }
 
 
@@ -41,8 +73,7 @@ input .ng-valid{
 #email,
 #username,
 #password{
-    margin-left:35px;
-    padding: 5px;
+    margin-left:25px;
 }
 
 
@@ -58,27 +89,23 @@ input .ng-valid{
     padding-left: 6px;
     padding-right: 6px;
     font-weight: 700;
-    margin-bottom: 25px;
+    margin-bottom: 15px;
     margin-left: 25px;
-    margin-top: 25px;
+    margin-top: 5px;
 }
 
 .uBtn {
     margin-left: 50px;
     padding-left: 40px;
     padding-right: 40px;
+    margin-top: 15px;
 }
 
-.btn-back {
-    padding-left: 50px;
-    padding-right: 50px;
-    margin-left:145px; 
-}
 
 .btnF {
     padding-left: 25px;
     padding-right: 25px;
-    margin-left: 145px;
+    margin-left: 50px;
 }
 
 .allDem {
@@ -100,6 +127,16 @@ input .ng-valid{
 #historybtn{
     padding-left: 25px;
     padding-right: 25px;
-    margin-left: 70px;
+    margin-left: 50px;
+}
+
+#redFirst,
+#redlast,
+#redEmail1,
+#redEmail2,
+#redUsername,
+#redPassword1,
+#redPwassword2 {
+    margin-left: 25px;
 }
   
