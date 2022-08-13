@@ -5,7 +5,6 @@ import { CartService } from 'src/app/services/cart.service';
 import { ErrorService } from 'src/app/services/error.service';
 import { WishlistService } from 'src/app/services/wishlist.service';
 
-
 @Component({
   selector: 'app-cart',
   templateUrl: './cart.component.html',
@@ -15,8 +14,13 @@ export class CartComponent implements OnInit {
   cartitems: Cartitem[] = [];
   totalPrice: number = 0;
   cartCount: number = 0;
+  timer: any = 0;
 
-  constructor(private router: Router, private cs: CartService, private ws: WishlistService,) {}
+  constructor(
+    private router: Router,
+    private cs: CartService,
+    private ws: WishlistService
+  ) {}
 
   ngOnInit(): void {
     this.cs.getCart().subscribe((e) =>
@@ -34,6 +38,7 @@ export class CartComponent implements OnInit {
   }
 
   updateQuantity(inputId: string, stock: number, productId: number): void {
+    let productName = '';
     let userQuantity: number = +(<HTMLInputElement>(
       document.getElementById(`${inputId}`)
     )).value;
@@ -48,9 +53,16 @@ export class CartComponent implements OnInit {
           o.splice(i, 1);
           this.totalPrice -= e.quantity * e.product.price;
           this.cartCount -= e.quantity;
+          productName = e.product.name;
         }
       });
       this.cs.removeItem(productId);
+      ErrorService.displaySuccess(true); // set the success state to true
+      ErrorService.setMessage(
+        `Product:  [${productName.toUpperCase()}]  was removed from cart successfully`
+      ); // set the success message
+      clearTimeout(this.timer);
+      this.timer = setTimeout(this.hideAlert, 2400);
     } else if (userQuantity > stock) {
       //Throw error
       ErrorService.displayWarning(true); // set the error state to true
@@ -70,29 +82,47 @@ export class CartComponent implements OnInit {
   }
 
   removeFromCart(productId: number): void {
+    let productName: string = '';
     this.cartitems.forEach((e, i, o) => {
       if (e.product.id == productId) {
         o.splice(i, 1);
         this.totalPrice -= e.quantity * e.product.price;
         this.cartCount -= e.quantity;
+        productName = e.product.name;
       }
     });
     this.cs.removeItem(productId);
+    //timed success message
+    ErrorService.displaySuccess(true); // set the success state to true
+    ErrorService.setMessage(
+      `Product:  [${productName.toUpperCase()}]  was removed from cart successfully`
+    ); // set the success message
+    clearTimeout(this.timer);
+    this.timer = setTimeout(this.hideAlert, 2400);
   }
 
-  removeFromCartAndAddToWishlist(productId: number){
+  removeFromCartAndAddToWishlist(productId: number) {
     this.removeFromCart(productId);
-    this.ws.addToWishlist({productId: productId});
+    this.ws.addToWishlist({ productId: productId });
+    //timed success message
+    ErrorService.displaySuccess(true); // set the success state to true
+    ErrorService.setMessage(`Added to wishlist`); // set the success message
+    clearTimeout(this.timer);
+    this.timer = setTimeout(this.hideAlert, 2400);
   }
 
-  goTocheckout(){
-    if(this.cartCount==0){
+  goTocheckout() {
+    if (this.cartCount == 0) {
       //Throw error
       ErrorService.displayWarning(true); // set the error state to true
       ErrorService.setMessage('Add items to your cart first'); // set the error message
-    }else{
+    } else {
       ErrorService.displayWarning(false);
       this.router.navigate(['/checkout']);
     }
+  }
+
+  hideAlert() {
+    ErrorService.displaySuccess(false);
   }
 }
