@@ -24,5 +24,8 @@
     }" (click)="productInfo.quantity>0 && addToCart(productInfo)">
       {{productInfo.quantity>0?'add to cart':'out of stock'}}
     </button>
+    <button class="btn align-middle" (click)="addToWishlist(productInfo)">
+      add to wishlist
+    </button>
   </div>
 </div>
