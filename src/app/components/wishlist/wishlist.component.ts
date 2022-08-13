@@ -24,6 +24,11 @@ export class WishlistComponent implements OnInit {
 
   removeFromWishlist(wishlistId: number){
     this.wishlistService.removeFromWishlist(wishlistId);
+    this.wishlistItems.forEach((e,i,o) => {
+      if(e.id == wishlistId){
+        o.splice(i,1);
+      }
+    });
   }
 
   removeFromWishlistAndAddToCart(wishlistId: number, productId: number){
