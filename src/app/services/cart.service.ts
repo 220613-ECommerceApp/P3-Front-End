@@ -12,6 +12,7 @@ import { ProductCount } from '../interfaces/product-count';
   providedIn: 'root',
 })
 export class CartService {
+
   private cartCountUpdated = new Subject<number>();
   cartProducts: ProductCount[] = [];
   cartCount: number = 0;
@@ -93,22 +94,7 @@ export class CartService {
     this.cartCount = count;
     return count;
   }
-
-  async getTotalPrice(): Promise<number> {
-    let total = 0;
-    this.auth.updateBearer();
-    let data = await this.http
-      .get<Cartitem[]>(environment.baseUrl + '/api/cart', {
-        headers: environment.headers,
-      })
-      .toPromise();
-
-    data.forEach((p) => {
-      total += p.quantity * p.product.price;
-    });
-    return total;
-  }
-
+  
   updateQuantity(newQuantity: number, productId: number): void {
     this.auth.updateBearer();
     this.http

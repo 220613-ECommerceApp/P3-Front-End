@@ -32,6 +32,10 @@ export class NavbarComponent implements OnInit {
     this.subscription && this.subscription.unsubscribe();
   }
 
+  isCurrentLocation(url: string): boolean {
+    return this.router.url === url;
+  }
+
   logout() {
     this.authService.logout();
     window.location.reload();

@@ -22,7 +22,11 @@
   background-color: #fca311;
 }
 
-.active {
+.active-btn .icon-style {
+  background-color: #fca311;
+}
+
+.active-btn {
   color: #fca311;
 }
 
