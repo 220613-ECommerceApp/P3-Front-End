@@ -11,6 +11,7 @@ import { WishlistService } from 'src/app/services/wishlist.service';
   styleUrls: ['./cart.component.css'],
 })
 export class CartComponent implements OnInit {
+  alreadyInWishlist = new Map<number, boolean>();
   cartitems: Cartitem[] = [];
   totalPrice: number = 0;
   cartCount: number = 0;
@@ -109,13 +110,37 @@ export class CartComponent implements OnInit {
   }
 
   removeFromCartAndAddToWishlist(productId: number) {
-    this.removeFromCart(productId);
-    this.ws.addToWishlist({ productId: productId });
-    //timed success message
-    ErrorService.displaySuccess(true); // set the success state to true
-    ErrorService.setMessage(`Added to wishlist`); // set the success message
-    clearTimeout(this.timer);
-    this.timer = setTimeout(this.hideAlert, 2400);
+    if(this.alreadyInWishlist.get(productId)) {
+      ErrorService.displayWarning(true);
+      ErrorService.setMessage("Item is already in wishlist")
+      clearTimeout(this.timer);
+      this.timer = setTimeout(this.hideAlert, 2400);
+      return;
+    }
+    this.ws.getWishlistItems().subscribe((data) => {
+      let inWishlist: boolean = false;
+      for(let item of data) {
+        if(item.product.id == productId) {
+          inWishlist = true;
+          this.alreadyInWishlist.set(productId, inWishlist)
+          break;
+        }
+      }
+      if(!inWishlist) {
+        this.removeFromCart(productId);
+        this.ws.addToWishlist({ productId: productId });
+        //timed success message
+        ErrorService.displaySuccess(true); // set the success state to true
+        ErrorService.setMessage(`Added to wishlist`); // set the success message
+        clearTimeout(this.timer);
+        this.timer = setTimeout(this.hideAlert, 2400);
+      } else {
+        ErrorService.displayWarning(true);
+        ErrorService.setMessage("Item is already in wishlist")
+        clearTimeout(this.timer);
+        this.timer = setTimeout(this.hideAlert, 2400);
+      }
+    })
   }
 
   goTocheckout() {

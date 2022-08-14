@@ -134,6 +134,7 @@
   .r-button {
     text-decoration: underline;
     color: #fca311;
+    width: max-content;
   }
   
   .w-button {
@@ -172,3 +173,7 @@
     height: 52px;
   }
   
+  .disable {
+    pointer-events: none;
+    background-color: #ababab;
+  }
