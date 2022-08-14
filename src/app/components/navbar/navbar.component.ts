@@ -10,27 +10,11 @@ import { CartService } from 'src/app/services/cart.service';
   styleUrls: ['./navbar.component.css'],
 })
 export class NavbarComponent implements OnInit {
-  cartCount!: number;
-  subscription: Subscription;
   userLoggedIn = localStorage.getItem('token') == null ? false : true;
 
-  constructor(
-    private authService: AuthService,
-    private router: Router,
-    private cartservice: CartService
-  ) {
-    this.subscription = this.cartservice.cartCountChanged$.subscribe(
-      (count) => (this.cartCount = count)
-    );
-  }
+  constructor(private authService: AuthService, private router: Router) {}
 
-  ngOnInit(): void {
-    this.cartservice.getCartCount().then((num) => (this.cartCount = num));
-  }
-
-  ngOnDestroy(): void {
-    this.subscription && this.subscription.unsubscribe();
-  }
+  ngOnInit(): void {}
 
   isCurrentLocation(url: string): boolean {
     return this.router.url === url;
@@ -38,10 +22,10 @@ export class NavbarComponent implements OnInit {
 
   logout() {
     this.authService.logout();
-    if(this.router.url == "/home") {
+    if (this.router.url == '/home') {
       window.location.reload();
     } else {
-      this.router.navigate(["home"]);
+      this.router.navigate(['home']);
     }
   }
 }

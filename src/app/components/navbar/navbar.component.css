@@ -80,14 +80,3 @@
   border-radius: 8px;
   font-weight: bold;
 }
-
-.warp-icon {
-  width: 30px;
-  height: 30px;
-  position: relative;
-}
-
-.badge-pos {
-  position: absolute;
-  top: 16px;
-}
