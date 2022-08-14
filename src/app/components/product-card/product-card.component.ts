@@ -1,10 +1,4 @@
-import {
-  Component,
-  Input,
-  OnInit,
-  TemplateRef,
-  ViewChild,
-} from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Product } from 'src/app/models/product';
 import { CartService } from 'src/app/services/cart.service';
@@ -13,7 +7,6 @@ import { environment } from 'src/environments/environment';
 import { WishlistItem } from 'src/app/models/wishlist-item';
 import { WishlistService } from 'src/app/services/wishlist.service';
 import { Router } from '@angular/router';
-import { Template } from '@angular/compiler/src/render3/r3_ast';
 
 @Component({
   selector: 'app-product-card',
