@@ -80,7 +80,10 @@ export class ProductCardComponent implements OnInit {
         return;
       }
     }
-    if (currentQuantity >= product.quantity) {
+    if (
+      currentQuantity >= product.quantity ||
+      currentQuantity+ quantity > product.quantity
+    ) {
       console.log('STOP'); //Stock is not enough
       return;
     }
