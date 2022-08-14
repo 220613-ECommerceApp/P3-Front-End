@@ -7,7 +7,6 @@ import { environment } from 'src/environments/environment';
 import { WishlistItem } from 'src/app/models/wishlist-item';
 import { WishlistService } from 'src/app/services/wishlist.service';
 import { Router } from '@angular/router';
-import { ProductService } from 'src/app/services/product.service';
 
 @Component({
   selector: 'app-product-card',
@@ -21,7 +20,7 @@ export class ProductCardComponent implements OnInit {
   public cartCount: number = 0;
   public inCartDisplayDiv: boolean = false;
 
-  constructor(private ps: ProductService,private cartservice: CartService, private wishlistservice: WishlistService, private http: HttpClient, private router: Router) {}
+  constructor(private cartservice: CartService, private wishlistservice: WishlistService, private http: HttpClient, private router: Router) {}
 
   ngOnInit(): void {
     this.fetchCurrentCount();
