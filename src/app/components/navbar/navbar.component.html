@@ -26,14 +26,9 @@
         [ngClass]="isCurrentLocation('/cart') ? ' active-btn' : ''"
         [routerLink]="['/cart']"
       >
-        <div class="wrap-icon">
-          <div class="icon-style cart-icon"></div>
-          <ng-template [ngIf]="cartCount !== 0">
-            <div class="badge badge-info badge-pos">{{ cartCount }}</div>
-          </ng-template>
-        </div>
+        <div class="icon-style cart-icon"></div>
       </button>
-      
+
       <button
         *ngIf="userLoggedIn"
         class="navBut btn btn-light"
