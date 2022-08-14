@@ -20,7 +20,6 @@ import { LoginComponent } from '../login/login.component';
 describe('RegisterComponent', () => {
   let component: RegisterComponent;
   let fixture: ComponentFixture<RegisterComponent>;
-  let errorService: ErrorService;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -36,7 +35,6 @@ describe('RegisterComponent', () => {
       declarations: [RegisterComponent],
       providers: [ErrorService],
     }).compileComponents();
-    errorService = TestBed.inject(ErrorService);
   });
 
   beforeEach(() => {
