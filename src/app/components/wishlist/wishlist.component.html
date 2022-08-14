@@ -48,7 +48,8 @@
                 <div class="item-data-text">${{ wishlistItem.product.price | number : '1.2-2' }}</div>
               </li>
               <li>
-                <button type="button" class="w-button" (click)="removeFromWishlistAndAddToCart(wishlistItem.id, wishlistItem.product.id)">Move to Cart</button>
+                <button *ngIf="wishlistItem.product.quantity > 0" type="button" class="w-button" (click)="removeFromWishlistAndAddToCart(wishlistItem.id, wishlistItem.product.id)">Move to Cart</button>
+                <button *ngIf="wishlistItem.product.quantity <= 0" type="button" class="w-button disable">Out of Stock</button>
                 <div
                   class="r-button"
                   (click)="removeFromWishlist(wishlistItem.id)"
