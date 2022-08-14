@@ -1,6 +1,6 @@
 .wishlist-container {
     display: table;
-    margin: 0 auto;
+    margin: auto;
     margin-top: 40px;
   }
   
@@ -8,7 +8,7 @@
     float: center;
     background-color: #e5e5e5;
     width: 1150px;
-    height: 790px;
+    height: auto;
     border-radius: 10px;
     margin-right: 10px;
     padding: 4%;
@@ -94,7 +94,7 @@
     font-weight: 600;
     width: 700px;
     margin-left: 65px;
-    height: 45px;
+    height: auto;
     overflow: hidden;
   }
   
