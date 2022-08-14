@@ -10,7 +10,10 @@ import {
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { throwError, of } from 'rxjs';
-import { RouterTestingModule } from '@angular/router/testing';
+import {
+  RouterTestingModule,
+  setupTestingRouter,
+} from '@angular/router/testing';
 import { AuthService } from 'src/app/services/auth.service';
 import { ErrorService } from 'src/app/services/error.service';
 
@@ -41,6 +44,18 @@ describe('RegisterComponent', () => {
     fixture = TestBed.createComponent(RegisterComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
+
+    //setup user
+    let uname = component.registerForm.controls['uname'];
+    uname.setValue('testUser');
+    let fname = component.registerForm.controls['fname'];
+    fname.setValue('John');
+    let lname = component.registerForm.controls['lname'];
+    lname.setValue('Who');
+    let email = component.registerForm.controls['email'];
+    email.setValue('jwho@gmail.com');
+    let password = component.registerForm.controls['password'];
+    password.setValue('password');
   });
 
   it('should create', () => {
@@ -54,21 +69,9 @@ describe('RegisterComponent', () => {
       'input[type="submit"]'
     );
 
-    let uname = component.registerForm.controls['uname'];
-    uname.setValue('testUser');
-    let fname = component.registerForm.controls['fname'];
-    fname.setValue('John');
-    let lname = component.registerForm.controls['lname'];
-    lname.setValue('Who');
-    let email = component.registerForm.controls['email'];
-    email.setValue('jwho@gmail.com');
-    let password = component.registerForm.controls['password'];
-    password.setValue('password');
-
     button.click();
     tick();
     expect(submitClickSpy).toHaveBeenCalled();
-    flush();
   }));
 
   it('should checkValid on submit button clicked, show set error message using ErrorService. Invalid password', fakeAsync(() => {
@@ -81,14 +84,6 @@ describe('RegisterComponent', () => {
       'input[type="submit"]'
     );
 
-    let uname = component.registerForm.controls['uname'];
-    uname.setValue('testUser');
-    let fname = component.registerForm.controls['fname'];
-    fname.setValue('John');
-    let lname = component.registerForm.controls['lname'];
-    lname.setValue('Who');
-    let email = component.registerForm.controls['email'];
-    email.setValue('jwho@gmail.com');
     let password = component.registerForm.controls['password'];
     password.setValue('pas');
 
@@ -107,15 +102,8 @@ describe('RegisterComponent', () => {
       'input[type="submit"]'
     );
 
-    let uname = component.registerForm.controls['uname'];
-    uname.setValue('testUser');
-    let fname = component.registerForm.controls['fname'];
-    fname.setValue('John');
-    let lname = component.registerForm.controls['lname'];
-    lname.setValue('Who');
     let email = component.registerForm.controls['email'];
-    let password = component.registerForm.controls['password'];
-    password.setValue('password');
+    email.setValue(null);
 
     button.click();
     tick();
@@ -150,17 +138,6 @@ describe('RegisterComponent', () => {
       'input[type="submit"]'
     );
 
-    let uname = component.registerForm.controls['uname'];
-    uname.setValue('testUser');
-    let fname = component.registerForm.controls['fname'];
-    fname.setValue('John');
-    let lname = component.registerForm.controls['lname'];
-    lname.setValue('Who');
-    let email = component.registerForm.controls['email'];
-    email.setValue('jwho@gmail.com');
-    let password = component.registerForm.controls['password'];
-    password.setValue('password');
-
     button.click();
     tick();
     expect(serviceSpy).toHaveBeenCalled();
@@ -183,17 +160,6 @@ describe('RegisterComponent', () => {
     let button = fixture.debugElement.nativeElement.querySelector(
       'input[type="submit"]'
     );
-
-    let uname = component.registerForm.controls['uname'];
-    uname.setValue('testUser');
-    let fname = component.registerForm.controls['fname'];
-    fname.setValue('John');
-    let lname = component.registerForm.controls['lname'];
-    lname.setValue('Who');
-    let email = component.registerForm.controls['email'];
-    email.setValue('jwho@gmail.com');
-    let password = component.registerForm.controls['password'];
-    password.setValue('password');
 
     button.click();
     tick();
