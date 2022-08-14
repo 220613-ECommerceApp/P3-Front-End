@@ -10,6 +10,7 @@ import { WishlistService } from 'src/app/services/wishlist.service';
   styleUrls: ['./wishlist.component.css']
 })
 export class WishlistComponent implements OnInit {
+  wishlistCount: number = 0;
   wishlistItems: WishlistItem[] = [];
 
   constructor(private wishlistService: WishlistService, private cartService: CartService, private router: Router) { }
@@ -18,6 +19,7 @@ export class WishlistComponent implements OnInit {
     this.wishlistService.getWishlistItems().subscribe(
       (wishlist) => {
         this.wishlistItems = wishlist;
+        this.wishlistCount = wishlist.length;
       },
       (err) => {
 				if(err.status == 401) {
@@ -32,6 +34,7 @@ export class WishlistComponent implements OnInit {
     this.wishlistItems.forEach((e,i,o) => {
       if(e.id == wishlistId){
         o.splice(i,1);
+        --this.wishlistCount;
       }
     });
   }
