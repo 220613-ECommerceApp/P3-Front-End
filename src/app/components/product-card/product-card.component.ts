@@ -34,11 +34,14 @@ export class ProductCardComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    if(!this.cartservice.isLoggedIn()) return;
     this.fetchCurrentCount();
   }
 
-  async fetchCurrentCount() {
-    this.inCartDisplayDiv = false;
+  async fetchCurrentCount(){
+    if(!this.cartservice.isLoggedIn) return
+     this.inCartDisplayDiv = false;
+
     try {
       let data = await this.http
         .get<Cartitem[]>(environment.baseUrl + '/api/cart', {
