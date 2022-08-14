@@ -134,6 +134,7 @@
   .r-button {
     text-decoration: underline;
     color: #fca311;
+    width: max-content;
   }
   
   .w-button {
