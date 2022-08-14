@@ -42,7 +42,7 @@ import { WishlistComponent } from './components/wishlist/wishlist.component';
     FilterSearchComponent,
     WishlistComponent,
   ],
-  
+
   imports: [
     BrowserModule,
     AppRoutingModule,

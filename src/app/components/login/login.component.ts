@@ -15,13 +15,13 @@ export class LoginComponent implements OnInit {
     email: new FormControl(''),
     password: new FormControl('')
   })
-  
+
 
   constructor(private authService: AuthService, private router: Router) { }
 
   ngOnInit(): void {
   }
-  
+
   onSubmit(): void {
     if(!this.loginForm.get('email')?.value || !this.loginForm.get('password')?.value){
       ErrorService.displayWarning(true)
@@ -30,7 +30,6 @@ export class LoginComponent implements OnInit {
     else{
     this.authService.login(this.loginForm.get('email')?.value, this.loginForm.get('password')?.value).subscribe(
       (res) => {
-        this.authService.loggedIn=true
         localStorage.setItem("token", res.token)
       },
       (err) => {
