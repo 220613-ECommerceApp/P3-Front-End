@@ -2,12 +2,21 @@
   size: auto;
   max-width: 300px;
   min-width: 200px;
-  min-height: 440px;
-  max-height: 450px;
+  min-height: 465px;
+  max-height: 470px;
   transition: 0.1s ease-out;
   background-color: #303e5a;
   color: white;
   border-radius: 15px;
+}
+
+#cartCounter{
+  color: #faa229;
+  margin-right: 150px;
+  margin-top: 5px;
+  width: 115px;
+  height: 22px;
+
 }
 
 .card-body {
