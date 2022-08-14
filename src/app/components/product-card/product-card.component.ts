@@ -37,10 +37,9 @@ export class ProductCardComponent implements OnInit {
     if(!this.cartservice.isLoggedIn()) return;
     this.fetchCurrentCount();
   }
-
   async fetchCurrentCount(){
-    if(!this.cartservice.isLoggedIn) return
-     this.inCartDisplayDiv = false;
+    console.log('I ran, hooray!')
+    this.inCartDisplayDiv = false;
 
     try {
       let data = await this.http
