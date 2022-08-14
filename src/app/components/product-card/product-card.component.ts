@@ -23,10 +23,12 @@ export class ProductCardComponent implements OnInit {
   constructor(private cartservice: CartService, private wishlistservice: WishlistService, private http: HttpClient, private router: Router) {}
 
   ngOnInit(): void {
+    if(!this.cartservice.isLoggedIn()) return;
     this.fetchCurrentCount();
   }
 
   async fetchCurrentCount(){
+    if(!this.cartservice.isLoggedIn) return
      this.inCartDisplayDiv = false;
     try {
       let data = await this.http
@@ -61,7 +63,7 @@ export class ProductCardComponent implements OnInit {
           if (product.id == p.product.id) {
             inCart = true;
             currentQuantity = p.quantity;
-           
+
             }
         });
     } catch (e: any) {
@@ -96,7 +98,7 @@ export class ProductCardComponent implements OnInit {
           if (product.id == p.product.id) {
             inWishList = true;
           }
-        });        
+        });
       } catch (e: any) {
         if(e.status == 401) {
           this.router.navigate(["login"])

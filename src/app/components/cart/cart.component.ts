@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Cartitem } from 'src/app/models/cartitem';
+import { AuthService } from 'src/app/services/auth.service';
 import { CartService } from 'src/app/services/cart.service';
 import { ErrorService } from 'src/app/services/error.service';
 import { WishlistService } from 'src/app/services/wishlist.service';
