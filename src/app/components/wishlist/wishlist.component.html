@@ -1,5 +1,5 @@
 <app-navbar></app-navbar>
-   <table class="table table-striped" id="cart-table">
+   <!-- <table class="table table-striped" id="cart-table">
    <thead>
       <tr>
         <th scope="col">Name</th>
@@ -14,5 +14,54 @@
             <td><button class="btn align-middle" (click)="removeFromWishlistAndAddToCart(wishlistItem.id, wishlistItem.product.id)">Move to cart</button></td>
         </tr>
     </tbody>
-</table> -->
-<button class="btn btn-danger" [routerLink]="['/user-profile']">Back</button>
+</table> --> 
+
+
+<div  class="error"><error-display></error-display></div>
+<div class="wishlist-container">
+  <div class="wishlist-items-container">
+    <p class="view-wishlist-text">View Your Wishlist</p>
+    <div *ngIf="wishlistCount<=0">
+    Your wishlist is empty ...
+    </div>
+    <div class="over-flow-control" #populate_wishlist>
+      <div
+      class="populate-wishlist"
+      *ngFor="let wishlistItem of wishlistItems; let n = index"
+    >
+      <div class="wishlistitem">
+        <hr class="line" />
+        <div class="wishlist-sections">
+          <img
+            [src]="wishlistItem.product.image_url"
+            class="image"
+            alt="product_img"
+          />
+          <div class="wishlist-right-section">
+            <p class="title">{{ wishlistItem.product.name }}</p>
+            <p class="description">
+              {{ wishlistItem.product.description }}
+            </p>
+            <ul>
+              <li>
+                <div class="item-headers-text">Price:</div>
+                <div class="item-data-text">${{ wishlistItem.product.price | number : '1.2-2' }}</div>
+              </li>
+              <li>
+                <button type="button" class="w-button" (click)="removeFromWishlistAndAddToCart(wishlistItem.id, wishlistItem.product.id)">Move to Cart</button>
+                <div
+                  class="r-button"
+                  (click)="removeFromWishlist(wishlistItem.id)"
+                  [id]="wishlistItem.product.id + ',' + 'r' + ',' + n"
+                >
+                  Remove from Wishlist
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+    
+  </div>
