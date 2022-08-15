@@ -103,4 +103,7 @@ h1.styled {
 
 .error{
   height: 52px;
+   z-index: 1;
+  position: fixed;
+  margin-left:675px;
 }
