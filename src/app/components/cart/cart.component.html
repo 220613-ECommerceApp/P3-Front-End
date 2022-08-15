@@ -35,6 +35,8 @@
                   <input
                     class="user-quantity"
                     type="number"
+                    min="0"
+                    [max]="cartitem.product.quantity"
                     [id]="cartitem.product.id + ',' + 'i' + ',' + n"
                     [value]="cartitem.quantity"
                   />
