@@ -88,11 +88,24 @@ export class ProductCardComponent implements OnInit {
       currentQuantity >= product.quantity ||
       currentQuantity + quantity > product.quantity
     ) {
-      console.log('STOP'); //Stock is not enough
+      //timed warning message
+      ErrorService.displayWarning(true); // set the success state to true
+      ErrorService.setMessage(
+        'Failed! Stock limit reached'
+      ); // set the success message
+      clearTimeout(this.timer);
+      this.timer = setTimeout(this.hideAlert, 2400);
       return;
     }
     if (inCart) {
       this.cartservice.updateQuantity(currentQuantity + quantity, product.id);
+      //timed success message
+      ErrorService.displaySuccess(true); // set the success state to true
+      ErrorService.setMessage(
+        `Product:  [${product.name.toUpperCase()}]  added to cart`
+      ); // set the success message
+      clearTimeout(this.timer);
+      this.timer = setTimeout(this.hideAlert, 2400);
     } else {
       this.cartservice.addToCart(product.id, quantity);
       this.inCartDisplayDiv = true;
