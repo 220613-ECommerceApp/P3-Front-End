@@ -2,7 +2,7 @@
   size: auto;
   max-width: 300px;
   min-width: 200px;
-  min-height: 390px;
+  min-height: 360px;
   max-height: 470px;
   transition: 0.1s ease-out;
   background-color: #303e5a;
@@ -12,8 +12,6 @@
 
 .card-top {
   width: 100%;
-  padding: 0 15px;
-  margin-top: 15px;
 }
 
 #cartCounter {
@@ -25,6 +23,7 @@
 .card-body {
   padding-bottom: 0px;
   flex: 0;
+  padding-top: 15px;
 }
 
 img {
