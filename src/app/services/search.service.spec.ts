@@ -6,6 +6,7 @@ import {
 
 import { SearchService } from './search.service';
 import { Product } from '../models/product';
+import { Tag } from '../models/tag';
 
 describe('SearchService', () => {
   let service: SearchService;
@@ -22,54 +23,57 @@ describe('SearchService', () => {
 
   afterEach(() => {
     httpMock.verify();
-  })
-
+  });
 
   it('should be created', () => {
     expect(service).toBeTruthy();
   });
 
-  
-
-
   it('should set products array to be equal to all the products found and print out "Products Retrieved"', () => {
-
     spyOn(service, 'findProducts').and.callThrough();
+    spyOn(window.console, 'log');
 
-    let productOne = new Product(1, 'Headphones', 10, 'A nice pair of headphones', 20.0, 'https://i.insider.com/54eb437f6bb3f7697f85da71?width=1000&format=jpeg&auto=webp');
-    //let productTwo = new Product(2, 'actualVideogame', 20, 'bryans videogame', 70.00, 'vidya url');
+    service.findProducts('Headphones');
 
-    service.findProducts('Headphones')
-    
     expect(service.findProducts).toHaveBeenCalled();
 
+    const req = httpMock.expectOne(
+      'http://localhost:8080/api/product/search/superSearch?query=Headphones'
+    );
 
-    const req = httpMock.expectOne('http://localhost:8080/api/product/search/superSearch?query=Headphones');
-
+    req.flush('');
     expect(req.request.method).toEqual('GET');
+    expect(window.console.log).toHaveBeenCalledWith('Products Retrieved');
+  });
 
-
-  })
-
-
-  it('should return tags', () => {
-
-    
-
-    //let productOne = new Product(1, 'Headphones', 10, 'A nice pair of headphones', 20.0, 'https://i.insider.com/54eb437f6bb3f7697f85da71?width=1000&format=jpeg&auto=webp');
-    let productTwo = new Product(4, 'Baseball Cap', 20, 'A fancy cap for a fancy person', 10.00, 'https://d3o2e4jr3mxnm3.cloudfront.net/Rocket-Vintage-Chill-Cap_66374_1_lg.png');
+  it('should return tags', (done) => {
+    let tags = [new Tag('bryan')];
 
     service.getTags().subscribe((response) => {
-      expect(response[0]).toBe(productTwo);
+      expect(response).toEqual(tags);
+      done();
     });
-    
-
 
     const req = httpMock.expectOne('http://localhost:8080/api/tag');
 
     expect(req.request.method).toEqual('GET');
+    req.flush(tags);
+  });
 
+  it('should print error if findProducts fails for some reason', () => {
+    spyOn(service, 'findProducts').and.callThrough();
+    spyOn(window.console, 'log');
 
-  })
+    service.findProducts('Headphones');
 
+    expect(service.findProducts).toHaveBeenCalled();
+
+    const req = httpMock.expectOne(
+      'http://localhost:8080/api/product/search/superSearch?query=Headphones'
+    );
+
+    req.flush('You Died', { status: 500, statusText: 'Internal Server Error' });
+    expect(req.request.method).toEqual('GET');
+    expect(window.console.log).toHaveBeenCalled();
+  });
 });
