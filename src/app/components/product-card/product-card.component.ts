@@ -7,6 +7,7 @@ import { environment } from 'src/environments/environment';
 import { WishlistItem } from 'src/app/models/wishlist-item';
 import { WishlistService } from 'src/app/services/wishlist.service';
 import { Router } from '@angular/router';
+import { ErrorService } from 'src/app/services/error.service';
 
 @Component({
   selector: 'app-product-card',
@@ -16,18 +17,32 @@ import { Router } from '@angular/router';
 export class ProductCardComponent implements OnInit {
   @Input() productInfo!: Product;
 
+  public isProductCard: boolean;
+  public buyQuantity: number;
+
   public showElement?: boolean;
   public cartCount: number = 0;
   public inCartDisplayDiv: boolean = false;
+  timerMain: any = 0;
 
-  constructor(private cartservice: CartService, private wishlistservice: WishlistService, private http: HttpClient, private router: Router) {}
-
-  ngOnInit(): void {
-    this.fetchCurrentCount();
+  constructor(
+    private cartservice: CartService,
+    private wishlistservice: WishlistService,
+    private http: HttpClient,
+    private router: Router
+  ) {
+    this.isProductCard = true;
+    this.buyQuantity = 1;
   }
 
-  async fetchCurrentCount(){
-     this.inCartDisplayDiv = false;
+  ngOnInit(): void {
+    if (!this.cartservice.isLoggedIn()) return;
+    this.fetchCurrentCount();
+  }
+  async fetchCurrentCount() {
+    console.log('I ran, hooray!');
+    this.inCartDisplayDiv = false;
+
     try {
       let data = await this.http
         .get<Cartitem[]>(environment.baseUrl + '/api/cart', {
@@ -48,7 +63,7 @@ export class ProductCardComponent implements OnInit {
     }
   }
 
-  async addToCart(product: Product): Promise<any> {
+  async addToCart(product: Product, quantity: number): Promise<any> {
     let inCart = false;
     let currentQuantity = 0;
     try {
@@ -57,31 +72,53 @@ export class ProductCardComponent implements OnInit {
           headers: environment.headers,
         })
         .toPromise();
-        data.forEach((p) => {
-          if (product.id == p.product.id) {
-            inCart = true;
-            currentQuantity = p.quantity;
-           
-            }
-        });
+      data.forEach((p) => {
+        if (product.id == p.product.id) {
+          inCart = true;
+          currentQuantity = p.quantity;
+        }
+      });
     } catch (e: any) {
-      if(e.status == 401) {
-        this.router.navigate(["login"])
-        return
+      if (e.status == 401) {
+        this.router.navigate(['login']);
+        return;
       }
     }
-    if (currentQuantity >= product.quantity){
-      console.log("STOP") //Stock is not enough
+    if (
+      currentQuantity >= product.quantity ||
+      currentQuantity + quantity > product.quantity
+    ) {
+      //timed warning message
+      ErrorService.displayWarning(true); // set the success state to true
+      ErrorService.setMessage(
+        'Stock limit reached'
+      ); // set the success message
+      clearTimeout(this.timerMain);
+      this.timerMain = setTimeout(this.hideAlert, 2000);
       return;
     }
     if (inCart) {
-      this.cartservice.updateQuantity(currentQuantity + 1, product.id);
-      this.cartCount++;
+      this.cartservice.updateQuantity(currentQuantity + quantity, product.id);
+      //timed success message
+      ErrorService.displaySuccess(true); // set the success state to true
+      ErrorService.setMessage(
+        'Added to cart'
+      ); // set the success message
+      clearTimeout(this.timerMain);
+      this.timerMain = setTimeout(this.hideAlert, 2000);
     } else {
-      this.cartservice.addToCart(product.id, 1);
-      this.cartCount++;
+      this.cartservice.addToCart(product.id, quantity);
       this.inCartDisplayDiv = true;
+      //timed success message
+      ErrorService.displaySuccess(true); // set the success state to true
+      ErrorService.setMessage(
+        'Added to cart'
+      ); // set the success message
+      clearTimeout(this.timerMain);
+      this.timerMain = setTimeout(this.hideAlert, 2000);
     }
+    this.cartCount += quantity;
+    this.changeCard();
   }
 
   async addToWishlist(product: Product): Promise<any> {
@@ -92,21 +129,52 @@ export class ProductCardComponent implements OnInit {
           headers: environment.headers,
         })
         .toPromise();
-        data.forEach((p) => {
-          if (product.id == p.product.id) {
-            inWishList = true;
-          }
-        });        
-      } catch (e: any) {
-        if(e.status == 401) {
-          this.router.navigate(["login"])
-          return
+      data.forEach((p) => {
+        if (product.id == p.product.id) {
+          inWishList = true;
         }
+      });
+    } catch (e: any) {
+      if (e.status == 401) {
+        this.router.navigate(['login']);
+        return;
       }
-      if (!inWishList){
-        this.wishlistservice.addToWishlist({productId: product.id})
-      }
+    }
+    if (!inWishList) {
+      this.wishlistservice.addToWishlist({ productId: product.id });
+      //timed success message
+      ErrorService.displaySuccess(true); // set the success state to true
+      ErrorService.setMessage(
+        `Added to wishlist`
+      ); // set the success message
+      clearTimeout(this.timerMain);
+      this.timerMain = setTimeout(this.hideAlert, 2000);
+    }else{
+      ErrorService.displayWarning(true); // set the success state to true
+      ErrorService.setMessage('Already in wishlist'); // set the success message
+      clearTimeout(this.timerMain);
+      this.timerMain = setTimeout(this.hideAlert, 2000);
+    }
+    this.changeCard();
   }
 
   ngOnDestroy() {}
+
+  changeCard() {
+    this.isProductCard = !this.isProductCard;
+  }
+
+  checkInputQty(event: any): void {
+    const num: number = event.target.value;
+    if (!num) {
+      event.target.value = 1;
+    } else if (num > this.productInfo.quantity) {
+      event.target.value = this.productInfo.quantity;
+    }
+  }
+
+  hideAlert() {
+    ErrorService.displaySuccess(false);
+    ErrorService.displayWarning(false);
+  }
 }

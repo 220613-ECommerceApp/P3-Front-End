@@ -27,6 +27,10 @@ export class CartService {
       );
   }
 
+  isLoggedIn(): boolean {
+    return this.auth.isLoggedIn();
+  }
+
   updateQuantity(newQuantity: number, productId: number): void {
     this.auth.updateBearer();
     this.http

@@ -9,7 +9,10 @@ import { environment } from 'src/environments/environment';
 export class AuthService {
 
   authUrl: string = `${environment.baseUrl}/auth`;
-  loggedIn: boolean = false;
+
+  isLoggedIn(): boolean {
+    return localStorage.getItem('token') == null ? false : true;
+  }
 
   constructor(private http: HttpClient) { }
 
