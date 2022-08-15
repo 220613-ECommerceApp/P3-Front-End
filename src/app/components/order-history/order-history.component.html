@@ -1,25 +1,113 @@
 <app-navbar></app-navbar>
-   <table class="table table-striped" id="cart-table">
-   <thead>
-      <tr>
-        <th scope="col">ID</th>
-        <th scope="col">Name</th>
-        <th scope="col">Quantity</th>
-        <th scope="col">Description</th>
-      </tr>
-    </thead>
-    <tbody id="history-table-body">
-        <tr *ngFor="let orders of orderHistoryItems;">
-            <td>
-            	<table>
-            		<tr *ngFor="let item of orders;">
-            			<td>{{item.product.name}}</td>
-            			<td>{{item.product.price}}</td>
-            			<td>{{item.quantity}}</td>
-            		</tr>
-            	</table>
-        	</td>
-        </tr>
-    </tbody>
-</table> -->
-<button class="btn btn-danger" [routerLink]="['/user-profile']">Back</button>
+<table class="history-table">
+	<thead>
+		<tr>
+			<th id="leftPadding"></th>
+			<th id="centerPadding">
+				<h2 class="view-wishlist-text" id="headRow"><strong>Order History</strong></h2>
+			</th>
+			<th id="rightPadding"></th>
+
+		</tr>
+	</thead>
+	<tbody id="history-table-body">
+		<tr>
+			<td id="leftPadding"></td>
+			<td id="centerPadding">
+				<table class="history-list">
+					<th>
+					</th>
+					<tbody id="history-list-body">
+
+						<tr *ngFor="let orders of orderHistoryItems;">
+							<td>
+								<table id="order-table">
+									<tr *ngFor="let item of orders; let i = index">
+										<td>
+											<table class="Product-table">
+												<tbody>
+													<tr *ngIf="i==0">
+														<hr>
+														<h4 class="purchase-time">{{printPurchaseDate(item)}}</h4>
+														<h5 class="fontYellow">Total Order Price: ${{getTotalPrice(orders)}}</h5>
+													</tr>
+													<tr>
+														<td>
+															<table class="Product-table-image/desc">
+																<tr style="padding-top: 100px">
+																	<td>
+																		<img class="product-image"
+																			[src]="item.product.image_url"
+																			alt="Card image cap" width="150"
+																			height="auto" />
+																	</td>
+																	<td>
+																		<table class="product-table-description">
+																			<tr>
+																				<td>
+																					<p><b>{{item.product.name}}</b></p>
+																				</td>
+																			</tr>
+																			<tr>
+																				<td width="600">
+																					{{item.product.description}}
+																				</td>
+																			</tr>
+																			<tr>
+																				<td>
+																					<table class="description-below">
+																						<tr>
+																							<td>
+																								<table
+																									class="description-below-price">
+																									<tr>
+																										<td
+																											class="fontYellow" style="padding-right:60px">
+																											Price:</td>
+																									</tr>
+																									<tr>
+																										<td>${{item.product.price}}
+																										</td>
+																									</tr>
+																								</table>
+																							</td>
+																							<td>
+																								<table
+																									class="description-below-quantity">
+																									<tr>
+																										<td class="fontYellow"style="padding-right:60px">Quantity:
+																										</td>
+																									</tr>
+																									<tr>
+																										<td>{{item.quantity}}
+																										</td>
+																									</tr>
+																								</table>
+																							</td>
+																						</tr>
+																					</table>
+																				</td>
+																			</tr>
+																		</table>
+																	</td>
+																</tr>
+															</table>
+														</td>
+													</tr>
+												</tbody>
+											</table>
+										</td>
+									</tr>
+								</table>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</td>
+			<td id="rightPadding"></td>
+		</tr>
+		<tr>
+			<td id="bottomPadding"></td>
+		</tr>
+	</tbody>
+</table>

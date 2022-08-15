@@ -28,4 +28,18 @@ export class OrderHistoryComponent implements OnInit {
 			}
     	);
   }
+  
+  printPurchaseDate(item : OrderHistoryItem): string  {
+	let ts = new Date(item.timestamp.split("+")[0])
+	return ts.toUTCString();
+	}
+	
+	getTotalPrice(item : OrderHistoryItem[]): string {
+        let totalPrice = 0
+        for(let i of item) {
+            totalPrice += i.quantity * i.product.price
+        }
+        return totalPrice.toFixed(2)
+
+    }
 }
