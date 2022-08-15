@@ -1,11 +1,16 @@
 <nav class="navbar navbar-light bg-light">
   <div class="container">
+    <div class="box">
     <a [routerLink]="['/home']" class="navbar-brand">
       <img src="../../../assets/images/pg-logo.svg" alt="Propane Gaming" />
     </a>
+  </div>
+  <div class="box">
     <div class="search-container">
       <app-search-bar></app-search-bar>
     </div>
+  </div>
+  <div class="box">
     <form class="form-inline">
       <button
         class="navBut btn btn-light"
@@ -37,5 +42,6 @@
         <div class="icon-style exit-icon"></div>
       </button>
     </form>
+  </div>
   </div>
 </nav>
