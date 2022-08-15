@@ -5,12 +5,16 @@ export class OrderHistoryItem {
     product!: Product;
     /** Quantity bought */
     quantity!: number;
-    timestamp!: Date;
+    timestamp!: string;
 
     constructor (id: number, product: Product, quantity: number, timestamp: string) {
         this.id = id;
 		this.product = product;
 		this.quantity = quantity;
-		this.timestamp = new Date(timestamp);
+		 
+		this.timestamp = timestamp;//new RegExp('[0-9]*/[0-9]*/[0-9]*', timestamp);
+		
+
+		//this.timestamp = new Date(timestamp);
     }
 }

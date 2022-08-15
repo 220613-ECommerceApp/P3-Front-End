@@ -31,10 +31,11 @@ export class OrderHistoryComponent implements OnInit {
   }
   
   printPurchaseDate(item : OrderHistoryItem): string  {
-		return item.timestamp.getMonth + "/" + item.timestamp.getDay + "/" + item.timestamp.getFullYear;
+		//return item.timestamp.getMonth + "/" + item.timestamp.getDay + "/" + item.timestamp.getFullYear;
+		return item.timestamp;
 	}
 	
   getTotalPrice(item : OrderHistoryItem): string {
-	return (item.quantity  * item.product.price) + "";
+		return (item.quantity  * item.product.price) + "";
 	}
 }

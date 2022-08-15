@@ -28,12 +28,12 @@
 												<tbody>
 													<tr *ngIf="i==0">
 														<hr>
-														${{printPurchaseDate(item)}}
+														{{printPurchaseDate(item)}}
 													</tr>
 													<tr>
 														<td>
 															<table class="Product-table-image/desc">
-																<tr>
+																<tr style="padding-top: 100px">
 																	<td>
 																		<img class="product-image"
 																			[src]="item.product.image_url"
@@ -61,7 +61,7 @@
 																									class="description-below-price">
 																									<tr>
 																										<td
-																											class="fontYellow">
+																											class="fontYellow" style="padding-right:60px">
 																											Price:</td>
 																									</tr>
 																									<tr>
@@ -74,7 +74,7 @@
 																								<table
 																									class="description-below-quantity">
 																									<tr>
-																										<td>Quantity:
+																										<td class="fontYellow"style="padding-right:60px">Quantity:
 																										</td>
 																									</tr>
 																									<tr>
@@ -87,7 +87,7 @@
 																								<table
 																									class="description-below-price">
 																									<tr>
-																										<td>Total:</td>
+																										<td class="fontYellow"style="padding-right:60px">Total:</td>
 																									</tr>
 																									<tr>
 																										<td>{{getTotalPrice(item)}}
