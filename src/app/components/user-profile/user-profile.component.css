@@ -3,7 +3,6 @@ h1{
     text-align: center;
 }
 p{
-    padding-left: 5px;
     color: #14213d;
     font-size: large;
 
@@ -104,7 +103,6 @@ input .ng-valid{
 #historybtn{
     padding-left: 25px;
     padding-right: 25px;
-    margin-left: 5px;
 }
 
 #redFirst,
