@@ -41,6 +41,7 @@ input .ng-valid{
 
 .userInformation{
     padding-inline: 2em;
+    max-width: 270px;
 }
 
 .userInformation p {
