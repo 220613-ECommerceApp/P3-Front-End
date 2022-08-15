@@ -11,6 +11,5 @@ export class OrderHistoryItem {
         this.id = id;
 		this.product = product;
 		this.quantity = quantity;
-		this.timestamp = timestamp;
-    }
+		this.timestamp = timestamp;    }
 }
