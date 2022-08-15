@@ -38,7 +38,6 @@ export class ProductCardComponent implements OnInit {
     this.fetchCurrentCount();
   }
   async fetchCurrentCount(){
-    console.log('I ran, hooray!')
     this.inCartDisplayDiv = false;
 
     try {
@@ -60,6 +59,8 @@ export class ProductCardComponent implements OnInit {
       }
     }
   }
+
+
 
   async addToCart(product: Product, quantity: number): Promise<any> {
     let inCart = false;
@@ -128,6 +129,22 @@ export class ProductCardComponent implements OnInit {
 
   changeCard() {
     this.isProductCard = !this.isProductCard;
+  }
+
+  enlargeImage() {
+    let modal = document.getElementById("theModal");
+    let img = document.getElementById(this.productInfo.name) as HTMLImageElement;
+    let modalImg = document.getElementById("modImage") as HTMLImageElement;
+    let captionText = document.getElementById("caption");
+    console.log("I was clicked on!")
+    if(img == null || modal == null || modalImg == null || captionText == null) return;
+    modal.style.display = "block";
+    modalImg.src = img.src;
+    //captionText.innerHTML = img.alt;
+    //modalImg.onclick = function() {
+    //  if(modal == null) return;
+    // modal.style.display="none";
+    //}
   }
 
   checkInputQty(event: any): void {

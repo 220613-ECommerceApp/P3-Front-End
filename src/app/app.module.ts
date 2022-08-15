@@ -22,6 +22,7 @@ import { LazyLoadImgDirective } from './directives/lazy-load-img.directive';
 import { ErrorDisplayComponent } from './components/error-display/error-display.component';
 import { FilterSearchComponent } from './components/search/filter-search/filter-search.component';
 import { WishlistComponent } from './components/wishlist/wishlist.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,7 @@ import { WishlistComponent } from './components/wishlist/wishlist.component';
     LazyLoadImgDirective,
     ErrorDisplayComponent,
     FilterSearchComponent,
-    WishlistComponent,
+    WishlistComponent
   ],
 
   imports: [
@@ -50,6 +51,7 @@ import { WishlistComponent } from './components/wishlist/wishlist.component';
     FormsModule,
     ReactiveFormsModule,
     FontAwesomeModule,
+    NgbModule
   ],
   providers: [],
   bootstrap: [AppComponent],

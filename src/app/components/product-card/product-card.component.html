@@ -9,12 +9,21 @@
       class="card-body d-flex flex-column align-items-center"
       (lazyLoadImg)="showElement = true"
     >
-      <img
-        *ngIf="showElement"
-        class="card-img-top"
-        [src]="productInfo.image_url"
-        alt="Card image cap"
-      />
+
+    <img
+      *ngIf="showElement"
+      class="card-img-top"
+      [src]="productInfo.image_url"
+      [id] = "productInfo.name"
+      alt="Card image cap"
+      (click)="enlargeImage()"
+    />
+    <div id="theModal" class="modal">
+      <span class="close">&times;</span>
+      <img class="modal-content" id="modImage">
+      <div id="caption"></div>
+    </div>
+
       <h5 class="card-title align-self-center">{{ productInfo.name }}</h5>
     </div>
     <div>
