@@ -40,6 +40,8 @@ export class SearchBarComponent implements OnInit {
       undefined,
       this.search.tagName
     );
+    this.searchService.searchString = this.search.query;
+    this.searchService.searchTag = tagName;
     this.router.navigate(['/search']);
   }
 }

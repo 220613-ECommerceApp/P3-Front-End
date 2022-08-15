@@ -1,0 +1,68 @@
+<app-navbar></app-navbar>
+   <!-- <table class="table table-striped" id="cart-table">
+   <thead>
+      <tr>
+        <th scope="col">Name</th>
+        <th scope="col">Description</th>
+      </tr>
+    </thead>
+    <tbody id="history-table-body">
+        <tr *ngFor="let wishlistItem of wishlistItems;">
+            <td>{{wishlistItem.product.name}}</td>
+            <td>{{wishlistItem.product.description}}</td>
+            <td><button class="btn align-middle" (click)="removeFromWishlist(wishlistItem.id)">Remove from wishlist</button></td>
+            <td><button class="btn align-middle" (click)="removeFromWishlistAndAddToCart(wishlistItem.id, wishlistItem.product.id)">Move to cart</button></td>
+        </tr>
+    </tbody>
+</table> --> 
+
+
+<div  class="error"><error-display></error-display></div>
+<div class="wishlist-container">
+  <div class="wishlist-items-container">
+    <p class="view-wishlist-text">View Your Wishlist</p>
+    <div *ngIf="wishlistCount<=0">
+    Your wishlist is empty ...
+    </div>
+    <div class="over-flow-control" #populate_wishlist>
+      <div
+      class="populate-wishlist"
+      *ngFor="let wishlistItem of wishlistItems; let n = index"
+    >
+      <div class="wishlistitem">
+        <hr class="line" />
+        <div class="wishlist-sections">
+          <img
+            [src]="wishlistItem.product.image_url"
+            class="image"
+            alt="product_img"
+          />
+          <div class="wishlist-right-section">
+            <p class="title">{{ wishlistItem.product.name }}</p>
+            <p class="description">
+              {{ wishlistItem.product.description }}
+            </p>
+            <ul>
+              <li>
+                <div class="item-headers-text">Price:</div>
+                <div class="item-data-text">${{ wishlistItem.product.price | number : '1.2-2' }}</div>
+              </li>
+              <li>
+                <button *ngIf="wishlistItem.product.quantity > 0" type="button" class="w-button" (click)="removeFromWishlistAndAddToCart(wishlistItem.id, wishlistItem.product.id)">Move to Cart</button>
+                <button *ngIf="wishlistItem.product.quantity <= 0" type="button" class="w-button disable">Out of Stock</button>
+                <div
+                  class="r-button"
+                  (click)="removeFromWishlist(wishlistItem.id)"
+                  [id]="wishlistItem.product.id + ',' + 'r' + ',' + n"
+                >
+                  Remove from Wishlist
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+    
+  </div>

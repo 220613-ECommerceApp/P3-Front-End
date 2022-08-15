@@ -17,16 +17,15 @@ export class OrderHistoryComponent implements OnInit {
   ngOnInit(): void {
 		this.orderHistoryService.getOrderHistoryItems().subscribe(
       		(orderHistory) => {
-	    		//this.orderHistoryItemCount = orderHistory.length;
-        		//this.orderHistoryItems = orderHistory.orderHistoryItems;
-        	
-        		this.orderHistoryItems = orderHistory;
-        
-        		//orderHistory.forEach(
-				//	(element) => this.orderHistoryItems.push(element)
-				//);
-		
-      		}
+        		orderHistory.forEach(
+					(element) => this.orderHistoryItems.push(element)
+				);
+      		},
+			(err) => {
+				if(err.status == 401) {
+					this.router.navigate(["login"])
+				}
+			}
     	);
   }
   

@@ -30,7 +30,7 @@
                 <div class="item-data-text">${{ cartitem.product.price | number : '1.2-2' }}</div>
               </li>
               <li>
-                <div class="item-headers-text">Quantity:</div>
+                <div class="item-headers-text" id="quantity-text-alignment">Quantity:</div>
                 <div class="quantity-container">
                   <input
                     class="user-quantity"
@@ -61,7 +61,7 @@
                 </div>
               </li>
               <li>
-                <button type="button" class="w-button">Move to Wishlist</button>
+                <button type="button" class="w-button" (click)="removeFromCartAndAddToWishlist(cartitem.product.id)">Move to Wishlist</button>
                 <div
                   class="r-button"
                   (click)="removeFromCart(cartitem.product.id)"

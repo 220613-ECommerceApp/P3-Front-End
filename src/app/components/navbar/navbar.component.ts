@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
-import { CartService } from 'src/app/services/cart.service';
 
 @Component({
   selector: 'app-navbar',
@@ -9,21 +8,22 @@ import { CartService } from 'src/app/services/cart.service';
   styleUrls: ['./navbar.component.css'],
 })
 export class NavbarComponent implements OnInit {
-  cartCount!: number;
   userLoggedIn = localStorage.getItem('token') == null ? false : true;
 
-  constructor(
-    private authService: AuthService,
-    private router: Router,
-    private cartservice: CartService
-  ) {}
+  constructor(private authService: AuthService, private router: Router) {}
 
-  ngOnInit(): void {
-    //this.cartservice.getCartCount().then(num=>this.cartCount=num);
+  ngOnInit(): void {}
+
+  isCurrentLocation(url: string): boolean {
+    return this.router.url === url;
   }
 
   logout() {
     this.authService.logout();
-    window.location.reload();
+    if (this.router.url == '/home') {
+      window.location.reload();
+    } else {
+      this.router.navigate(['home']);
+    }
   }
 }
