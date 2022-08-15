@@ -17,25 +17,30 @@ export class OrderHistoryComponent implements OnInit {
   ngOnInit(): void {
 		this.orderHistoryService.getOrderHistoryItems().subscribe(
       		(orderHistory) => {
-	    		//this.orderHistoryItemCount = orderHistory.length;
-        		//this.orderHistoryItems = orderHistory.orderHistoryItems;
-        	
-        		this.orderHistoryItems = orderHistory;
-        
-        		//orderHistory.forEach(
-				//	(element) => this.orderHistoryItems.push(element)
-				//);
-		
-      		}
+        		orderHistory.forEach(
+					(element) => this.orderHistoryItems.push(element)
+				);
+      		},
+			(err) => {
+				if(err.status == 401) {
+					this.router.navigate(["login"])
+				}
+			}
     	);
   }
   
   printPurchaseDate(item : OrderHistoryItem): string  {
-		//return item.timestamp.getMonth + "/" + item.timestamp.getDay + "/" + item.timestamp.getFullYear;
-		return item.timestamp;
+
+	let ts = new Date(item.timestamp.split("+")[0]+"Z")
+	return ts.toDateString() + " " + ts.toLocaleTimeString();
 	}
 	
-  getTotalPrice(item : OrderHistoryItem): string {
-		return (item.quantity  * item.product.price) + "";
-	}
+	getTotalPrice(item : OrderHistoryItem[]): string {
+        let totalPrice = 0
+        for(let i of item) {
+            totalPrice += i.quantity * i.product.price
+        }
+        return totalPrice.toFixed(2)
+
+    }
 }

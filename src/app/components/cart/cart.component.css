@@ -114,19 +114,19 @@
   font-weight: 600;
   width: 700px;
   margin-left: 65px;
-  height: 45px;
+  height: auto;
   overflow: hidden;
 }
 
-ul{
-  margin-left: 20px;
+#quantity-text-alignment{
+  margin-left:-35.8px ;
 }
 
 ul > li {
   display: inline-block;
-  width: auto;
-  margin-left: 0px;
-  padding-right: 60px;
+  margin-right: 25px;
+  margin-left: 25px;
+  width: 160px;
 }
 li {
   margin-right: 22px;
@@ -159,7 +159,7 @@ ul li:not(:last-child) {
 .user-quantity {
   width: 75px;
   border: #e5e5e5;
-  margin-left: 0px;
+  margin-left: -35px;
   margin-right: 5px;
 }
 

@@ -1,0 +1,179 @@
+.wishlist-container {
+    display: table;
+    margin: auto;
+    margin-top: 40px;
+  }
+  
+  .wishlist-items-container {
+    float: center;
+    background-color: #e5e5e5;
+    width: 1150px;
+    height: auto;
+    border-radius: 10px;
+    margin-right: 10px;
+    padding: 4%;
+  }
+  
+  .over-flow-control{
+    overflow-y: auto;
+    height: 625px;
+  }
+  
+  .c-button,
+  .q-button {
+    background-color: #fca311;
+    border: #e5e5e5;
+    border-radius: 150px;
+    color: #14213d;
+    font-size: 1em;
+  
+    font-weight: bolder;
+  }
+  .q-button {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+  .c-button {
+    padding: 7px 20px 7px 20px;
+  }
+  
+  .c {
+    padding-bottom: 10px;
+    font-weight: 600;
+  }
+  
+  .d {
+    font-weight: 900;
+  }
+  .ch1 {
+    grid-area: ch1;
+  }
+  .cd1 {
+    grid-area: cd1;
+  }
+  .ch2 {
+    grid-area: ch2;
+  }
+  .cd2 {
+    grid-area: cd2;
+  }
+  .ch3 {
+    grid-area: ch3;
+  }
+  .cd3 {
+    grid-area: cd3;
+  }
+  .ch4 {
+    grid-area: ch4;
+  }
+  .cd4 {
+    grid-area: cd4;
+  }
+  .view-wishlist-text {
+    font-size: 2.75em;
+    font-weight: 800;
+  }
+  
+  .line {
+    height: 2px;
+    border-width: 0;
+    color: rgb(195, 195, 195);
+    background-color: rgb(195, 195, 195);
+    margin-bottom: 40px;
+  }
+  
+  /* wishlistitem styles */
+  
+  .title {
+    font-weight: 800;
+    font-size: 1.2em;
+    margin-left: 65px;
+  }
+  
+  .description {
+    font-weight: 600;
+    width: 700px;
+    margin-left: 65px;
+    height: auto;
+    overflow: hidden;
+  }
+  
+  #quantity-text-alignment{
+    margin-left:-35.8px ;
+  }
+  
+  ul > li {
+    display: inline-block;
+    margin-right: 25px;
+    margin-left: 25px;
+    width: 160px;
+  }
+  li {
+    margin-right: 22px;
+    margin-left: 22px;
+  }
+  ul li:not(:last-child) {
+    border-right: 1px solid rgb(195, 195, 195);
+  }
+  
+  .item-headers-text {
+    font-style: italic;
+    font-weight: 800;
+    font-size: 1.1em;
+    color: #fca311;
+  }
+  .item-data-text {
+    font-weight: 800;
+    font-size: 1.2em;
+  }
+  .quantity-container {
+    display: flex;
+    margin-top: 5px;
+  }
+  
+  .r-button {
+    text-decoration: underline;
+    color: #fca311;
+    width: max-content;
+  }
+  
+  .w-button {
+    background-color: #fca311;
+    border: #e5e5e5;
+    border-radius: 150px;
+    color: #14213d;
+    font-size: 1em;
+    padding-left: 6px;
+    padding-right: 6px;
+    font-weight: 700;
+    margin-bottom: 7.5px;
+  }
+  
+  button,
+  .r-button {
+    cursor: pointer;
+  }
+  
+  .image {
+    height: 162px;
+    width: 162px;
+    border-radius: 10px;
+    border: 1px solid #000000;
+    background-color: #303e5a;
+  }
+  .wishlist-right-section {
+    margin-left: -40px;
+  }
+  
+  .wishlist-sections {
+    display: flex;
+  }
+  
+  .error{
+    height: 52px;
+  }
+  
+  .disable {
+    pointer-events: none;
+    background-color: #ababab;
+  }

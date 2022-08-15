@@ -7,7 +7,6 @@ p{
     padding-left: 25px;
     color: azure;
     font-size: large;
-    margin: 15px;
 
 }
 .allContent {
@@ -38,14 +37,29 @@ input .ng-valid{
     background-color:  #e5e5e50F;
     border-radius: 50px;
     margin-left: 15px;
-    justify-content: left;
+    justify-content: center;
 
+}
+
+.userInformation{
+    padding-right: 40px;
+    margin-top: 20px;
+}
+
+.userInformation p{
+    margin-top: 15px;
+    margin-bottom: -3px;
 }
 
 .Infofor{
-    margin-top: 50px;
+    margin-top: 30px;
     margin-left:70px;
 }
+.Infofor p{
+    margin: 15px;
+    margin-top: 15px;
+}
+
 
 #user-container{
     float: right;
@@ -59,8 +73,7 @@ input .ng-valid{
 #email,
 #username,
 #password{
-    margin-left:35px;
-    padding: 5px;
+    margin-left:25px;
 }
 
 
@@ -76,29 +89,23 @@ input .ng-valid{
     padding-left: 6px;
     padding-right: 6px;
     font-weight: 700;
-    margin-bottom: 25px;
+    margin-bottom: 15px;
     margin-left: 25px;
-    margin-top: 25px;
+    margin-top: 5px;
 }
 
 .uBtn {
     margin-left: 50px;
     padding-left: 40px;
     padding-right: 40px;
+    margin-top: 15px;
 }
 
-.btn-back {
-    padding-left: 50px;
-    padding-right: 50px;
-    margin-left:145px; 
-}
 
 .btnF {
     padding-left: 25px;
     padding-right: 25px;
-    position:absolute;
-   top:45px;
-   right:10px;
+    margin-left: 50px;
 }
 
 .allDem {
@@ -122,4 +129,31 @@ input .ng-valid{
     padding-right: 25px;
     margin-left: 50px;
 }
+
+#redFirst,
+#redlast,
+#redEmail1,
+#redEmail2,
+#redUsername,
+#redPassword1,
+#redPwassword2 {
+    margin-left: 25px;
+}
   
+.icon-style,
+.user-icon {
+  width: 100px;
+  height: 100px;
+  mask-size: contain;
+  mask-position: center;
+  mask-repeat: no-repeat;
+  background-color: azure;
+  -moz-border-radius: 50px;
+    -webkit-border-radius: 50px;
+    border-radius: 50px;
+  margin-left: 135px;
+}
+
+.user-icon {
+    mask-image: url("/assets/icons/user-login-icon.svg");
+  }

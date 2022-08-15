@@ -11,7 +11,6 @@ import { HttpHeaders } from '@angular/common/http';
   providedIn: 'root',
 })
 export class CartService {
-  
   constructor(private http: HttpClient, private auth: AuthService) {}
 
   //fetch cartItem table for logged-in user
@@ -28,35 +27,8 @@ export class CartService {
       );
   }
 
-  async getCartCount(): Promise<number> {
-    let count = 0;
-    this.auth.updateBearer();
-    let data = await this.http
-      .get<Cartitem[]>(environment.baseUrl + '/api/cart', {
-        headers: environment.headers,
-      })
-      .toPromise();
-
-    data.forEach((p) => {
-      count += p.quantity;
-    });
-
-    return count;
-  }
-
-  async getTotalPrice(): Promise<number> {
-    let total = 0;
-    this.auth.updateBearer();
-    let data = await this.http
-      .get<Cartitem[]>(environment.baseUrl + '/api/cart', {
-        headers: environment.headers,
-      })
-      .toPromise();
-
-    data.forEach((p) => {
-      total += p.quantity * p.product.price;
-    });
-    return total;
+  isLoggedIn(): boolean {
+    return this.auth.isLoggedIn();
   }
 
   updateQuantity(newQuantity: number, productId: number): void {
@@ -99,8 +71,8 @@ export class CartService {
         catchError((e) => {
           return throwError(e);
         })
-      ).subscribe();
-    
+      )
+      .subscribe();
   }
 
   removeItem(productId: number) {

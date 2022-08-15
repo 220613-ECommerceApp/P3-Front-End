@@ -1,25 +1,83 @@
 <div class="card d-flex flex-column align-items-center" style="width: 18rem">
-  <div
-    class="card-body d-flex flex-column align-items-center"
-    (lazyLoadImg)="showElement = true"
-  >
-    <img
-      *ngIf="showElement"
-      class="card-img-top"
-      [src]="productInfo.image_url"
-      alt="Card image cap"
-    />
-    <h5 class="card-title align-self-center">{{ productInfo.name }}</h5>
-  </div>
-  <div>
-    <h6 class="card-title align-self-center">{{"In Stock: " + productInfo.quantity }}</h6>
-  </div>
-  <div
-    class="card-body bottom d-flex justify-content-around align-items-center"
-  >
-    <h5 class="align-middle">${{ productInfo.price.toFixed(2) }}</h5>
-    <button class="btn align-middle" (click)="addToCart(productInfo)">
-      add to cart
-    </button>
-  </div>
+  <ng-container *ngIf="isProductCard; else buyCard">
+    <div class="d-flex justify-content-between align-items-center card-top">
+      <div id="cartCounter">
+        <span *ngIf="inCartDisplayDiv">In Cart: {{ cartCount }}</span>
+      </div>
+    </div>
+    <div
+      class="card-body d-flex flex-column align-items-center"
+      (lazyLoadImg)="showElement = true"
+    >
+      <img
+        *ngIf="showElement"
+        class="card-img-top"
+        [src]="productInfo.image_url"
+        alt="Card image cap"
+      />
+      <h5 class="card-title align-self-center">{{ productInfo.name }}</h5>
+    </div>
+    <div>
+      <h6 class="card-body2 align-self-center" id="17">
+        {{ "In Stock: " + productInfo.quantity }}
+      </h6>
+    </div>
+    <div
+      class="card-body bottom d-flex justify-content-center align-items-center"
+    >
+      <h5 class="align-middle">${{ productInfo.price.toFixed(2) }}</h5>
+      <button class="btn" (click)="changeCard()">buy now</button>
+    </div>
+  </ng-container>
+
+  <ng-template #buyCard>
+    <div class="d-flex justify-content-between align-items-center card-top">
+      <div id="cartCounter">
+        <span *ngIf="inCartDisplayDiv">In Cart: {{ cartCount }}</span>
+      </div>
+      <div>
+        <button class="btn" (click)="changeCard()">X</button>
+      </div>
+    </div>
+    <div class="card-body d-flex flex-column align-items-center">
+      <h5 class="card-title align-self-center">{{ productInfo.name }}</h5>
+    </div>
+    <div>
+      <h6 class="card-body2 align-self-center" id="17">
+        {{ "In Stock: " + productInfo.quantity }}
+      </h6>
+    </div>
+    <div class="card-body bottom d-flex flex-column align-items-center">
+      <h5 class="align-middle">${{ productInfo.price.toFixed(2) }}</h5>
+      <form class="form-inline">
+        <label class="mr-sm-2" for="inlineFormQty">Quantity:</label>
+        <input
+          type="number"
+          class="form-control mr-sm-2"
+          id="inlineFormQty"
+          value="1"
+          min="1"
+          name="buyQuantity"
+          [(ngModel)]="buyQuantity"
+          [max]="productInfo.quantity"
+          (keyup)="checkInputQty($event)"
+          [disabled]="productInfo.quantity <= 0"
+        />
+      </form>
+      <button
+        [ngClass]="{
+          'btn align-middle ': productInfo.quantity > 0,
+          'btn_grey align-middle': productInfo.quantity <= 0
+        }"
+        (click)="
+          productInfo.quantity > 0 && addToCart(productInfo, buyQuantity)
+        "
+      >
+        {{ productInfo.quantity > 0 ? "add to cart" : "out of stock" }}
+      </button>
+      <button class="btn align-middle" (click)="addToWishlist(productInfo)">
+        add to wishlist
+      </button>
+    </div>
+  </ng-template>
 </div>

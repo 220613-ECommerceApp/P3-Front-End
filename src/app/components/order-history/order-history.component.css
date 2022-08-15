@@ -1,8 +1,14 @@
-table{
-    color: 6E6E6E;
-    align: center;
+.purchase-time
+{
+	font-weight: bold;
+	color: #14213d;
 }
 
+.view-orderhistory-text {
+    font-size: 2.75em;
+    font-weight: 800;
+}
+  
 .history-table 
 {
 	border-radius: 10px;
@@ -13,7 +19,6 @@ table{
     margin-left: auto;
     margin-right: auto;
     background-color:#E5E5E5;
-    padding-color:E5E5E5;
 }
 
 #leftPadding
@@ -28,12 +33,12 @@ table{
 
 .fontYellow
 {
-	color: #FCA311
+	color: #FCA311;
 }
 
 .fontDescription
 {
-	font-size: 16px
+	font-size: 14px
 }
 
 #centerPadding
@@ -52,7 +57,7 @@ table{
 }
 
 caption{
-  color: 6E6E6E;
+  color: #6E6E6E;
     caption-side: top;
 }
 

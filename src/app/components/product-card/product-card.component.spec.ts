@@ -40,13 +40,22 @@ describe('ProductCardComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should call addToCart when add to cart button is clicked', fakeAsync(() => {
-    let addToCartSpy = spyOn(component, 'addToCart').and.callThrough();
+  it('should call changeCard when buy now button is clicked', fakeAsync(() => {
+    let changeCardSpy = spyOn(component, 'changeCard').and.callThrough();
 
     let button = fixture.debugElement.nativeElement.querySelector('.btn');
     button.click();
     tick();
-    expect(addToCartSpy).toHaveBeenCalled();
+    expect(changeCardSpy).toHaveBeenCalled();
+    flush();
+  }));
+
+  it('should call changeCard when buy now button is clicked', fakeAsync(() => {
+    let changeCardSpy = spyOn(component, 'changeCard').and.callThrough();
+    let button = fixture.debugElement.nativeElement.querySelector('.btn');
+    button.click();
+    tick();
+    expect(changeCardSpy).toHaveBeenCalled();
     flush();
   }));
 });

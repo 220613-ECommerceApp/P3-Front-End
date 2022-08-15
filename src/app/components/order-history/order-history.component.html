@@ -4,7 +4,7 @@
 		<tr>
 			<th id="leftPadding"></th>
 			<th id="centerPadding">
-				<h2 style="text-align:left" id="headRow"><b>Order History</b></h2>
+				<h2 class="view-wishlist-text" id="headRow"><strong>Order History</strong></h2>
 			</th>
 			<th id="rightPadding"></th>
 
@@ -28,7 +28,9 @@
 												<tbody>
 													<tr *ngIf="i==0">
 														<hr>
-														{{printPurchaseDate(item)}}
+
+														<h4 class="purchase-time">{{printPurchaseDate(item)}}</h4>
+														<h5 class="fontYellow">Total Order Price: ${{getTotalPrice(orders)}}</h5>
 													</tr>
 													<tr>
 														<td style="padding-top: 20px">
@@ -65,7 +67,7 @@
 																											Price:</td>
 																									</tr>
 																									<tr>
-																										<td>{{item.product.price}}
+																										<td>${{item.product.price}}
 																										</td>
 																									</tr>
 																								</table>
@@ -78,19 +80,7 @@
 																										</td>
 																									</tr>
 																									<tr>
-																										<td>{{item.product.quantity}}
-																										</td>
-																									</tr>
-																								</table>
-																							</td>
-																							<td>
-																								<table
-																									class="description-below-price">
-																									<tr>
-																										<td class="fontYellow"style="padding-right:60px">Total:</td>
-																									</tr>
-																									<tr>
-																										<td>{{getTotalPrice(item)}}
+																										<td>{{item.quantity}}
 																										</td>
 																									</tr>
 																								</table>
@@ -122,4 +112,3 @@
 		</tr>
 	</tbody>
 </table>
-<button class="btn btn-danger" [routerLink]="['/home']">Back</button>

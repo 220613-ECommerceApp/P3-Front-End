@@ -13,6 +13,11 @@ export class SearchService {
   private productUrl: string = '/api/product/search/superSearch';
   private tagUrl: string = '/api/tag';
 
+  searchString: string = '';
+  searchTag?: string = '';
+  minPrice: number = 0;
+  maxPrice: number = 0;
+
   products: Product[] = [];
 
   constructor(private http: HttpClient, private auth: AuthService) {}
@@ -69,18 +74,20 @@ export class SearchService {
 
     queryParams = queryParams.append('query', searchQuery);
 
+    this.findProductsHttp(queryParams).subscribe(
+      (resp) => (this.products = resp),
+      (err) => console.log(err),
+      () => console.log('Products Retrieved')
+    );
+  }
+
+  private findProductsHttp(queryParams: HttpParams): Observable<Product[]> {
     let searchUrl: string = environment.baseUrl + this.productUrl;
     this.auth.updateBearer();
-    this.http
-      .get<Product[]>(searchUrl, {
-        headers: environment.headers,
-        params: queryParams,
-      })
-      .subscribe(
-        (resp) => (this.products = resp),
-        (err) => console.log(err),
-        () => console.log('Products Retrieved')
-      );
+    return this.http.get<Product[]>(searchUrl, {
+      headers: environment.headers,
+      params: queryParams,
+    });
   }
 
   public getTags(): Observable<Tag[]> {

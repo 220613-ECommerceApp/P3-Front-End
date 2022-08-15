@@ -24,6 +24,10 @@ img
     padding: 2%;
 }
 
+img:hover {
+    cursor: pointer;
+}
+
 label
 {
     color: white;

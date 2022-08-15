@@ -2,12 +2,24 @@
   size: auto;
   max-width: 300px;
   min-width: 200px;
-  height: 320px;
-  max-height: 400px;
+  min-height: 390px;
+  max-height: 470px;
   transition: 0.1s ease-out;
   background-color: #303e5a;
   color: white;
   border-radius: 15px;
+}
+
+.card-top {
+  width: 100%;
+  padding: 0 15px;
+  margin-top: 15px;
+}
+
+#cartCounter {
+  color: #faa229;
+  width: 115px;
+  height: 22px;
 }
 
 .card-body {
@@ -17,8 +29,8 @@
 
 img {
   justify-content: center;
-  height: 130px;
-  width: 130px;
+  height: 150px;
+  width: 150px;
   border-radius: 25px;
   left: 0;
   margin-bottom: 10px;
@@ -42,23 +54,39 @@ div {
   border-radius: 25px;
   margin-bottom: 0px;
 }
+.btn_grey {
+  background-color: #ababab;
+  color: #ffffff;
+  font-weight: bold;
+  text-transform: uppercase;
+  border-radius: 25px;
+  margin-bottom: 0px;
+  padding-top: 6px;
+  padding-bottom: 6px;
+  padding-left: 12px;
+  padding-right: 12px;
+}
 
 .card-body.bottom {
   width: 100%;
   margin-top: 0;
   padding-top: 0;
+  gap: 9px;
+  margin-bottom: 10px;
 }
 
 .card-body.bottom h5 {
-  margin: 10;
-  margin-top: 20px;
   padding-right: 15px;
   font-weight: 600;
-  margin-bottom: 20px;
 }
 
 .card-title {
   font-size: 18;
-  margin-bottom:0;
+  height: 68px;
+  margin-bottom: 0;
   padding: 10px;
+}
+
+input {
+  max-width: 100px;
 }

@@ -11,10 +11,5 @@ export class OrderHistoryItem {
         this.id = id;
 		this.product = product;
 		this.quantity = quantity;
-		 
-		this.timestamp = timestamp;//new RegExp('[0-9]*/[0-9]*/[0-9]*', timestamp);
-		
-
-		//this.timestamp = new Date(timestamp);
-    }
+		this.timestamp = timestamp;    }
 }
