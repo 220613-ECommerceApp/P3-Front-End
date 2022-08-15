@@ -5,7 +5,7 @@ h1{
 }
 p{
     padding-left: 25px;
-    color: azure;
+    color: #14213d;
     font-size: large;
 
 }
@@ -34,7 +34,7 @@ input .ng-valid{
     float: left;
     padding: 10px;
     max-width: 400px;
-    background-color:  #e5e5e50F;
+    background-color:  #E5E5E5;
     border-radius: 50px;
     margin-left: 15px;
     justify-content: center;
@@ -147,7 +147,7 @@ input .ng-valid{
   mask-size: contain;
   mask-position: center;
   mask-repeat: no-repeat;
-  background-color: azure;
+  background-color: #14213d;
   -moz-border-radius: 50px;
     -webkit-border-radius: 50px;
     border-radius: 50px;
