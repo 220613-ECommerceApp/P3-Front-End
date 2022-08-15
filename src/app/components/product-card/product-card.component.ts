@@ -23,7 +23,7 @@ export class ProductCardComponent implements OnInit {
   public showElement?: boolean;
   public cartCount: number = 0;
   public inCartDisplayDiv: boolean = false;
-  timer: any = 0;
+  timerMain: any = 0;
 
   constructor(
     private cartservice: CartService,
@@ -93,8 +93,8 @@ export class ProductCardComponent implements OnInit {
       ErrorService.setMessage(
         'Failed! Stock limit reached'
       ); // set the success message
-      clearTimeout(this.timer);
-      this.timer = setTimeout(this.hideAlert, 2400);
+      clearTimeout(this.timerMain);
+      this.timerMain = setTimeout(this.hideAlert, 2000);
       return;
     }
     if (inCart) {
@@ -104,8 +104,8 @@ export class ProductCardComponent implements OnInit {
       ErrorService.setMessage(
         `Product:  [${product.name.toUpperCase()}]  added to cart`
       ); // set the success message
-      clearTimeout(this.timer);
-      this.timer = setTimeout(this.hideAlert, 2400);
+      clearTimeout(this.timerMain);
+      this.timerMain = setTimeout(this.hideAlert, 2000);
     } else {
       this.cartservice.addToCart(product.id, quantity);
       this.inCartDisplayDiv = true;
@@ -114,8 +114,8 @@ export class ProductCardComponent implements OnInit {
       ErrorService.setMessage(
         `Product:  [${product.name.toUpperCase()}]  added to cart`
       ); // set the success message
-      clearTimeout(this.timer);
-      this.timer = setTimeout(this.hideAlert, 2400);
+      clearTimeout(this.timerMain);
+      this.timerMain = setTimeout(this.hideAlert, 2000);
     }
     this.cartCount += quantity;
     this.changeCard();
@@ -141,14 +141,19 @@ export class ProductCardComponent implements OnInit {
       }
     }
     if (!inWishList) {
+      this.wishlistservice.addToWishlist({ productId: product.id });
       //timed success message
       ErrorService.displaySuccess(true); // set the success state to true
       ErrorService.setMessage(
         `Product:  [${product.name.toUpperCase()}]  added to wishlist`
       ); // set the success message
-      clearTimeout(this.timer);
-      this.timer = setTimeout(this.hideAlert, 2400);
-      this.wishlistservice.addToWishlist({ productId: product.id });
+      clearTimeout(this.timerMain);
+      this.timerMain = setTimeout(this.hideAlert, 2000);
+    }else{
+      ErrorService.displayWarning(true); // set the success state to true
+      ErrorService.setMessage('Already in wishlist'); // set the success message
+      clearTimeout(this.timerMain);
+      this.timerMain = setTimeout(this.hideAlert, 2000);
     }
     this.changeCard();
   }
