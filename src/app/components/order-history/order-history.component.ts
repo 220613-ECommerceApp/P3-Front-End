@@ -19,13 +19,22 @@ export class OrderHistoryComponent implements OnInit {
       		(orderHistory) => {
 	    		//this.orderHistoryItemCount = orderHistory.length;
         		//this.orderHistoryItems = orderHistory.orderHistoryItems;
+        	
+        		this.orderHistoryItems = orderHistory;
         
-        
-        		orderHistory.forEach(
-					(element) => this.orderHistoryItems.push(element)
-				);
+        		//orderHistory.forEach(
+				//	(element) => this.orderHistoryItems.push(element)
+				//);
 		
       		}
     	);
   }
+  
+  printPurchaseDate(item : OrderHistoryItem): string  {
+		return item.timestamp.getMonth + "/" + item.timestamp.getDay + "/" + item.timestamp.getFullYear;
+	}
+	
+  getTotalPrice(item : OrderHistoryItem): string {
+	return (item.quantity  * item.product.price) + "";
+	}
 }

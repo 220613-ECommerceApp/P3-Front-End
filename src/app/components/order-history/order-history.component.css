@@ -1,11 +1,60 @@
 table{
-    color: white;
+    color: 6E6E6E;
+    align: center;
 }
 
-.table 
+.history-table 
 {
-    margin: 3%;
+	border-radius: 10px;
+	padding-left:40px;
+    padding-right:40px;
+	padding-top:20px;
+	margin-top: 50px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color:#E5E5E5;
+    padding-color:E5E5E5;
 }
+
+#leftPadding
+{
+	padding-left: 60px;	
+}
+ 
+#rightPadding
+{
+	padding-right: 60px;	
+}
+
+.fontYellow
+{
+	color: #FCA311
+}
+
+#centerPadding
+{
+	padding-right: 0px;	
+} 
+
+#bottomPadding
+{
+	padding-bottom: 40px;
+}
+
+#headRow
+{
+	padding-top:50px;
+}
+
+caption{
+  color: 6E6E6E;
+    caption-side: top;
+}
+
+.history-table
+{ 
+	caption-side: top; 
+} 
 
 .btn
 {
