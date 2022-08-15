@@ -141,6 +141,13 @@ export class ProductCardComponent implements OnInit {
       }
     }
     if (!inWishList) {
+      //timed success message
+      ErrorService.displaySuccess(true); // set the success state to true
+      ErrorService.setMessage(
+        `Product:  [${product.name.toUpperCase()}]  added to wishlist`
+      ); // set the success message
+      clearTimeout(this.timer);
+      this.timer = setTimeout(this.hideAlert, 2400);
       this.wishlistservice.addToWishlist({ productId: product.id });
     }
     this.changeCard();
