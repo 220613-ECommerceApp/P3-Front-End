@@ -5,7 +5,6 @@ import {
 } from '@angular/common/http/testing';
 
 import { SearchService } from './search.service';
-import { Product } from '../models/product';
 import { Tag } from '../models/tag';
 
 describe('SearchService', () => {
