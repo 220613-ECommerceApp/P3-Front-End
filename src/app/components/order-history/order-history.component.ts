@@ -31,8 +31,7 @@ export class OrderHistoryComponent implements OnInit {
   
   printPurchaseDate(item : OrderHistoryItem): string  {
 	let ts = new Date(item.timestamp.split("+")[0])
-	//console.log(ts.getDay())
-	return ts.getMonth() + "/" + ts.getDay() + "/" + ts.getFullYear();
+	return ts.toUTCString();
 	}
 	
   getTotalPrice(item : OrderHistoryItem): string {
