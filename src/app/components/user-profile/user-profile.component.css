@@ -3,7 +3,8 @@ h1{
     text-align: center;
 }
 p{
-    color: azure;
+    padding-left: 25px;
+    color: #14213d;
     font-size: large;
 
 }
@@ -33,7 +34,7 @@ input .ng-valid{
     flex: 25 25 25px;
     padding: 10px;
     max-width: 400px;
-    background-color:  #e5e5e50F;
+    background-color:  #E5E5E5;
     border-radius: 50px;
     justify-content: center;
 }
@@ -103,6 +104,17 @@ input .ng-valid{
 #historybtn{
     padding-left: 25px;
     padding-right: 25px;
+    margin-left: 50px;
+}
+
+#redFirst,
+#redlast,
+#redEmail1,
+#redEmail2,
+#redUsername,
+#redPassword1,
+#redPassword2 {
+    margin-left: 25px;
 }
   
 .icon-style,
@@ -112,7 +124,7 @@ input .ng-valid{
   mask-size: contain;
   mask-position: center;
   mask-repeat: no-repeat;
-  background-color: azure;
+  background-color: #14213d;
   -moz-border-radius: 50px;
     -webkit-border-radius: 50px;
     border-radius: 50px;
