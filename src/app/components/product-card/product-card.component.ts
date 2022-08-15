@@ -91,7 +91,7 @@ export class ProductCardComponent implements OnInit {
       //timed warning message
       ErrorService.displayWarning(true); // set the success state to true
       ErrorService.setMessage(
-        'Failed! Stock limit reached'
+        'Stock limit reached'
       ); // set the success message
       clearTimeout(this.timerMain);
       this.timerMain = setTimeout(this.hideAlert, 2000);
@@ -102,7 +102,7 @@ export class ProductCardComponent implements OnInit {
       //timed success message
       ErrorService.displaySuccess(true); // set the success state to true
       ErrorService.setMessage(
-        `Product:  [${product.name.toUpperCase()}]  added to cart`
+        'Added to cart'
       ); // set the success message
       clearTimeout(this.timerMain);
       this.timerMain = setTimeout(this.hideAlert, 2000);
@@ -112,7 +112,7 @@ export class ProductCardComponent implements OnInit {
       //timed success message
       ErrorService.displaySuccess(true); // set the success state to true
       ErrorService.setMessage(
-        `Product:  [${product.name.toUpperCase()}]  added to cart`
+        'Added to cart'
       ); // set the success message
       clearTimeout(this.timerMain);
       this.timerMain = setTimeout(this.hideAlert, 2000);
@@ -145,7 +145,7 @@ export class ProductCardComponent implements OnInit {
       //timed success message
       ErrorService.displaySuccess(true); // set the success state to true
       ErrorService.setMessage(
-        `Product:  [${product.name.toUpperCase()}]  added to wishlist`
+        `Added to wishlist`
       ); // set the success message
       clearTimeout(this.timerMain);
       this.timerMain = setTimeout(this.hideAlert, 2000);
