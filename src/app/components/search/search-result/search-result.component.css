@@ -100,3 +100,10 @@ h1.styled {
   margin-bottom: 30px;
   font-style: italic;
 }
+
+.error{
+  height: 52px;
+   z-index: 1;
+  position: fixed;
+  margin-left:675px;
+}

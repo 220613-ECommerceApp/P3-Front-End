@@ -7,6 +7,7 @@ import { environment } from 'src/environments/environment';
 import { WishlistItem } from 'src/app/models/wishlist-item';
 import { WishlistService } from 'src/app/services/wishlist.service';
 import { Router } from '@angular/router';
+import { ErrorService } from 'src/app/services/error.service';
 
 @Component({
   selector: 'app-product-card',
@@ -22,6 +23,7 @@ export class ProductCardComponent implements OnInit {
   public showElement?: boolean;
   public cartCount: number = 0;
   public inCartDisplayDiv: boolean = false;
+  timerMain: any = 0;
 
   constructor(
     private cartservice: CartService,
@@ -34,11 +36,11 @@ export class ProductCardComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    if(!this.cartservice.isLoggedIn()) return;
+    if (!this.cartservice.isLoggedIn()) return;
     this.fetchCurrentCount();
   }
-  async fetchCurrentCount(){
-    console.log('I ran, hooray!')
+  async fetchCurrentCount() {
+    console.log('I ran, hooray!');
     this.inCartDisplayDiv = false;
 
     try {
@@ -84,16 +86,36 @@ export class ProductCardComponent implements OnInit {
     }
     if (
       currentQuantity >= product.quantity ||
-      currentQuantity+ quantity > product.quantity
+      currentQuantity + quantity > product.quantity
     ) {
-      console.log('STOP'); //Stock is not enough
+      //timed warning message
+      ErrorService.displayWarning(true); // set the success state to true
+      ErrorService.setMessage(
+        'Failed! Stock limit reached'
+      ); // set the success message
+      clearTimeout(this.timerMain);
+      this.timerMain = setTimeout(this.hideAlert, 2000);
       return;
     }
     if (inCart) {
       this.cartservice.updateQuantity(currentQuantity + quantity, product.id);
+      //timed success message
+      ErrorService.displaySuccess(true); // set the success state to true
+      ErrorService.setMessage(
+        `Product:  [${product.name.toUpperCase()}]  added to cart`
+      ); // set the success message
+      clearTimeout(this.timerMain);
+      this.timerMain = setTimeout(this.hideAlert, 2000);
     } else {
       this.cartservice.addToCart(product.id, quantity);
       this.inCartDisplayDiv = true;
+      //timed success message
+      ErrorService.displaySuccess(true); // set the success state to true
+      ErrorService.setMessage(
+        `Product:  [${product.name.toUpperCase()}]  added to cart`
+      ); // set the success message
+      clearTimeout(this.timerMain);
+      this.timerMain = setTimeout(this.hideAlert, 2000);
     }
     this.cartCount += quantity;
     this.changeCard();
@@ -120,6 +142,18 @@ export class ProductCardComponent implements OnInit {
     }
     if (!inWishList) {
       this.wishlistservice.addToWishlist({ productId: product.id });
+      //timed success message
+      ErrorService.displaySuccess(true); // set the success state to true
+      ErrorService.setMessage(
+        `Product:  [${product.name.toUpperCase()}]  added to wishlist`
+      ); // set the success message
+      clearTimeout(this.timerMain);
+      this.timerMain = setTimeout(this.hideAlert, 2000);
+    }else{
+      ErrorService.displayWarning(true); // set the success state to true
+      ErrorService.setMessage('Already in wishlist'); // set the success message
+      clearTimeout(this.timerMain);
+      this.timerMain = setTimeout(this.hideAlert, 2000);
     }
     this.changeCard();
   }
@@ -137,5 +171,10 @@ export class ProductCardComponent implements OnInit {
     } else if (num > this.productInfo.quantity) {
       event.target.value = this.productInfo.quantity;
     }
+  }
+
+  hideAlert() {
+    ErrorService.displaySuccess(false);
+    ErrorService.displayWarning(false);
   }
 }
