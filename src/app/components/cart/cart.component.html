@@ -35,7 +35,10 @@
                   <input
                     class="user-quantity"
                     type="number"
+                    min="0"
+                    [max]="cartitem.product.quantity"
                     [id]="cartitem.product.id + ',' + 'i' + ',' + n"
+                    (keyup)="checkInputQty($event,cartitem.product.quantity)"
                     [value]="cartitem.quantity"
                   />
                   <button
