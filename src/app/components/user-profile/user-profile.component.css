@@ -140,3 +140,20 @@ input .ng-valid{
     margin-left: 25px;
 }
   
+.icon-style,
+.user-icon {
+  width: 100px;
+  height: 100px;
+  mask-size: contain;
+  mask-position: center;
+  mask-repeat: no-repeat;
+  background-color: azure;
+  -moz-border-radius: 50px;
+    -webkit-border-radius: 50px;
+    border-radius: 50px;
+  margin-left: 135px;
+}
+
+.user-icon {
+    mask-image: url("/assets/icons/user-login-icon.svg");
+  }
