@@ -28,7 +28,8 @@
 												<tbody>
 													<tr *ngIf="i==0">
 														<hr>
-														{{printPurchaseDate(item)}}
+														<h4 class="purchase-time">{{printPurchaseDate(item)}}</h4>
+														<p class="fontYellow">Total Order Price: ${{getTotalPrice(orders)}}</p>
 													</tr>
 													<tr>
 														<td>
@@ -65,7 +66,7 @@
 																											Price:</td>
 																									</tr>
 																									<tr>
-																										<td>{{item.product.price}}
+																										<td>${{item.product.price}}
 																										</td>
 																									</tr>
 																								</table>
@@ -79,18 +80,6 @@
 																									</tr>
 																									<tr>
 																										<td>{{item.quantity}}
-																										</td>
-																									</tr>
-																								</table>
-																							</td>
-																							<td>
-																								<table
-																									class="description-below-price">
-																									<tr>
-																										<td class="fontYellow"style="padding-right:60px">Total:</td>
-																									</tr>
-																									<tr>
-																										<td>{{getTotalPrice(item)}}
 																										</td>
 																									</tr>
 																								</table>

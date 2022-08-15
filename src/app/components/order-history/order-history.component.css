@@ -3,6 +3,12 @@ table{
     align: center;
 }
 
+.purchase-time
+{
+	font-weight: bold;
+	color: #14213d;
+}
+
 .history-table 
 {
 	border-radius: 10px;
@@ -15,6 +21,7 @@ table{
     background-color:#E5E5E5;
     padding-color:E5E5E5;
 }
+
 
 #leftPadding
 {

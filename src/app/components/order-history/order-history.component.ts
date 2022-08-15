@@ -34,7 +34,12 @@ export class OrderHistoryComponent implements OnInit {
 	return ts.toUTCString();
 	}
 	
-  getTotalPrice(item : OrderHistoryItem): string {
-		return (item.quantity  * item.product.price) + "";
-	}
+	getTotalPrice(item : OrderHistoryItem[]): string {
+        let totalPrice = 0
+        for(let i of item) {
+            totalPrice += i.quantity * i.product.price
+        }
+        return totalPrice.toFixed(2)
+
+    }
 }
