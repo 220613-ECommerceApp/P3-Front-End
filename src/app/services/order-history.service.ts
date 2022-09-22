@@ -35,14 +35,12 @@ export class OrderHistoryService {
 	
   constructor(private http: HttpClient, private auth: AuthService) { }
 
-// TO DO: ORGANIZE SO IT WORKS WITH BACK END
-
 
   public getOrderHistoryItems(): Observable<OrderHistoryItem[][]> {
     this.auth.updateBearer()
     return this.http.get<OrderHistoryItem[][]>(environment.baseUrl+this.orderHistoryUrl, {headers: environment.headers});
   }
-
+  
   public addItemsToOrderHistory(productsDTO: {id: number, quantity: number}[]) {
     this.auth.updateBearer()
     this.http
@@ -63,15 +61,4 @@ export class OrderHistoryService {
       .subscribe();
   }
 
-/*
-  public getSingleProduct(id: number): Observable<Product> {
-    return this.http.get<Product>(environment.baseUrl+id);
-  }
-
-  public purchase(products: {id:number, quantity:number}[]): Observable<any> {
-    this.auth.updateBearer()
-    const payload = JSON.stringify(products);
-    return this.http.patch<any>(environment.baseUrl+this.productUrl, payload, {headers: environment.headers})
-  }
-  */
 }

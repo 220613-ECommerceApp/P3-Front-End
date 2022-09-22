@@ -26,15 +26,7 @@
       class="card-body bottom d-flex justify-content-center align-items-center"
     >
       <h5 class="align-middle">${{ productInfo.price.toFixed(2) }}</h5>
-      <button
-        [ngClass]="{
-          btn: productInfo.quantity > 0,
-          btn_grey: productInfo.quantity <= 0
-        }"
-        (click)="productInfo.quantity > 0 && changeCard()"
-      >
-        {{ productInfo.quantity > 0 ? "buy now" : "out of stock" }}
-      </button>
+      <button class="btn" (click)="changeCard()">buy now</button>
     </div>
   </ng-container>
 

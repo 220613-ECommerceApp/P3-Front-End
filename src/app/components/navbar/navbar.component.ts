@@ -18,6 +18,11 @@ export class NavbarComponent implements OnInit {
     return this.router.url === url;
   }
 
+  refresh() {
+    if(!(this.router.url == '/home')) return
+    window.location.reload();
+  }
+
   logout() {
     this.authService.logout();
     if (this.router.url == '/home') {

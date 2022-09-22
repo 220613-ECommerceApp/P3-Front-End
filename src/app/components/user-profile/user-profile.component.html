@@ -6,13 +6,15 @@
 <error-display></error-display>
 
 <div class="Infofor">
-    <p> <strong>User ID:</strong> {{user?.id}}</p>
+    <!--<p> <strong>User ID:</strong> {{user?.id}}</p> -->
+    <div class="icon-style user-icon"> 
+    </div>
     <p> <strong> First Name:</strong> {{user?.firstname}}</p>
     <p> <strong> Last Name:</strong> {{user?.lastname}}</p>
     <p> <strong>Username:</strong> {{user?.username}}</p>
     <p> <strong>Email:</strong> {{user?.email}}</p>
 
-    <p> <strong> Password: </strong> <span class="spoiler" >{{user?.password}}</span></p>
+    <!--<p> <strong> Password: </strong> <span class="spoiler" >{{user?.password}}</span></p> -->
     <button class="btn btn-order" id="historybtn" [routerLink]="['/history']">View Your Order History</button>
      <button id="updateButton" class="btn btnF" (click)="toggleUpdateForm()">Update User Information</button>
 </div>

@@ -1,11 +1,9 @@
 h1{
     color:azure;
-    padding-left: 25px;
     text-align: center;
 }
 p{
-    padding-left: 25px;
-    color: azure;
+    color: #14213d;
     font-size: large;
 
 }
@@ -13,6 +11,7 @@ p{
     display: table;
     margin: 0 auto;
     margin-top: 50px;
+    text-align: center;
   }
   
 
@@ -30,52 +29,32 @@ input .ng-valid{
 
 .Infofor,
 .userInformation {
+    display: inline-block;
     flex: 25 25 25px;
-    float: left;
     padding: 10px;
     max-width: 400px;
-    background-color:  #e5e5e50F;
+    background-color:  #E5E5E5;
     border-radius: 50px;
-    margin-left: 15px;
     justify-content: center;
-
 }
 
 .userInformation{
-    padding-right: 40px;
-    margin-top: 20px;
+    padding-inline: 2em;
 }
 
-.userInformation p{
+.userInformation p {
     margin-top: 15px;
     margin-bottom: -3px;
 }
 
-.Infofor{
-    margin-top: 30px;
-    margin-left:70px;
+.Infofor {
+    text-align: center;
 }
-.Infofor p{
-    margin: 15px;
-    margin-top: 15px;
-}
-
 
 #user-container{
     float: right;
-    margin: 5px;
     margin-left: 50px;
 }
-
-
-#first,
-#last,
-#email,
-#username,
-#password{
-    margin-left:25px;
-}
-
 
 .btn-back,
 .uBtn,
@@ -90,12 +69,9 @@ input .ng-valid{
     padding-right: 6px;
     font-weight: 700;
     margin-bottom: 15px;
-    margin-left: 25px;
-    margin-top: 5px;
 }
 
 .uBtn {
-    margin-left: 50px;
     padding-left: 40px;
     padding-right: 40px;
     margin-top: 15px;
@@ -105,7 +81,7 @@ input .ng-valid{
 .btnF {
     padding-left: 25px;
     padding-right: 25px;
-    margin-left: 50px;
+    margin: 0;
 }
 
 .allDem {
@@ -127,7 +103,6 @@ input .ng-valid{
 #historybtn{
     padding-left: 25px;
     padding-right: 25px;
-    margin-left: 50px;
 }
 
 #redFirst,
@@ -136,7 +111,25 @@ input .ng-valid{
 #redEmail2,
 #redUsername,
 #redPassword1,
-#redPwassword2 {
-    margin-left: 25px;
+#redPassword2 {
+    margin-left: 0px;
 }
   
+.icon-style,
+.user-icon {
+  width: 100px;
+  height: 100px;
+  mask-size: contain;
+  mask-position: center;
+  mask-repeat: no-repeat;
+  background-color: #14213d;
+  -moz-border-radius: 50px;
+    -webkit-border-radius: 50px;
+    border-radius: 50px;
+  margin: 0 auto;
+  margin-top: 10px;
+}
+
+.user-icon {
+    mask-image: url("/assets/icons/user-login-icon.svg");
+  }

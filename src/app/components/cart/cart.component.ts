@@ -111,23 +111,23 @@ export class CartComponent implements OnInit {
   }
 
   removeFromCartAndAddToWishlist(productId: number) {
-    if(this.alreadyInWishlist.get(productId)) {
+    if (this.alreadyInWishlist.get(productId)) {
       ErrorService.displayWarning(true);
-      ErrorService.setMessage("Item is already in wishlist")
+      ErrorService.setMessage('Item is already in wishlist');
       clearTimeout(this.timer);
       this.timer = setTimeout(this.hideAlert, 2400);
       return;
     }
     this.ws.getWishlistItems().subscribe((data) => {
       let inWishlist: boolean = false;
-      for(let item of data) {
-        if(item.product.id == productId) {
+      for (let item of data) {
+        if (item.product.id == productId) {
           inWishlist = true;
-          this.alreadyInWishlist.set(productId, inWishlist)
+          this.alreadyInWishlist.set(productId, inWishlist);
           break;
         }
       }
-      if(!inWishlist) {
+      if (!inWishlist) {
         this.removeFromCart(productId);
         this.ws.addToWishlist({ productId: productId });
         //timed success message
@@ -137,11 +137,11 @@ export class CartComponent implements OnInit {
         this.timer = setTimeout(this.hideAlert, 2400);
       } else {
         ErrorService.displayWarning(true);
-        ErrorService.setMessage("Item is already in wishlist")
+        ErrorService.setMessage('Item is already in wishlist');
         clearTimeout(this.timer);
         this.timer = setTimeout(this.hideAlert, 2400);
       }
-    })
+    });
   }
 
   goTocheckout() {
@@ -156,5 +156,13 @@ export class CartComponent implements OnInit {
   }
   hideAlert() {
     ErrorService.displaySuccess(false);
+  }
+  checkInputQty(event: any, stock: number): void {
+    const num: number = event.target.value;
+     if (num<0) {
+       event.target.value = 0;
+     } else if (num > stock) {
+       event.target.value = stock;
+     }
   }
 }

@@ -17,21 +17,32 @@ export class RegisterComponent implements OnInit {
     email: new FormControl(''),
     password: new FormControl('')
   })
-  
+
 
   constructor(private authService: AuthService, private router: Router) { }
 
   ngOnInit(): void {
   }
-  
+
   onSubmit(): void {
     this.authService.register(this.registerForm.get('uname')?.value, this.registerForm.get('fname')?.value, this.registerForm.get('lname')?.value, this.registerForm.get('email')?.value, this.registerForm.get('password')?.value).subscribe(
-      () => console.log("New user registered"),
+      () => {
+        console.log("New user registered");
+        this.authService.login(this.registerForm.get('email')?.value,this.registerForm.get('password')?.value).subscribe(
+          (res) => {
+            localStorage.setItem("token",res.token);
+            this.router.navigate(['home']);
+          },
+          (err) => {
+            ErrorService.displayWarning(true) // set the error state to true
+            ErrorService.setMessage(err.error) // set the error message
+          }
+        )
+      },
       (err) => {
         ErrorService.displayWarning(true) // set the error state to true
         ErrorService.setMessage(err.error) // set the error message
       },
-      () => this.router.navigate(['login'])
     );
   }
 
